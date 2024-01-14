@@ -1,5 +1,5 @@
 {
-  "name": "video",
+  "name": "electron-app",
   "version": "1.0.0",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
@@ -22,8 +22,10 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "@icon-park/vue-next": "^1.4.2",
     "electron-updater": "^6.1.7",
-    "element-plus": "^2.5.0"
+    "element-plus": "^2.5.1",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",

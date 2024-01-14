@@ -1,20 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main class="bg-gray-50 text-xs py-2 px-3 opacity-80 flex justify-between">
-    <section>向军大叔作品</section>
+  <main class="text-slate-600 border-b bg-gray-50 text-xs flex justify-between px-3 py-2">
+    <section class="opacity-80">向军大叔作品</section>
     <section class="flex justify-between gap-2">
-      <div class="link active">转码</div>
-      <div class="link">配置</div>
+      <router-link :to="{ name: 'home' }">转码</router-link>
+      <router-link :to="{ name: 'setting' }">配置</router-link>
     </section>
   </main>
 </template>
 
-<style lang="scss" scoped>
-.link {
-  @apply opacity-80;
-  &.active {
-    @apply opacity-90 font-bold;
-  }
-}
-</style>
+<style lang="scss"></style>

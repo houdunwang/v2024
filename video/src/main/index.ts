@@ -4,12 +4,11 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 350,
-    height: 600,
+    height: 666,
     show: false,
-    x: 1600,
+    x: 1570,
     y: 10,
     alwaysOnTop: true,
     autoHideMenuBar: true,

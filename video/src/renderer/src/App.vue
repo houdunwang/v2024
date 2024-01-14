@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue'
-import Frame from './components/Frame.vue'
+import Navbar from '@renderer/components/Navbar.vue'
+import Copyright from '@renderer/components/Copyright.vue'
 </script>
 
 <template>
-  <main>
+  <main class="">
     <Navbar />
-    <Frame class="mt-5" />
+    <RouterView />
+    <Copyright class="mt-2" />
   </main>
 </template>
-
-<style lang="less"></style>
