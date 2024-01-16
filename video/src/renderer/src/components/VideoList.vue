@@ -1,28 +1,15 @@
 <script setup lang="ts">
-import { CloseOne } from '@icon-park/vue-next'
-
 import { ref } from 'vue'
+import VideoItem from './VideoItem.vue'
 
-const videos = ref([1, 3, 4, 5, 6, 7, 78, 8, 9, 9, 54, 56, 6, 78, 8, 89, 9, 9, 9, 0, 0, 34])
+const videos = ref([
+  '看其他网站源码有助于新手学习，同时有些 HTML 是后台脚本如 PHP 渲染出来的，通过查看源码可以帮助我们分析问题。',
+  '源码有助于新手学习，同时有些 HTML 是后台脚本如 PHP 渲'
+])
 </script>
 
 <template>
   <main class="overflow-y-auto h-80">
-    <section v-for="(video, index) of videos" :key="index" class="video">
-      {{ video }}
-      <div class="icon">
-        <close-one theme="outline" size="12" />
-      </div>
-    </section>
+    <video-item v-for="(video, index) of videos" :key="index" :video="{ title: video }" />
   </main>
 </template>
-
-<style lang="scss">
-.video {
-  @apply bg-white px-3 py-1 rounded-lg mb-2 mx-3 text-xs text-slate-600
-  flex justify-between items-center;
-  .icon {
-    @apply text-slate-500 opacity-50 hover:scale-125 duration-300 hover:text-yellow-500 hover:opacity-90 cursor-pointer;
-  }
-}
-</style>
