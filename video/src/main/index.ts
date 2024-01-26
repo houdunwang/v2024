@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-
+import './ipc'
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 350,
@@ -10,7 +10,7 @@ function createWindow(): void {
     show: false,
     x: 1570,
     y: 10,
-    resizable: false,
+    // resizable: false,
     frame: false,
     alwaysOnTop: true,
     autoHideMenuBar: true,

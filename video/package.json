@@ -22,9 +22,12 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
     "@icon-park/vue-next": "^1.4.2",
     "electron-updater": "^6.1.7",
     "element-plus": "^2.5.1",
+    "fluent-ffmpeg": "^2.1.2",
     "pinia": "^2.1.7",
     "vue-router": "4"
   },
@@ -33,6 +36,7 @@
     "@electron-toolkit/eslint-config-ts": "^1.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@rushstack/eslint-patch": "^1.6.1",
+    "@types/fluent-ffmpeg": "^2.1.24",
     "@types/node": "^18.19.5",
     "@vitejs/plugin-vue": "^5.0.2",
     "@vue/eslint-config-prettier": "^9.0.0",
