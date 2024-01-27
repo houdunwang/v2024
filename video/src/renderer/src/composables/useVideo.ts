@@ -1,23 +1,22 @@
 import useConfigStore from '@renderer/store/useConfigStore'
-import { DataType } from '@renderer/types'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { ref } from 'vue'
+import { UploadRequestOptions } from 'element-plus'
 
 export default () => {
-  const newValue = ref('')
   const { config } = useConfigStore()
-  const add = (type: DataType) => {
-    config[type == 'size' ? 'sizes' : 'frames'].push(newValue.value)
-
-    ElMessage({ message: '添加成功', type: 'success', grouping: true })
-    newValue.value = ''
+  const addFile = (options: UploadRequestOptions) => {
+    const name = options.file.name
+    const path = options.file.path
+    config.files.push({ name, path, progress: 29, finish: true })
   }
 
-  const remove = async (type: DataType, index: number) => {
-    await ElMessageBox.confirm('确定删除吗？')
-    config[type == 'size' ? 'sizes' : 'frames'].splice(index, 1)
-    ElMessage({ message: '删除成功', type: 'success', grouping: true })
+  const remove = async (index: number) => {
+    try {
+      // await ElMessageBox.confirm('确定删除吗？')
+      config.files.splice(index, 1)
+    } catch (error) {}
   }
-
-  return { newValue, add, remove }
+  const removeAll = () => {
+    config.files = []
+  }
+  return { addFile, remove, removeAll }
 }

@@ -1,3 +1,4 @@
+import { VideoType } from './../renderer/src/types'
 import ffmpegPath from '@ffmpeg-installer/ffmpeg'
 import ffprobePath from '@ffprobe-installer/ffprobe'
 import { IpcMainInvokeEvent } from 'electron'
@@ -7,7 +8,7 @@ ffmpeg.setFfmpegPath(ffmpegPath.path)
 ffmpeg.setFfprobePath(ffprobePath.path)
 
 export type CompressOptions = {
-  file: string
+  file: VideoType
   fps: number
   size: string
 }
@@ -18,7 +19,7 @@ export default class Ffmpeg {
     private _event: IpcMainInvokeEvent,
     private options: CompressOptions
   ) {
-    this.ffmpeg = ffmpeg(this.options.file)
+    this.ffmpeg = ffmpeg(this.options.file.path)
   }
   progressEvent(progress) {
     console.log('Processing: ' + progress.percent + '% done')

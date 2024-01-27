@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { CloseOne } from '@icon-park/vue-next'
+import useVideo from '@renderer/composables/useVideo'
 import { VideoType } from '@renderer/types'
-import { ref } from 'vue'
 
-const { video } = defineProps<{ video: VideoType }>()
-const process = ref(2)
+const { video } = defineProps<{ video: VideoType; index: number }>()
+const { remove } = useVideo()
 </script>
 
 <template>
-  <section class="video" :style="`--process:${process}%`">
-    <div class="title z-10">{{ video.title }}</div>
-    <div class="icon">
+  <section class="video" :style="`--process:${video.progress}%`">
+    <div class="title z-10">{{ video.name }}</div>
+    <div class="icon" @click="remove(index)">
       <close-one theme="outline" size="12" />
     </div>
   </section>
@@ -29,7 +29,7 @@ const process = ref(2)
     @apply truncate;
   }
   .icon {
-    @apply text-slate-500 opacity-50 hover:scale-125 duration-300 hover:text-yellow-500 hover:opacity-90 cursor-pointer;
+    @apply text-slate-500 opacity-50 hover:scale-150 duration-300 hover:text-yellow-500 hover:opacity-100 cursor-pointer;
   }
 }
 </style>

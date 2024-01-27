@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CloseOne } from '@icon-park/vue-next'
-import useVideo from '@renderer/composables/useVideo'
+import useFps from '@renderer/composables/useFps'
 import useConfigStore from '@renderer/store/useConfigStore'
 import { DataType } from '@renderer/types'
 import { computed } from 'vue'
@@ -18,7 +18,7 @@ const list = computed(() => {
   return props.type == 'size' ? config.sizes : config.frames
 })
 
-const { add, newValue, remove } = useVideo()
+const { add, newValue, remove } = useFps()
 </script>
 
 <template>
