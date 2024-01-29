@@ -1,17 +1,11 @@
-import { VideoType } from './../renderer/src/types'
 import ffmpegPath from '@ffmpeg-installer/ffmpeg'
 import ffprobePath from '@ffprobe-installer/ffprobe'
 import { IpcMainInvokeEvent } from 'electron'
 import ffmpeg from 'fluent-ffmpeg'
 import path from 'path'
+import { CompressOptions } from './../renderer/src/types'
 ffmpeg.setFfmpegPath(ffmpegPath.path)
 ffmpeg.setFfprobePath(ffprobePath.path)
-
-export type CompressOptions = {
-  file: VideoType
-  fps: number
-  size: string
-}
 
 export default class Ffmpeg {
   ffmpeg: ffmpeg.FfmpegCommand
@@ -30,6 +24,15 @@ export default class Ffmpeg {
   end() {
     console.log('Processing finished !')
   }
+
+  private getSaveFilePath() {
+    const info = path.parse(this.options.file.name)
+    return path.join(
+      this.options.saveDirectory,
+      `${info.name}-${this.options.size}-${this.options.fps}${info.ext}`
+    )
+  }
+
   run() {
     this.ffmpeg
       .fps(this.options.fps)
@@ -38,6 +41,6 @@ export default class Ffmpeg {
       .on('progress', this.progressEvent.bind(this))
       .on('error', this.error.bind(this))
       .on('end', this.end.bind(this))
-      .save(path.resolve(__dirname, '../../hd-finish.mp4'))
+      .save(this.getSaveFilePath())
   }
 }

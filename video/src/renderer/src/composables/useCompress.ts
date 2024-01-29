@@ -12,7 +12,8 @@ export default () => {
     window.api.compress({
       file: { ...file },
       fps: Number(config.frame),
-      size: config.size
+      size: config.size,
+      saveDirectory: config.videoSaveDirectory
     })
   }
 

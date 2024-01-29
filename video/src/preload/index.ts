@@ -1,3 +1,4 @@
+import { selectDirectory } from './../main/directory'
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import { CompressOptions } from '../main/ffmpeg'
@@ -6,6 +7,10 @@ import { CompressOptions } from '../main/ffmpeg'
 const api = {
   compress: (options: CompressOptions) => {
     ipcRenderer.invoke('compress', options)
+  },
+  //选择目录
+  selectDirectory: () => {
+    return ipcRenderer.invoke('selectDirectory')
   }
 }
 
