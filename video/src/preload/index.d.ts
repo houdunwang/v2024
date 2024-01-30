@@ -7,6 +7,7 @@ declare global {
     api: {
       compress: (options: CompressOptions) => void
       selectDirectory: () => Promise<any>
+      progressNotice: (callback: (progress: number) => void) => void
     }
   }
 }

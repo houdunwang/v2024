@@ -11,7 +11,8 @@ export default defineStore(
       frames: ['60', '30', '24'],
       frame: '60',
       files: [] as VideoType[],
-      videoSaveDirectory: ''
+      videoSaveDirectory: '',
+      video: null as VideoType | null
     })
 
     return { config }

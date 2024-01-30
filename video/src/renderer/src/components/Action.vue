@@ -3,7 +3,7 @@ import { Plus, UpdateRotation } from '@icon-park/vue-next'
 import useCompress from '@renderer/composables/useCompress'
 import useVideo from '@renderer/composables/useVideo'
 const { addFile } = useVideo()
-const { compress } = useCompress()
+const { compress, video } = useCompress()
 </script>
 
 <template>

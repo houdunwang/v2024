@@ -6,6 +6,7 @@ import { ref } from 'vue'
 export default () => {
   const newValue = ref('')
   const { config } = useConfigStore()
+
   const add = (type: DataType) => {
     config[type == 'size' ? 'sizes' : 'frames'].push(newValue.value)
 

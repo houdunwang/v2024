@@ -1,5 +1,5 @@
 import { selectDirectory } from './../main/directory'
-import { contextBridge, ipcRenderer } from 'electron'
+import { IpcRendererEvent, contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import { CompressOptions } from '../main/ffmpeg'
 
@@ -11,6 +11,11 @@ const api = {
   //选择目录
   selectDirectory: () => {
     return ipcRenderer.invoke('selectDirectory')
+  },
+  progressNotice: (callback: (progress: number) => void) => {
+    ipcRenderer.on('progressNotice', (_event: IpcRendererEvent, progress: number) => {
+      callback(progress)
+    })
   }
 }
 

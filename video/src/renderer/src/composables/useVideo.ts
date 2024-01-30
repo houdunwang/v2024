@@ -7,7 +7,7 @@ export default () => {
   const addFile = (options: UploadRequestOptions) => {
     const name = options.file.name
     const path = options.file.path
-    config.files.push({ name, path, progress: 29, state: VideoState.READAY })
+    config.files.push({ name, path, progress: 0, state: VideoState.READAY })
   }
 
   const remove = async (index: number) => {

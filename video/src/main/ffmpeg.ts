@@ -1,6 +1,6 @@
 import ffmpegPath from '@ffmpeg-installer/ffmpeg'
 import ffprobePath from '@ffprobe-installer/ffprobe'
-import { IpcMainInvokeEvent } from 'electron'
+import { BrowserWindow, IpcMainInvokeEvent } from 'electron'
 import ffmpeg from 'fluent-ffmpeg'
 import path from 'path'
 import { CompressOptions } from './../renderer/src/types'
@@ -9,14 +9,17 @@ ffmpeg.setFfprobePath(ffprobePath.path)
 
 export default class Ffmpeg {
   ffmpeg: ffmpeg.FfmpegCommand
+  window: BrowserWindow
   constructor(
-    private _event: IpcMainInvokeEvent,
+    private event: IpcMainInvokeEvent,
     private options: CompressOptions
   ) {
     this.ffmpeg = ffmpeg(this.options.file.path)
+    this.window = BrowserWindow.fromWebContents(this.event.sender)!
   }
   progressEvent(progress) {
     console.log('Processing: ' + progress.percent + '% done')
+    this.window.webContents.send('progressNotice', progress.percent)
   }
   error(error) {
     console.log('An error occurred: ' + error.message)
