@@ -18,8 +18,8 @@ export default class Ffmpeg {
     this.window = BrowserWindow.fromWebContents(this.event.sender)!
   }
   progressEvent(progress) {
-    console.log('Processing: ' + progress.percent + '% done')
     this.window.webContents.send('progressNotice', progress.percent)
+    // console.log('Processing: ' + progress.percent + '% done')
   }
   error(error) {
     console.log('An error occurred: ' + error.message)
