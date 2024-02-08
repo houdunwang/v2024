@@ -1,5 +1,14 @@
 export type DataType = 'size' | 'frame'
 
+export enum MainProcessNoticeType {
+  END = 'end',
+  PROGRESS = 'progress',
+  ERROR = 'error',
+  DIREDCTORY_CHECK = 'directoryCheck',
+  STOP = 'stop',
+  FILE_IS_EXISTS = 'file_is_exists'
+}
+
 //视频状态
 export enum VideoState {
   READAY = 'ready',

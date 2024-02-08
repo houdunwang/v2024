@@ -34,7 +34,7 @@ const { add, newValue, remove } = useFps()
       </el-option>
     </el-select>
     <div class="flex gap-1 mt-2 items-center">
-      <el-input v-model="newValue" :placeholder="props.tip" size="normal" clearable />
+      <el-input v-model="newValue" :placeholder="props.tip" size="default" clearable />
       <el-button :type="props.buttonStyle" size="default" @click="add(props.type)">增加</el-button>
     </div>
   </main>

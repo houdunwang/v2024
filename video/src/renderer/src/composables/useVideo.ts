@@ -1,6 +1,6 @@
 import useConfigStore from '@renderer/store/useConfigStore'
 import { VideoState, VideoType } from '@renderer/types'
-import { UploadRequestOptions } from 'element-plus'
+import { ElMessage, UploadRequestOptions } from 'element-plus'
 
 export default () => {
   const { config } = useConfigStore()
@@ -12,12 +12,20 @@ export default () => {
 
   const remove = async (index: number) => {
     try {
-      // await ElMessageBox.confirm('确定删除吗？')
-      config.files.splice(index, 1)
+      const video = config.files[index]
+      if (video.state === VideoState.COMPRESS) ElMessage.warning('请等待视频压缩完成')
+      else config.files.splice(index, 1)
     } catch (error) {}
   }
   const removeAll = () => {
     config.files = []
+  }
+
+  const resetAllVideo = () => {
+    config.files.forEach((item) => {
+      item.progress = 0
+      item.state = VideoState.READAY
+    })
   }
 
   //视频压缩时背景颜色
@@ -28,5 +36,5 @@ export default () => {
       [VideoState.FINISH]: '#55efc4'
     }[video.state]
   }
-  return { addFile, remove, removeAll, bgColor }
+  return { addFile, remove, removeAll, bgColor, resetAllVideo }
 }

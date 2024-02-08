@@ -13,3 +13,19 @@ textarea,
 option {
   -webkit-app-region: no-drag;
 }
+
+.el-message {
+  top: 0 !important;
+  background-color: #34495e !important;
+  padding: 5px 10px !important;
+  .el-icon,
+  .el-message__content {
+    font-size: 12px;
+  }
+  .el-icon {
+    margin-right: 2px;
+  }
+  .el-badge {
+    display: none !important;
+  }
+}

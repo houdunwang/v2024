@@ -2,6 +2,8 @@ import { selectDirectory } from './../main/directory'
 import { IpcRendererEvent, contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import { CompressOptions } from '../main/ffmpeg'
+import { AnyARecord } from 'dns'
+import { MainProcessNoticeType } from '../renderer/src/types'
 
 // Custom APIs for renderer
 const api = {
@@ -12,10 +14,21 @@ const api = {
   selectDirectory: () => {
     return ipcRenderer.invoke('selectDirectory')
   },
-  progressNotice: (callback: (progress: number) => void) => {
-    ipcRenderer.on('progressNotice', (_event: IpcRendererEvent, progress: number) => {
-      callback(progress)
-    })
+  stop() {
+    ipcRenderer.send('stop')
+  },
+  // progressNotice: (callback: (progress: number) => void) => {
+  //   ipcRenderer.on('progressNotice', (_event: IpcRendererEvent, progress: number) => {
+  //     callback(progress)
+  //   })
+  // },
+  mainProcessNotice: (callback: (type: MainProcessNoticeType, data: any) => void) => {
+    ipcRenderer.on(
+      'mainProcessNotice',
+      (_event: IpcRendererEvent, type: MainProcessNoticeType, data: any) => {
+        callback(type, data)
+      }
+    )
   }
 }
 

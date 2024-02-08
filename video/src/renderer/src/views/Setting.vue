@@ -32,7 +32,7 @@ const selectDirectory = async () => {
         <el-input
           v-model="config.videoSaveDirectory"
           disabled
-          size="normal"
+          size="default"
           clearable
           @change=""
         ></el-input>

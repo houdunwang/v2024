@@ -9,7 +9,8 @@ const { remove, bgColor } = useVideo()
 
 <template>
   <section class="video" :style="`--process:${video.progress}%;--bgColor:${bgColor(video)}`">
-    <div class="title z-10">{{ video.name }}</div>
+    {{ bgColor(video) }}
+    <div class="title z-10">{{ video.name }} --{{ video.progress }}-- {{ video.state }}</div>
     <div class="icon" @click="remove(index)">
       <close-one theme="outline" size="12" />
     </div>
