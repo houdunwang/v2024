@@ -5,10 +5,8 @@ import ffmpeg from 'fluent-ffmpeg'
 import { existsSync, renameSync } from 'fs'
 import path from 'path'
 import { CompressOptions, MainProcessNoticeType } from './../renderer/src/types'
-ffmpeg.setFfmpegPath(ffmpegPath.path)
-ffmpeg.setFfprobePath(ffprobePath.path)
-// ffmpeg.setFfmpegPath(ffmpegPath.path.replace('app.asar', 'app.asar.unpacked'))
-// ffmpeg.setFfprobePath(ffprobePath.path.replace('app.asar', 'app.asar.unpacked'))
+ffmpeg.setFfmpegPath(ffmpegPath.path.replace('app.asar', 'app.asar.unpacked'))
+ffmpeg.setFfprobePath(ffprobePath.path.replace('app.asar', 'app.asar.unpacked'))
 
 export default class Ffmpeg {
   // ffmpeg: ffmpeg.FfmpegCommand
