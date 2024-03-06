@@ -29,22 +29,24 @@ export default () => {
   }
 
   const progressNotice = () => {
-    window.api.mainProcessNotice((type: MainProcessNoticeType, data: any) => {
+    window.api.mainProcessNotice((type: MainProcessNoticeType, data: any, path: string) => {
+      const video = config.files.find((video) => video.path == path)
+      if (!video) return
       switch (type) {
         case MainProcessNoticeType.PROGRESS:
-          video.value!.progress = data
+          video.progress = data
           break
         case MainProcessNoticeType.END:
-          video.value!.state = VideoState.FINISH
+          video.state = VideoState.FINISH
           compress()
           break
         case MainProcessNoticeType.DIREDCTORY_CHECK:
           ElMessage.warning({ message: '视频保存目录不存在', grouping: true })
-          video.value!.state = VideoState.READAY
+          video.state = VideoState.READAY
           isRun.value = false
           break
         case MainProcessNoticeType.FILE_IS_EXISTS:
-          video.value!.state = VideoState.ERROR
+          video.state = VideoState.ERROR
           ElMessage.warning({ message: '视频已经存在', grouping: false })
           compress()
           break
@@ -66,6 +68,11 @@ export default () => {
   }
 
   const compress = () => {
+    config.files.forEach((video) => {
+      if (video.state === VideoState.COMPRESS) {
+        video.state = VideoState.READAY
+      }
+    })
     getCompressFile()
     if (validate() === false) return
 
@@ -73,6 +80,7 @@ export default () => {
       file: { ...video.value! },
       fps: Number(config.frame),
       size: config.size,
+      videoBitrate: config.videoBitrate,
       saveDirectory: config.videoSaveDirectory
     })
   }

@@ -1,6 +1,6 @@
 import useConfigStore from '@renderer/store/useConfigStore'
 import { DataType } from '@renderer/types'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 
 export default () => {

@@ -1,20 +1,20 @@
-import { IpcMainInvokeEvent, ipcMain } from 'electron'
+import { BrowserWindow, IpcMainInvokeEvent, ipcMain } from 'electron'
 import Ffmpeg from './ffmpeg'
 import { selectDirectory } from './directory'
 import { CompressOptions } from '../renderer/src/types'
 
-//压缩视频
-let ffmpeg = null as Ffmpeg | null
-ipcMain.handle('compress', async (event: IpcMainInvokeEvent, options: CompressOptions) => {
-  const compress = new Ffmpeg(event, options)
-  ffmpeg = compress
-  compress.run()
-})
+export default (win: BrowserWindow) => {
+  //压缩视频
+  const ffmpeg = new Ffmpeg()
+  ipcMain.handle('compress', async (_event: IpcMainInvokeEvent, options: CompressOptions) => {
+    ffmpeg.init(win, options).run()
+  })
 
-ipcMain.on('stop', () => {
-  ffmpeg?.stop()
-})
+  ipcMain.on('stop', () => {
+    ffmpeg.stop()
+  })
 
-ipcMain.handle('selectDirectory', async () => {
-  return selectDirectory()
-})
+  ipcMain.handle('selectDirectory', async () => {
+    return selectDirectory()
+  })
+}

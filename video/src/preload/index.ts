@@ -1,9 +1,6 @@
-import { selectDirectory } from './../main/directory'
-import { IpcRendererEvent, contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import { CompressOptions } from '../main/ffmpeg'
-import { AnyARecord } from 'dns'
-import { MainProcessNoticeType } from '../renderer/src/types'
+import { IpcRendererEvent, contextBridge, ipcRenderer } from 'electron'
+import { CompressOptions, MainProcessNoticeType } from '../renderer/src/types'
 
 // Custom APIs for renderer
 const api = {
@@ -22,11 +19,11 @@ const api = {
   //     callback(progress)
   //   })
   // },
-  mainProcessNotice: (callback: (type: MainProcessNoticeType, data: any) => void) => {
+  mainProcessNotice: (callback: (type: MainProcessNoticeType, data: any, path: string) => void) => {
     ipcRenderer.on(
       'mainProcessNotice',
-      (_event: IpcRendererEvent, type: MainProcessNoticeType, data: any) => {
-        callback(type, data)
+      (_event: IpcRendererEvent, type: MainProcessNoticeType, data: any, path: string) => {
+        callback(type, data, path)
       }
     )
   }

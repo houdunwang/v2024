@@ -29,5 +29,6 @@ export type CompressOptions = {
   file: VideoType
   fps: number
   size: string
+  videoBitrate: number
   saveDirectory: string
 }

@@ -1,0 +1,17 @@
+body {
+  @apply h-screen w-screen;
+}
+
+body,
+.drag {
+  -webkit-app-region: drag;
+  --mx-menu-placeholder-width: 10px !important;
+}
+
+.nodrag,
+input,
+select,
+textarea,
+option {
+  -webkit-app-region: no-drag;
+}
