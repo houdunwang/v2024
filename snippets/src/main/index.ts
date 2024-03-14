@@ -5,13 +5,15 @@ import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
   const { width } = screen.getPrimaryDisplay().workAreaSize
+  // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 300,
-    height: 300,
-    x: width - 300,
-    y: 30,
+    width: 600,
+    height: 600,
+    // x: width - 600,
+    // y: 50,
     show: false,
     frame: false,
+    transparent: true,
     alwaysOnTop: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -20,7 +22,7 @@ function createWindow(): void {
       sandbox: false
     }
   })
-
+  mainWindow.webContents.openDevTools()
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })

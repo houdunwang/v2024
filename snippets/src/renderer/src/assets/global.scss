@@ -1,11 +1,9 @@
 body {
-  @apply h-screen w-screen;
+  /* @apply bg-black; */
 }
 
-body,
 .drag {
   -webkit-app-region: drag;
-  --mx-menu-placeholder-width: 10px !important;
 }
 
 .nodrag,
