@@ -1,13 +1,12 @@
 import ffmpegPath from '@ffmpeg-installer/ffmpeg'
 import ffprobePath from '@ffprobe-installer/ffprobe'
-import { BrowserWindow, dialog } from 'electron'
+import { BrowserWindow } from 'electron'
 import ffmpeg from 'fluent-ffmpeg'
 import { existsSync, renameSync } from 'fs'
 import path from 'path'
 import { CompressOptions, MainProcessNoticeType } from './../renderer/src/types'
 ffmpeg.setFfmpegPath(ffmpegPath.path.replace('app.asar', 'app.asar.unpacked'))
 ffmpeg.setFfprobePath(ffprobePath.path.replace('app.asar', 'app.asar.unpacked'))
-dialog.showErrorBox('', ffmpegPath.path)
 export default class Ffmpeg {
   // ffmpeg: ffmpeg.FfmpegCommand
   // window: BrowserWindow

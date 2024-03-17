@@ -2,7 +2,7 @@ export interface DataType {
   id: number
   content: string
 }
-export const data = [
+export const codes = [
   {
     id: 1,
     content:
