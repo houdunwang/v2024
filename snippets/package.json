@@ -23,7 +23,10 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
-    "electron-updater": "^6.1.7"
+    "@emotion/is-prop-valid": "^1.2.2",
+    "classnames": "^2.5.1",
+    "electron-updater": "^6.1.7",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
