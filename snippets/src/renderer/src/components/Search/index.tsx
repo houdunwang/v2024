@@ -1,19 +1,7 @@
-import { codes } from '@renderer/data'
-import useCode from '@renderer/hooks/useCode'
-import { ChangeEvent, useState } from 'react'
+import useSearch from '@renderer/hooks/useSearch'
 
 export default function Search() {
-  const { setData } = useCode()
-  const [search, setSearch] = useState('')
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
-    setData(
-      codes.filter((code) =>
-        code.content.toLowerCase().includes(e.target.value.toLowerCase() || '@@@@@')
-      )
-    )
-  }
-
+  const { handleSearch, search } = useSearch()
   return (
     <main className="bg-slate-50 p-3 rounded-lg  drag">
       <section className="bg-slate-200 p-3 rounded-lg">
