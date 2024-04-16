@@ -2,17 +2,19 @@ import isPropValid from '@emotion/is-prop-valid'
 import { StyleSheetManager } from 'styled-components'
 import Result from './components/Result'
 import Search from './components/Search'
-import { CodeProvider } from './context/CodeContext'
-{
-  /* <StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid` */
-}
+import useShortCut from './hooks/useShortCut'
+import Error from './components/Error'
+
 function App(): JSX.Element {
+  const { register } = useShortCut()
+  register('search', 'CommandOrControl+Shift+/')
   return (
     <StyleSheetManager shouldForwardProp={isPropValid}>
-      <CodeProvider>
-        <Search />
-        <Result />
-      </CodeProvider>
+      <Error />
+      {/* <CodeProvider> */}
+      <Search />
+      <Result />
+      {/* </CodeProvider> */}
     </StyleSheetManager>
   )
 }

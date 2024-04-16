@@ -1,8 +1,8 @@
+import { useStore } from '@renderer/store/useStore'
 import { useCallback, useEffect, useState } from 'react'
-import useCode from './useCode'
 
 export default () => {
-  const { data, setData } = useCode()
+  const { data, setData, setSearch } = useStore((state) => state)
   const [id, setId] = useState(0)
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
@@ -29,12 +29,14 @@ export default () => {
   )
 
   //选中代码行
-  function selectItem(id: number) {
+  async function selectItem(id: number) {
     const content = data.find((item) => item.id == id)?.content
-    if (content) navigator.clipboard.writeText(content)
+    if (content) await navigator.clipboard.writeText(content)
     setData([])
+    setSearch('')
     window.api.hideWindow()
   }
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvent)
     return () => {

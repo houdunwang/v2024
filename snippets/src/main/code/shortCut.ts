@@ -1,26 +1,31 @@
-import { app, BrowserWindow, dialog, globalShortcut } from 'electron'
+import { app, BrowserWindow, dialog, globalShortcut, ipcMain, IpcMainEvent } from 'electron'
+import { IpcMainInvokeEvent } from 'electron/main'
+const config = {
+  search: ''
+}
 export const registerShortCut = (win: BrowserWindow) => {
-  app.whenReady().then(() => {
-    // 注册一个'CommandOrControl+X' 快捷键监听器
-    const ret = globalShortcut.register("CommandOrControl+Shift+'", () => {
-      win.show()
-      // console.log('CommandOrControl+X is pressed')
-    })
+  // 检查快捷键是否注册成功
+  // console.log(globalShortcut.isRegistered('CommandOrControl+X'))
+  ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search', shortCut: string) => {
+    // if (config.search) globalShortcut.unregister(config.search)
+    config.search = shortCut
 
-    if (!ret) {
-      dialog.showErrorBox('温馨提示', '快捷键注册失败')
-      // console.log('registration failed')
+    switch (type) {
+      case 'search':
+        return registerSearchShortCut(win, shortCut)
     }
-
-    // 检查快捷键是否注册成功
-    console.log(globalShortcut.isRegistered('CommandOrControl+X'))
-  })
-
-  app.on('will-quit', () => {
-    // 注销快捷键
-    // globalShortcut.unregister('CommandOrControl+X')
-
-    // 注销所有快捷键
-    globalShortcut.unregisterAll()
   })
 }
+
+function registerSearchShortCut(win: BrowserWindow, shortCut: string) {
+  return globalShortcut.register(shortCut, () => {
+    win.isVisible() ? win.hide() : win.show()
+  })
+}
+
+app.on('will-quit', () => {
+  // 注销快捷键
+  // globalShortcut.unregister('CommandOrControl+X')
+  // 注销所有快捷键
+  globalShortcut.unregisterAll()
+})

@@ -26,7 +26,8 @@
     "@emotion/is-prop-valid": "^1.2.2",
     "classnames": "^2.5.1",
     "electron-updater": "^6.1.7",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",

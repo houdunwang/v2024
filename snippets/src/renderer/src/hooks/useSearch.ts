@@ -1,10 +1,10 @@
-import { ChangeEvent, useState } from 'react'
-import useCode from './useCode'
 import { codes } from '@renderer/data'
+import { useStore } from '@renderer/store/useStore'
+import { ChangeEvent } from 'react'
 
 export default () => {
-  const { setData } = useCode()
-  const [search, setSearch] = useState('')
+  const { setData } = useStore((s) => s)
+  const { search, setSearch } = useStore()
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
     setData(
@@ -15,5 +15,6 @@ export default () => {
         .splice(0, 8)
     )
   }
+
   return { search, handleSearch }
 }
