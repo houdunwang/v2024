@@ -1,9 +1,9 @@
-import useCodeSelect from '@renderer/hooks/useCodeSelect'
+import useSelect from '@renderer/hooks/useSelect'
 import classNames from 'classnames'
 import './styles.scss'
 
 export default function Result() {
-  const { data, id, selectItem } = useCodeSelect()
+  const { data, id, selectItem } = useSelect()
 
   return (
     <main className="result">

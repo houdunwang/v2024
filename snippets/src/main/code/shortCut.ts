@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, globalShortcut, ipcMain, IpcMainEvent } from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import { IpcMainInvokeEvent } from 'electron/main'
 const config = {
   search: ''
@@ -7,7 +7,7 @@ export const registerShortCut = (win: BrowserWindow) => {
   // 检查快捷键是否注册成功
   // console.log(globalShortcut.isRegistered('CommandOrControl+X'))
   ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, type: 'search', shortCut: string) => {
-    // if (config.search) globalShortcut.unregister(config.search)
+    if (config.search) globalShortcut.unregister(config.search)
     config.search = shortCut
 
     switch (type) {

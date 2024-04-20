@@ -1,20 +1,19 @@
-import { BrowserWindow, screen, shell } from 'electron'
+import { is } from '@electron-toolkit/utils'
+import { BrowserWindow, dialog, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
-import { is } from '@electron-toolkit/utils'
-
+import url from 'node:url'
 export function createWindow(): BrowserWindow {
-  const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 500,
-    height: 350,
+    width: 600,
+    height: 500,
     center: true,
     // x: width - 500,
     // y: 0,
     show: false,
-    frame: false,
-    transparent: true,
+    // frame: false,
+    // transparent: true,
     alwaysOnTop: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -37,9 +36,21 @@ export function createWindow(): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    win.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    win.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config')
   } else {
-    win.loadFile(join(__dirname, '../renderer/index.html'))
+    // win.loadFile(join(__dirname, '../renderer/index.html' + '/#config'))
+    win.loadURL(
+      url.format({
+        //编译后的文件
+        pathname: join(__dirname, '../renderer/index.html'),
+        //协议
+        protocol: 'file',
+        //protocol 后面需要两个/
+        slashes: true,
+        //hash 的值
+        hash: 'config'
+      })
+    )
   }
 
   return win

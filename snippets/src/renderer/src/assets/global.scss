@@ -1,5 +1,8 @@
 body {
-  /* @apply bg-black; */
+  @apply w-screen h-screen;
+}
+* {
+  opacity: 0.995;
 }
 
 .drag {
