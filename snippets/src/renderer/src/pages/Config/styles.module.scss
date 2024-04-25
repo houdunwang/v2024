@@ -1,0 +1,28 @@
+.container {
+  @apply w-screen h-screen bg-white;
+  display: grid;
+  grid-template:
+    '. . ' 30px
+    'category content' auto
+    'nav content' 40px /100px 1fr;
+  div {
+    &:nth-child(1) {
+      @apply border-r;
+    }
+    &:nth-child(1),
+    &:nth-child(2) {
+      -webkit-app-region: drag;
+    }
+    &.category {
+      grid-area: category;
+      @apply border-r;
+    }
+    &.content {
+      grid-area: content;
+    }
+    &.nav {
+      grid-area: nav;
+      @apply border-r border-t flex justify-center items-center gap-2;
+    }
+  }
+}
