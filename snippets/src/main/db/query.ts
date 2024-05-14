@@ -12,8 +12,8 @@ export const insert = (sql: string) => {
   return db.prepare(sql).run().lastInsertRowid
 }
 
-export const update = (sql: string) => {
-  return db.prepare(sql).run().changes
+export const update = (sql: string, params: Record<string, any>) => {
+  return db.prepare(sql).run(params).changes
 }
 
 export const del = (sql: string) => {

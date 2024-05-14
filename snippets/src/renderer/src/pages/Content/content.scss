@@ -1,13 +1,11 @@
 .content-page {
-  @apply h-screen text-xs text-slate-700;
+  @apply h-screen;
   display: grid;
-  grid-template: 'list content' auto / 150px auto;
-  .list {
-    @apply bg-slate-50 border-r;
-    grid-area: list;
+  grid-template-rows: 50px 1fr;
+  input {
+    @apply text-lg outline-none bg-slate-50 p-3;
   }
-
-  .conetnt {
-    grid-area: content;
+  textarea {
+    @apply border-t pt-5 outline-none text-sm opacity-90 bg-slate-50 p-3;
   }
 }

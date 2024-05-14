@@ -5,7 +5,7 @@ import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
 export function createWindow(): BrowserWindow {
   const { width: winWidth } = screen.getPrimaryDisplay().workAreaSize
-  const width = 500
+  const width = 550
   const height = 350
   // Create the browser window.
   const win = new BrowserWindow({
@@ -39,7 +39,7 @@ export function createWindow(): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    win.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config')
+    win.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config/category')
   } else {
     // win.loadFile(join(__dirname, '../renderer/index.html' + '/#config'))
     win.loadURL(
@@ -51,7 +51,7 @@ export function createWindow(): BrowserWindow {
         //protocol 后面需要两个/
         slashes: true,
         //hash 的值
-        hash: 'config'
+        hash: 'config/category'
       })
     )
   }
