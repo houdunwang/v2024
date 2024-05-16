@@ -26,7 +26,7 @@ export function createWindow(): BrowserWindow {
   // win.setIgnoreMouseEvents(true, { forward: true })
   // win.webContents.openDevTools()
   win.on('ready-to-show', () => {
-    win.show()
+    // win.show()
   })
 
   win.webContents.setWindowOpenHandler((details) => {

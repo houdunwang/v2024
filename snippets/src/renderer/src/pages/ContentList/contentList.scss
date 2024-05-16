@@ -5,12 +5,6 @@
   .list {
     @apply border-r overflow-y-auto;
     grid-area: list;
-    a {
-      @apply truncate py-1 px-1 cursor-pointer flex items-center gap-1 border-b mx-2;
-      &.active {
-        @apply bg-blue-600 text-white mx-1 rounded-md;
-      }
-    }
   }
 
   .conetnt {

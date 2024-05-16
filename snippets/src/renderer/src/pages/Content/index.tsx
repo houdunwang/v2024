@@ -3,31 +3,42 @@ import './content.scss'
 import { Button } from 'antd'
 export const Content = () => {
   const submit = useSubmit()
-  const content = useLoaderData() as ContentType
+  const { content, categories } = useLoaderData() as {
+    content: ContentType
+    categories: CategoryType[]
+  }
   return (
     <Form method="PUT">
       <main className="content-page" key={content.id}>
-        {/* <h1>{content.title}</h1> */}
+        <input type="text" name="id" defaultValue={content.id} hidden />
         <input
           name="title"
+          autoFocus
           defaultValue={content.title}
           onChange={(e) => {
-            // console.log(34)
             submit(e.target.form)
           }}
         />
-        {/* <div className="content">{content.content}</div> */}
+        <select
+          name="category_id"
+          value={content.category_id}
+          onChange={(e) => {
+            submit(e.target.form)
+          }}
+        >
+          <option value="0">未分类</option>
+          {categories.map((category) => (
+            <option value={category.id} key={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
         <textarea
           name="content"
+          placeholder="请输入内容..."
           defaultValue={content.content}
           onChange={(e) => submit(e.target.form)}
         />
-        {/* <div className="border-t flex items-center justify-center">
-          <button>保存</button> */}
-        {/* <Button type="default" size="small" >
-            保存
-          </Button> */}
-        {/* </div> */}
       </main>
     </Form>
   )

@@ -8,12 +8,6 @@
   .categories {
     @apply border-r bg-slate-100 text-xs text-slate-700 overflow-y-auto;
     grid-area: categories;
-    a {
-      @apply px-2 py-1 truncate cursor-pointer block;
-      &.active {
-        @apply bg-blue-600 text-white mx-1 rounded-md;
-      }
-    }
   }
   .nav {
     @apply border-t border-r bg-slate-100 flex justify-center items-center gap-2;
