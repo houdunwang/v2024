@@ -15,7 +15,7 @@ export function createWindow(): BrowserWindow {
     show: false,
     frame: false,
     transparent: true,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -26,7 +26,7 @@ export function createWindow(): BrowserWindow {
   // win.setIgnoreMouseEvents(true, { forward: true })
   // win.webContents.openDevTools()
   win.on('ready-to-show', () => {
-    // win.show()
+    win.show()
   })
 
   win.webContents.setWindowOpenHandler((details) => {

@@ -24,7 +24,7 @@ db.exec(`
 function initData() {
   const isInit = findOne('select * from contents')
   if (isInit) return
-  for (let i = 0; i < 10; i++) {
+  for (let i = 1; i <= 10; i++) {
     const name = Random.title(5, 10)
     db.exec(`
     INSERT INTO categories (name,created_at) VALUES('${name}',datetime());

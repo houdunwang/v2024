@@ -16,6 +16,10 @@ export const ContentItem = ({ content }: Props) => {
       className={({ isActive }) => {
         return [isActive ? styles.active : '', styles.link].join(' ')
       }}
+      onDragStart={(e) => {
+        e.dataTransfer.setData('id', String(content.id))
+        console.log('aa')
+      }}
       onContextMenu={showContextMenu(
         [
           {

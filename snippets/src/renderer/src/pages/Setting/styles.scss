@@ -1,0 +1,12 @@
+.setting-page {
+  @apply bg-slate-100 h-screen p-5;
+  h1 {
+    @apply flex justify-center text-sm;
+  }
+  section {
+    h5 {
+      @apply text-xs font-bold mb-2 text-slate-700 opacity-80;
+    }
+    @apply border p-3 rounded-md bg-white my-5;
+  }
+}

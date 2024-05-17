@@ -1,7 +1,8 @@
+$height: 30px;
 @mixin commonLink {
-  @apply px-2 py-2 truncate cursor-pointer block mx-1;
+  @apply px-2 py-2 truncate cursor-pointer block mx-1 my-1 rounded-md;
+  height: $height;
 }
-
 .link {
   @include commonLink();
   @apply hover:bg-gray-200;
@@ -10,4 +11,12 @@
 .active {
   @include commonLink();
   @apply bg-blue-600 text-white  rounded-md;
+}
+
+.input {
+  @apply w-full px-2;
+  height: $height;
+  input {
+    @apply h-full w-full rounded-md px-2 border outline-none;
+  }
 }
