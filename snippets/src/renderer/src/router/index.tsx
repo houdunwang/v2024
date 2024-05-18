@@ -10,6 +10,8 @@ import { ContentList } from '@renderer/pages/ContentList'
 import ContentListAction from '@renderer/pages/ContentList/ContentListAction'
 import ContentListLoader from '@renderer/pages/ContentList/ContentListLoader'
 import { Setting } from '@renderer/pages/Setting'
+import SettingAction from '@renderer/pages/Setting/SettingAction'
+import SettingLoader from '@renderer/pages/Setting/SettingLoader'
 import { Welcome } from '@renderer/pages/Welcome'
 import { createHashRouter } from 'react-router-dom'
 
@@ -24,7 +26,9 @@ const router = createHashRouter([
     children: [
       {
         index: true,
-        element: <Setting />
+        element: <Setting />,
+        loader: SettingLoader,
+        action: SettingAction
       },
       {
         path: 'category',
