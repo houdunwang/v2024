@@ -6,10 +6,11 @@ import url from 'node:url'
 export interface OptionsType extends Partial<BrowserWindowConstructorOptions> {
   openDevTools?: boolean
   hash?: string
+  initShow?: boolean
 }
 
 export function createWindow(options: OptionsType): BrowserWindow {
-  const { width } = screen.getPrimaryDisplay().workAreaSize
+  // const { width } = screen.getPrimaryDisplay().workAreaSize
   // Create the browser window.
   const win = new BrowserWindow(
     Object.assign(
@@ -17,8 +18,8 @@ export function createWindow(options: OptionsType): BrowserWindow {
         width: 500,
         height: 350,
         center: true,
-        x: width - 500,
-        y: 0,
+        // x: width - 500,
+        // y: 0,
         show: false,
         frame: false,
         transparent: true,
@@ -39,7 +40,7 @@ export function createWindow(options: OptionsType): BrowserWindow {
   }
 
   win.on('ready-to-show', () => {
-    win.show()
+    options.initShow && win.show()
   })
 
   win.webContents.setWindowOpenHandler((details) => {
@@ -63,7 +64,7 @@ export function createWindow(options: OptionsType): BrowserWindow {
         //protocol 后面需要两个/
         slashes: true,
         //hash 的值
-        hash: 'config/category/contentList'
+        hash: options.hash?.substring(1)
       })
     )
   }

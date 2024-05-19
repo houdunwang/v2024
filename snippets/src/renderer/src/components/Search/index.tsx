@@ -14,12 +14,18 @@ export default function Search() {
           fill="#34495e"
           strokeWidth={4}
           className="cursor-pointer"
-          onClick={() => window.api.openWindow('config')}
+          onClick={() => window.api.openWindow('code')}
         />
         <Input value={search} onChange={handleSearch} autoFocus />
       </section>
-      <section className="text-center text-slate-600 text-xs mt-2">
+      <section className="text-center select-none text-slate-600 text-xs mt-2 nodrag">
         向军大叔作品 / 晚八点直播
+        <span
+          className="text-blue-600 cursor-pointer select-none"
+          onClick={() => window.api.openWindow('config')}
+        >
+          配置
+        </span>
       </section>
     </main>
   )

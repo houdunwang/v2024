@@ -8,7 +8,8 @@ ipcMain.handle('shortCut', (_event: IpcMainInvokeEvent, shortCut: string) => {
 })
 
 function registerSearchShortCut(shortCut: string) {
-  if (globalShortcut.isRegistered(shortCut)) {
+  globalShortcut.unregisterAll()
+  if (shortCut && globalShortcut.isRegistered(shortCut)) {
     dialog.showErrorBox('温馨提示', '快捷键注册失败，请检查快捷键是否已被占用')
     return false
   }

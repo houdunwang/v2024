@@ -26,9 +26,9 @@ const router = createHashRouter([
     children: [
       {
         index: true,
-        element: <Setting />,
-        loader: SettingLoader,
-        action: SettingAction
+        element: <Setting />
+        // loader: SettingLoader,
+        // action: SettingAction
       },
       {
         path: 'category',

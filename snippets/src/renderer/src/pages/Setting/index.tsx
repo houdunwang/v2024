@@ -1,10 +1,11 @@
-import { Form, useLoaderData, useSubmit } from 'react-router-dom'
-import './styles.scss'
+import { useStore } from '@renderer/store/useStore'
 import { useState } from 'react'
+import { Form } from 'react-router-dom'
+import './styles.scss'
 export const Setting = () => {
-  const config = useLoaderData() as ConfigDataType
-  const submit = useSubmit()
   const [keys, setKeys] = useState<string[]>([])
+  const config = useStore((s) => s.config)
+  const setConfig = useStore((s) => s.setConfig)
   return (
     <Form method="POST">
       <main className="setting-page">
@@ -18,24 +19,34 @@ export const Setting = () => {
             defaultValue={config.shortCut}
             onKeyDown={(e) => {
               if (e.metaKey || e.ctrlKey || e.altKey) {
-                keys.push(e.code.replace(/Left|Right|Key|Digit/, ''))
+                const code = e.code.replace(/Left|Right|Key|Digit/, '')
+                if (keys.includes(code)) return
+                keys.push(code)
                 setKeys(keys)
-                e.currentTarget.value = keys.join('+')
+                if (code.match(/^(\w|Space)$/gi)) {
+                  e.currentTarget.value = keys.join('+')
+                  setKeys([])
+                  setConfig({ ...config, shortCut: e.currentTarget.value })
+                  window.api.shortCut(e.currentTarget.value)
+                }
               }
-            }}
-            onKeyUp={(e) => {
-              setKeys([])
-              submit(e.currentTarget.form, { method: 'POST' })
             }}
           />
         </section>
         <section>
           <h5>数据库</h5>
-          <input type="text" name="databaseDirectory" defaultValue={config.databaseDirectory} />
+          <input
+            type="text"
+            name="databaseDirectory"
+            readOnly
+            defaultValue={config.databaseDirectory}
+            onClick={async (e: any) => {
+              const path = await window.api.selectDatabaseDirectory()
+              setConfig({ ...config, databaseDirectory: path })
+              e.target.value = path
+            }}
+          />
         </section>
-        {/* <Button type="default" htmlType="submit">
-          保存
-        </Button> */}
       </main>
     </Form>
   )
