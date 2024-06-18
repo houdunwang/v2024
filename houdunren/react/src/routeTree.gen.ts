@@ -12,7 +12,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as rootRoute } from './../app/__root'
+import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
@@ -26,25 +26,25 @@ const FrontLessonVideoLazyImport = createFileRoute('/_front/lesson/video')()
 const FrontRouteLazyRoute = FrontRouteLazyImport.update({
   id: '/_front',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./../app/_front/route.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/_front/route.lazy').then((d) => d.Route))
 
 const FrontIndexLazyRoute = FrontIndexLazyImport.update({
   path: '/',
   getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() => import('./../app/_front/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/_front/index.lazy').then((d) => d.Route))
 
 const FrontLessonIndexLazyRoute = FrontLessonIndexLazyImport.update({
   path: '/lesson/',
   getParentRoute: () => FrontRouteLazyRoute,
 } as any).lazy(() =>
-  import('./../app/_front/lesson/index.lazy').then((d) => d.Route),
+  import('./routes/_front/lesson/index.lazy').then((d) => d.Route),
 )
 
 const FrontLessonVideoLazyRoute = FrontLessonVideoLazyImport.update({
   path: '/lesson/video',
   getParentRoute: () => FrontRouteLazyRoute,
 } as any).lazy(() =>
-  import('./../app/_front/lesson/video.lazy').then((d) => d.Route),
+  import('./routes/_front/lesson/video.lazy').then((d) => d.Route),
 )
 
 // Populate the FileRoutesByPath interface

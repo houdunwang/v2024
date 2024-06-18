@@ -7,7 +7,7 @@ export const Links = () => {
         <Package2 className="h-6 w-6" />
         <span className="sr-only">Acme Inc</span>
       </a>
-      <a href="#" className="text-foreground transition-colors hover:text-foreground">
+      <a href="#" className=" transition-colors hover:text-foreground">
         系统课程
       </a>
       <a

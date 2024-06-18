@@ -1,4 +1,4 @@
-import { Switch } from '#/-components/ui/switch'
+import { Switch } from '@/components/ui/switch'
 import { useTheme } from '@/hooks/useToggleTheme'
 
 export function ModeToggle() {
