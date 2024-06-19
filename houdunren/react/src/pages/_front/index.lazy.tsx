@@ -1,5 +1,5 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ActivityItem } from '@/components/ActivityItem'
+import { Tip } from '@/components/tip'
 import {
   Card,
   CardContent,
@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ActivityItem } from '@/components/ActivityItem'
-import { Tip } from '@/components/tip'
 import {
   Pagination,
   PaginationContent,
@@ -18,13 +16,14 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { createLazyFileRoute } from '@tanstack/react-router'
 export const Route = createLazyFileRoute('/_front/')({
   component: Index,
 })
 
 function Index() {
   return (
-    <div className="container lg:grid grid-cols-[1fr_350px] gap-5 items-start">
+    <div className=" grid lg:grid-cols-[1fr_350px] gap-5 items-start">
       <Card>
         <CardHeader>
           <CardTitle>网站动态</CardTitle>

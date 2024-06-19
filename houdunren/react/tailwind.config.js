@@ -11,13 +11,14 @@ module.exports = {
     theme: {
         container: {
             center: true,
-            padding: "2rem",
+            padding: "1rem",
             screens: {
                 "2xl": "1400px",
             },
         },
         extend: {
             colors: {
+                gary: "hsl(var(--gray))",
                 houdunren: "hsl(var(--houdunren))",
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
