@@ -2,7 +2,7 @@ import { useRouterState } from '@tanstack/react-router'
 import { Badge } from './ui/badge'
 import { Card, CardContent, CardFooter, CardTitle } from './ui/card'
 
-export const LessonItem = () => {
+export const ChapterCard = () => {
   const routeState = useRouterState()
   const path = routeState.location.pathname
   return (
@@ -10,7 +10,7 @@ export const LessonItem = () => {
       <CardTitle className="overflow-hidden">
         <img
           src={path == '/system' ? '/images/system.jpg' : '/images/project.jpg'}
-          className="group-hover:scale-150 duration-500"
+          className="group-hover:scale-110 duration-500"
         />
       </CardTitle>
       <CardContent>

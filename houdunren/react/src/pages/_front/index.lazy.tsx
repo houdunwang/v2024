@@ -7,16 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination'
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from '@/components/ui/pagination'
 import { createLazyFileRoute } from '@tanstack/react-router'
+import { Pagination } from 'antd'
 export const Route = createLazyFileRoute('/_front/')({
   component: Index,
 })
@@ -34,7 +35,8 @@ function Index() {
           ))}
         </CardContent>
         <CardFooter>
-          <Pagination>
+          <Pagination total={85} showSizeChanger showQuickJumper />
+          {/* <Pagination>
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious href="#" />
@@ -57,7 +59,7 @@ function Index() {
                 <PaginationNext href="#" />
               </PaginationItem>
             </PaginationContent>
-          </Pagination>
+          </Pagination> */}
         </CardFooter>
       </Card>
 

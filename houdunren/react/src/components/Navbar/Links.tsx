@@ -3,8 +3,10 @@ import { MessageSquareCode } from 'lucide-react'
 
 export const Links = () => {
   const linkData = [
-    { name: '系统课程', path: '/system' },
-    { name: '实战项目', path: '/project' },
+    { name: '系统课程', path: '/chapter/system' },
+    { name: '实战项目', path: '/chapter/project' },
+    { name: '碎片课程', path: '/lesson' },
+    { name: '最新更新', path: '/video' },
   ]
   return (
     <>

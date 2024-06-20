@@ -1,7 +1,8 @@
-import { LessonItem } from '@/components/LessonItem'
+import { ChapterCard } from '@/components/ChapterCard'
+import { LessonItem } from '@/components/LessonCard'
 import { createLazyFileRoute } from '@tanstack/react-router'
 
-export const Route = createLazyFileRoute('/_front/system')({
+export const Route = createLazyFileRoute('/_front/chapter/system')({
   component: System,
 })
 
@@ -14,7 +15,7 @@ export function System() {
       </p>
       <section className="grid lg:grid-cols-3 mt-10 gap-6">
         {[...Array(12)].map((_, index) => (
-          <LessonItem key={index} />
+          <ChapterCard key={index} />
         ))}
       </section>
     </main>
