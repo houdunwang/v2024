@@ -24,6 +24,7 @@ const FrontChapterSystemLazyImport = createFileRoute('/_front/chapter/system')()
 const FrontChapterProjectLazyImport = createFileRoute(
   '/_front/chapter/project',
 )()
+const FrontChapterLessonLazyImport = createFileRoute('/_front/chapter/lesson')()
 
 // Create/Update Routes
 
@@ -65,6 +66,13 @@ const FrontChapterProjectLazyRoute = FrontChapterProjectLazyImport.update({
   import('./pages/_front/chapter/project.lazy').then((d) => d.Route),
 )
 
+const FrontChapterLessonLazyRoute = FrontChapterLessonLazyImport.update({
+  path: '/chapter/lesson',
+  getParentRoute: () => FrontRouteLazyRoute,
+} as any).lazy(() =>
+  import('./pages/_front/chapter/lesson.lazy').then((d) => d.Route),
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -81,6 +89,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof FrontIndexLazyImport
+      parentRoute: typeof FrontRouteLazyImport
+    }
+    '/_front/chapter/lesson': {
+      id: '/_front/chapter/lesson'
+      path: '/chapter/lesson'
+      fullPath: '/chapter/lesson'
+      preLoaderRoute: typeof FrontChapterLessonLazyImport
       parentRoute: typeof FrontRouteLazyImport
     }
     '/_front/chapter/project': {
@@ -119,6 +134,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   FrontRouteLazyRoute: FrontRouteLazyRoute.addChildren({
     FrontIndexLazyRoute,
+    FrontChapterLessonLazyRoute,
     FrontChapterProjectLazyRoute,
     FrontChapterSystemLazyRoute,
     FrontLessonIndexLazyRoute,
@@ -141,6 +157,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_front/route.lazy.tsx",
       "children": [
         "/_front/",
+        "/_front/chapter/lesson",
         "/_front/chapter/project",
         "/_front/chapter/system",
         "/_front/lesson/",
@@ -149,6 +166,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_front/": {
       "filePath": "_front/index.lazy.tsx",
+      "parent": "/_front"
+    },
+    "/_front/chapter/lesson": {
+      "filePath": "_front/chapter/lesson.lazy.tsx",
       "parent": "/_front"
     },
     "/_front/chapter/project": {

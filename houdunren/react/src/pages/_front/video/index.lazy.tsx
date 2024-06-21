@@ -10,7 +10,7 @@ export const Route = createLazyFileRoute('/_front/video/')({
 
 function Video() {
   return (
-    <main className="bg-background p-5 rounded-lg ">
+    <main className="container bg-background p-5 rounded-lg ">
       <section className=" grid grid-cols-2 gap-2 pb-3">
         <div className="">
           <h2 className="">最新更新</h2>
@@ -25,13 +25,13 @@ function Video() {
 
       {[...Array(10)].map((_, index) => (
         <section
-          className="md:flex justify-between items-center text-base py-3 border-t cursor-pointer hover:bg-gray-100 duration-200 px-3"
+          className="md:flex justify-between items-center text-base py-3 border-t cursor-pointer px-3 hd_hover_block"
           key={index}>
-          <div className="flex items-center justify-between gap-3 text-sm  text-gary opacity-80">
+          <div className="flex items-center justify-between gap-3 text-sm text-gary opacity-80">
             <div className="flex items-center gap-1">
               <Youtube size={14} /> 苹果软件编译完成
             </div>
-            <div className="flex justify-between items-center gap-[2px] text-[12px] text-gray-600">
+            <div className="flex justify-between items-center gap-[2px] text-[12px] ">
               <Clock9 size={12} /> 12天前
             </div>
           </div>

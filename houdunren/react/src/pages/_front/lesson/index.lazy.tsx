@@ -15,7 +15,7 @@ export const Route = createLazyFileRoute('/_front/lesson/')({
 
 function Lesson() {
   return (
-    <main className="bg-background rounded-lg p-5">
+    <main className="container bg-background rounded-lg p-5">
       <section className="grid md:grid-cols-2 items-center  mb-3 border-b pb-3">
         <h1 className="text-lg text-gary ">系统课程</h1>
         <LessonSearch />

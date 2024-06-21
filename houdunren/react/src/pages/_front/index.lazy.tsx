@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { useTheme } from '@/hooks/useToggleTheme'
 // import {
 //   Pagination,
 //   PaginationContent,
@@ -24,10 +25,10 @@ export const Route = createLazyFileRoute('/_front/')({
 
 function Index() {
   return (
-    <div className=" grid lg:grid-cols-[1fr_350px] gap-5 items-start">
+    <div className="grid lg:grid-cols-[1fr_350px] gap-5 items-start">
       <Card>
         <CardHeader>
-          <CardTitle>网站动态</CardTitle>
+          <CardTitle>网站动态 </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-0">
           {[...Array(15)].map((_, i) => (

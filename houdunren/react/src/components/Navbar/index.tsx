@@ -15,7 +15,7 @@ import { ModeToggle } from './ModeToggle'
 
 export function Navbar() {
   return (
-    <div className="border-b mb-10 sticky top-0 z-10 bg-background">
+    <div className="border-b mb-10 sticky top-0 z-10 bg-background border-t-4 border-t-primary">
       <div className="container flex flex-col">
         <header className="sticky top-0 flex justify-between h-16 items-center gap-4 ">
           <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 flex-1">

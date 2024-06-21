@@ -1,12 +1,10 @@
+import '@/assets/globals.css'
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import 'dayjs/locale/zh-cn'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-import '@/assets/globals.css'
-import zhCN from 'antd/locale/zh_CN'
-import 'dayjs/locale/zh-cn'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
-import { ConfigProvider } from 'antd'
 
 // Create a new router instance
 const router = createRouter({ routeTree })
@@ -20,8 +18,6 @@ declare module '@tanstack/react-router' {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
-      <RouterProvider router={router} />
-    </ConfigProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

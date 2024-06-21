@@ -6,9 +6,9 @@ export const Route = createLazyFileRoute('/_front')({
   component: () => (
     <div>
       <Navbar />
-      <div className="container">
-        <Outlet />
-      </div>
+      {/* <div className="container"> */}
+      <Outlet />
+      {/* </div> */}
       <Footer />
     </div>
   ),

@@ -19,7 +19,7 @@ export const Links = () => {
         <Link
           key={index}
           to={item.path}
-          className=" transition-colors hover:text-foreground"
+          className=" transition-colors text-base hover:text-foreground"
           activeProps={{ className: 'text-primary' }}>
           {item.name}
         </Link>
