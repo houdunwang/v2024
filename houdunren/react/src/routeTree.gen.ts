@@ -12,119 +12,55 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as rootRoute } from './pages/__root'
+import { Route as rootRoute } from './routes/__root'
+import { Route as HdImport } from './routes/hd'
 
 // Create Virtual Routes
 
-const FrontRouteLazyImport = createFileRoute('/_front')()
-const FrontIndexLazyImport = createFileRoute('/_front/')()
-const FrontVideoIndexLazyImport = createFileRoute('/_front/video/')()
-const FrontLessonIndexLazyImport = createFileRoute('/_front/lesson/')()
-const FrontChapterSystemLazyImport = createFileRoute('/_front/chapter/system')()
-const FrontChapterProjectLazyImport = createFileRoute(
-  '/_front/chapter/project',
-)()
-const FrontChapterLessonLazyImport = createFileRoute('/_front/chapter/lesson')()
+const AboutLazyImport = createFileRoute('/about')()
+const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const FrontRouteLazyRoute = FrontRouteLazyImport.update({
-  id: '/_front',
+const AboutLazyRoute = AboutLazyImport.update({
+  path: '/about',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./pages/_front/route.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 
-const FrontIndexLazyRoute = FrontIndexLazyImport.update({
+const HdRoute = HdImport.update({
+  path: '/hd',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() => import('./pages/_front/index.lazy').then((d) => d.Route))
-
-const FrontVideoIndexLazyRoute = FrontVideoIndexLazyImport.update({
-  path: '/video/',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() =>
-  import('./pages/_front/video/index.lazy').then((d) => d.Route),
-)
-
-const FrontLessonIndexLazyRoute = FrontLessonIndexLazyImport.update({
-  path: '/lesson/',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() =>
-  import('./pages/_front/lesson/index.lazy').then((d) => d.Route),
-)
-
-const FrontChapterSystemLazyRoute = FrontChapterSystemLazyImport.update({
-  path: '/chapter/system',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() =>
-  import('./pages/_front/chapter/system.lazy').then((d) => d.Route),
-)
-
-const FrontChapterProjectLazyRoute = FrontChapterProjectLazyImport.update({
-  path: '/chapter/project',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() =>
-  import('./pages/_front/chapter/project.lazy').then((d) => d.Route),
-)
-
-const FrontChapterLessonLazyRoute = FrontChapterLessonLazyImport.update({
-  path: '/chapter/lesson',
-  getParentRoute: () => FrontRouteLazyRoute,
-} as any).lazy(() =>
-  import('./pages/_front/chapter/lesson.lazy').then((d) => d.Route),
-)
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_front': {
-      id: '/_front'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof FrontRouteLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/_front/': {
-      id: '/_front/'
+    '/': {
+      id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof FrontIndexLazyImport
-      parentRoute: typeof FrontRouteLazyImport
+      preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
     }
-    '/_front/chapter/lesson': {
-      id: '/_front/chapter/lesson'
-      path: '/chapter/lesson'
-      fullPath: '/chapter/lesson'
-      preLoaderRoute: typeof FrontChapterLessonLazyImport
-      parentRoute: typeof FrontRouteLazyImport
+    '/hd': {
+      id: '/hd'
+      path: '/hd'
+      fullPath: '/hd'
+      preLoaderRoute: typeof HdImport
+      parentRoute: typeof rootRoute
     }
-    '/_front/chapter/project': {
-      id: '/_front/chapter/project'
-      path: '/chapter/project'
-      fullPath: '/chapter/project'
-      preLoaderRoute: typeof FrontChapterProjectLazyImport
-      parentRoute: typeof FrontRouteLazyImport
-    }
-    '/_front/chapter/system': {
-      id: '/_front/chapter/system'
-      path: '/chapter/system'
-      fullPath: '/chapter/system'
-      preLoaderRoute: typeof FrontChapterSystemLazyImport
-      parentRoute: typeof FrontRouteLazyImport
-    }
-    '/_front/lesson/': {
-      id: '/_front/lesson/'
-      path: '/lesson'
-      fullPath: '/lesson'
-      preLoaderRoute: typeof FrontLessonIndexLazyImport
-      parentRoute: typeof FrontRouteLazyImport
-    }
-    '/_front/video/': {
-      id: '/_front/video/'
-      path: '/video'
-      fullPath: '/video'
-      preLoaderRoute: typeof FrontVideoIndexLazyImport
-      parentRoute: typeof FrontRouteLazyImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutLazyImport
+      parentRoute: typeof rootRoute
     }
   }
 }
@@ -132,14 +68,9 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  FrontRouteLazyRoute: FrontRouteLazyRoute.addChildren({
-    FrontIndexLazyRoute,
-    FrontChapterLessonLazyRoute,
-    FrontChapterProjectLazyRoute,
-    FrontChapterSystemLazyRoute,
-    FrontLessonIndexLazyRoute,
-    FrontVideoIndexLazyRoute,
-  }),
+  IndexLazyRoute,
+  HdRoute,
+  AboutLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -150,43 +81,19 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_front"
+        "/",
+        "/hd",
+        "/about"
       ]
     },
-    "/_front": {
-      "filePath": "_front/route.lazy.tsx",
-      "children": [
-        "/_front/",
-        "/_front/chapter/lesson",
-        "/_front/chapter/project",
-        "/_front/chapter/system",
-        "/_front/lesson/",
-        "/_front/video/"
-      ]
+    "/": {
+      "filePath": "index.lazy.tsx"
     },
-    "/_front/": {
-      "filePath": "_front/index.lazy.tsx",
-      "parent": "/_front"
+    "/hd": {
+      "filePath": "hd.tsx"
     },
-    "/_front/chapter/lesson": {
-      "filePath": "_front/chapter/lesson.lazy.tsx",
-      "parent": "/_front"
-    },
-    "/_front/chapter/project": {
-      "filePath": "_front/chapter/project.lazy.tsx",
-      "parent": "/_front"
-    },
-    "/_front/chapter/system": {
-      "filePath": "_front/chapter/system.lazy.tsx",
-      "parent": "/_front"
-    },
-    "/_front/lesson/": {
-      "filePath": "_front/lesson/index.lazy.tsx",
-      "parent": "/_front"
-    },
-    "/_front/video/": {
-      "filePath": "_front/video/index.lazy.tsx",
-      "parent": "/_front"
+    "/about": {
+      "filePath": "about.lazy.tsx"
     }
   }
 }
