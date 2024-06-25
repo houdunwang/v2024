@@ -13,54 +13,41 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as HdImport } from './routes/hd'
+import { Route as FrontRouteImport } from './routes/_front/route'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
-const IndexLazyImport = createFileRoute('/')()
+const FrontIndexLazyImport = createFileRoute('/_front/')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
-
-const HdRoute = HdImport.update({
-  path: '/hd',
+const FrontRouteRoute = FrontRouteImport.update({
+  id: '/_front',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexLazyRoute = IndexLazyImport.update({
+const FrontIndexLazyRoute = FrontIndexLazyImport.update({
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+  getParentRoute: () => FrontRouteRoute,
+} as any).lazy(() => import('./routes/_front/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_front': {
+      id: '/_front'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/_front/': {
+      id: '/_front/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/hd': {
-      id: '/hd'
-      path: '/hd'
-      fullPath: '/hd'
-      preLoaderRoute: typeof HdImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof FrontIndexLazyImport
+      parentRoute: typeof FrontRouteImport
     }
   }
 }
@@ -68,9 +55,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  IndexLazyRoute,
-  HdRoute,
-  AboutLazyRoute,
+  FrontRouteRoute: FrontRouteRoute.addChildren({ FrontIndexLazyRoute }),
 })
 
 /* prettier-ignore-end */
@@ -81,19 +66,18 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/hd",
-        "/about"
+        "/_front"
       ]
     },
-    "/": {
-      "filePath": "index.lazy.tsx"
+    "/_front": {
+      "filePath": "_front/route.tsx",
+      "children": [
+        "/_front/"
+      ]
     },
-    "/hd": {
-      "filePath": "hd.tsx"
-    },
-    "/about": {
-      "filePath": "about.lazy.tsx"
+    "/_front/": {
+      "filePath": "_front/index.lazy.tsx",
+      "parent": "/_front"
     }
   }
 }
