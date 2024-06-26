@@ -8,29 +8,27 @@ import UserDropMenu from "./UserDropMenu"
 
 export const Navbar = () => {
 	return (
-		<div className="bg-hd-background text-hd-foreground mb-10">
-			<div className="container py-3 grid grid-cols-[1fr_auto] gap-3">
+		<div className="bg-hd-background">
+			<div className="container py-5 grid grid-cols-[1fr_auto] gap-3">
 				<div className="md:hidden">
 					<MobildMenu />
 				</div>
-				<div className="items-center hidden md:flex gap-3">
+				<div className=" items-center hidden md:flex gap-3">
 					<div className="flex text-hd-primary font-bold">
 						<MessageCircleCode />
 						houdunren
 					</div>
 					<Links />
 				</div>
-
-
 				<div className="flex gap-2 items-center">
 					<ThemeToggle />
 					<UserDropMenu />
 				</div>
 			</div>
-
 		</div>
 	)
 }
+
 interface LinkProps {
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -57,7 +55,6 @@ function MobildMenu() {
 	};
 	return (<>
 		<GanttChart onClick={showDrawer} />
-
 		<Drawer title="houdunren" onClose={onClose} open={open}>
 			<div className="flex flex-col gap-2">
 				<Links setOpen={setOpen} />

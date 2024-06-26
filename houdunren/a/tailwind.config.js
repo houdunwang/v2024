@@ -18,7 +18,6 @@ export default {
       colors: {
         'hd-background': 'var(--hd-background)',
         'hd-primary': 'var(--hd-primary)',
-        'hd-foreground': 'var(--hd-foreground)',
       },
     },
   },

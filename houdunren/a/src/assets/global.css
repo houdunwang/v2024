@@ -6,17 +6,15 @@
 	:root{
 		--hd-background:white;
 		--hd-primary:#e74c3c;
-		--hd-foreground:#333;
 	}
 	.dark{
-		--hd-background:#111;
+		--hd-background:#333;
 		--hd-primary:#f1c40f;
-		--hd-foreground:#aaa;
 	}
 }
 
 @layer base{
 	body{
-		@apply bg-gray-200 dark:bg-black;
+		@apply bg-gray-200 dark:bg-gray-900;
 	}
 }

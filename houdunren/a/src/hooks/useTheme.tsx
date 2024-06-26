@@ -8,6 +8,7 @@ interface Prop {
 	children: React.ReactNode
 }
 
+
 export const ThemeProvider = (props: Prop) => {
 	const [theme, setTheme] = useState<ThemeType>(localStorage.getItem('theme') as ThemeType || 'light')
 	useEffect(() => {
@@ -38,29 +39,19 @@ export const useTheme = () => {
 	return context
 }
 
-export const useListenerSystemColor = () => {
+//系统颜色模式监测
+export const useSysteColorMode = () => {
 	const { theme } = useTheme()
-	const listenerSystemColorMode = useCallback((e: MediaQueryListEvent) => {
-		if (theme === 'system') {
+	const systemModeChange = useCallback((e) => {
+		if (theme == 'system') {
 			document.documentElement.classList.remove('light', 'dark')
 			document.documentElement.classList.add(e.matches ? 'dark' : 'light')
 		}
 	}, [theme])
 
 	useEffect(() => {
-		const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
-		colorScheme.addEventListener('change', listenerSystemColorMode)
-		return () => {
-			colorScheme.removeEventListener('change', listenerSystemColorMode)
-		}
-	}, [listenerSystemColorMode])
-}
-
-//监听 html 标签的 class更改
-export const useColorModelClassChange = (callback: (isDark: boolean) => void) => {
-	const observer = new MutationObserver(() => {
-		const isDark = document.documentElement.classList.contains('dark')
-		callback(isDark)
-	});
-	observer.observe(document.documentElement, { attributes: true });
+		const query = window.matchMedia('(prefers-color-scheme: dark)');
+		query.addEventListener('change', systemModeChange)
+		return () => query.removeEventListener('change', systemModeChange)
+	}, [systemModeChange])
 }
