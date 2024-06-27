@@ -18,6 +18,8 @@ import { Route as FrontRouteImport } from './routes/_front/route'
 // Create Virtual Routes
 
 const FrontIndexLazyImport = createFileRoute('/_front/')()
+const FrontSystemLazyImport = createFileRoute('/_front/system')()
+const FrontProjectLazyImport = createFileRoute('/_front/project')()
 
 // Create/Update Routes
 
@@ -31,6 +33,18 @@ const FrontIndexLazyRoute = FrontIndexLazyImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any).lazy(() => import('./routes/_front/index.lazy').then((d) => d.Route))
 
+const FrontSystemLazyRoute = FrontSystemLazyImport.update({
+  path: '/system',
+  getParentRoute: () => FrontRouteRoute,
+} as any).lazy(() => import('./routes/_front/system.lazy').then((d) => d.Route))
+
+const FrontProjectLazyRoute = FrontProjectLazyImport.update({
+  path: '/project',
+  getParentRoute: () => FrontRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_front/project.lazy').then((d) => d.Route),
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -41,6 +55,20 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRoute
+    }
+    '/_front/project': {
+      id: '/_front/project'
+      path: '/project'
+      fullPath: '/project'
+      preLoaderRoute: typeof FrontProjectLazyImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/_front/system': {
+      id: '/_front/system'
+      path: '/system'
+      fullPath: '/system'
+      preLoaderRoute: typeof FrontSystemLazyImport
+      parentRoute: typeof FrontRouteImport
     }
     '/_front/': {
       id: '/_front/'
@@ -55,7 +83,11 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  FrontRouteRoute: FrontRouteRoute.addChildren({ FrontIndexLazyRoute }),
+  FrontRouteRoute: FrontRouteRoute.addChildren({
+    FrontProjectLazyRoute,
+    FrontSystemLazyRoute,
+    FrontIndexLazyRoute,
+  }),
 })
 
 /* prettier-ignore-end */
@@ -72,8 +104,18 @@ export const routeTree = rootRoute.addChildren({
     "/_front": {
       "filePath": "_front/route.tsx",
       "children": [
+        "/_front/project",
+        "/_front/system",
         "/_front/"
       ]
+    },
+    "/_front/project": {
+      "filePath": "_front/project.lazy.tsx",
+      "parent": "/_front"
+    },
+    "/_front/system": {
+      "filePath": "_front/system.lazy.tsx",
+      "parent": "/_front"
     },
     "/_front/": {
       "filePath": "_front/index.lazy.tsx",

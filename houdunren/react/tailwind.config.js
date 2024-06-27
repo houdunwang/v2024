@@ -19,6 +19,7 @@ export default {
         'hd-background': 'var(--hd-background)',
         'hd-primary': 'var(--hd-primary)',
         'hd-foreground': 'var(--hd-foreground)',
+        'hd-border': 'var(--hd-border)',
       },
     },
   },
