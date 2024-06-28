@@ -1,3 +1,4 @@
+import { Badge } from '@/components/Badge'
 import { LessonCard } from '@/components/LessonCard'
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { Random } from 'mockjs'
@@ -16,8 +17,23 @@ function Project() {
 			<section className="grid md:grid-cols-3 gap-5">
 				{
 					[...Array(12)].map((_, index) => (
-						<LessonCard key={index} img={`/images/project/${index + 1}.jpg`} title={Random.ctitle(10, 20)}
-							description={Random.csentence(10, 20)} lessonCount={Random.integer(10, 100)} videoCount={Random.integer(10, 100)} />
+						<LessonCard key={index}
+							header={
+								<img alt="example" src={`/images/project/${index + 1}.jpg`} className='group-hover:scale-110 duration-500' />
+							}
+							footer={
+								<LessonCard.Footer>
+									<div className='flex items-center gap-1'>
+										<Badge backgroundColor='bg-red-100'>{Random.integer(10, 100)}</Badge>
+										个课程</div>
+									<div className='flex items-center gap-1'>
+										<Badge backgroundColor='bg-green-100'>{Random.integer(10, 100)}</Badge>
+										个视频</div>
+								</LessonCard.Footer>
+							}
+							title={Random.ctitle(10, 20)}
+							description={Random.csentence(10, 20)} >
+						</LessonCard>
 					))
 				}
 

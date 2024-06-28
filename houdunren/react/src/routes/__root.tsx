@@ -4,6 +4,9 @@ import { ConfigProvider, theme } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
+
 import { useState } from 'react';
 import { useColorModelClassChange, useListenerSystemColor } from '../hooks/useTheme';
 dayjs.locale('zh-cn');

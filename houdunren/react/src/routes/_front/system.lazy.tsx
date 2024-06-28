@@ -1,6 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { Random } from 'mockjs'
 import { LessonCard } from '@/components/LessonCard'
+import { Badge } from '@/components/Badge'
 
 export const Route = createLazyFileRoute('/_front/system')({
 	component: System
@@ -16,11 +17,26 @@ function System() {
 			<section className="grid md:grid-cols-3 gap-5">
 				{
 					[...Array(12)].map((_, index) => (
-						<LessonCard key={index} img={`/images/system/${index + 1}.jpg`} title={Random.ctitle(10, 20)}
-							description={Random.csentence(10, 20)} lessonCount={Random.integer(10, 100)} videoCount={Random.integer(10, 100)} />
+						<LessonCard key={index}
+							title={Random.ctitle(10, 20)}
+							description={Random.csentence(10, 20)}
+							header={
+								<img alt="example" src={`/images/system/${index + 1}.jpg`} className='group-hover:scale-110 duration-500' />
+							}
+							footer={
+								<LessonCard.Footer>
+									<div className='flex items-center gap-1'>
+										<Badge backgroundColor='bg-red-100'>{Random.integer(10, 100)}</Badge>
+										个课程</div>
+									<div className='flex items-center gap-1'>
+										<Badge backgroundColor='bg-green-100'>{Random.integer(10, 100)}</Badge>
+										个视频</div>
+								</LessonCard.Footer>
+							}
+						>
+						</LessonCard>
 					))
 				}
-
 			</section>
 		</main>
 	)
