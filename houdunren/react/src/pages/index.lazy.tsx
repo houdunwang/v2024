@@ -1,10 +1,14 @@
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { Activities } from '@/components/Activities'
 import { Footer } from '@/components/Footer'
 import { Learn } from '@/components/Learn'
 import { Navbar } from '@/components/Navbar'
 import { Tip } from '@/components/Tip'
+export const Route = createLazyFileRoute('/')({
+  component: Index,
+})
 
-function App() {
+function Index() {
   return (
     <>
       <Navbar />
@@ -19,5 +23,3 @@ function App() {
     </>
   )
 }
-
-export default App

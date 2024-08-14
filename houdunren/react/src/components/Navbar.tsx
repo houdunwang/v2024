@@ -1,7 +1,8 @@
-import { HamburgerButton, Youtube } from '@icon-park/react'
+import { Fire, HamburgerButton, Youtube } from '@icon-park/react'
 import React, { useState } from 'react'
 import menus from '../config/menus'
 import { Button, Drawer } from 'antd'
+import { Link } from '@tanstack/react-router'
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -17,16 +18,16 @@ export const Navbar = () => {
     <main className='bg-white shadow-sm border-t-4 border-rose-600 mb-6'>
       <section className='lg:container px-3 py-3 grid grid-cols-[1fr_auto]'>
         <div className='hidden lg:flex items-center gap-2'>
-          <div className='flex items-center text-rose-600 gap-1'>
+          <Link to='/' className='flex items-center text-rose-600 gap-1'>
             <Youtube theme='outline' size='35' strokeWidth={4} />
             <div className='text-xl uppercase font-bold'>houdunren</div>
-          </div>
+          </Link>
 
           <div className='flex gap-2'>
             {menus.map((menu, i) => (
-              <a href='#' key={i} className='font-bold'>
+              <Link to={menu.to} key={i} className='font-bold '>
                 {menu.title}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

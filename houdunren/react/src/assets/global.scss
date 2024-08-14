@@ -1,6 +1,9 @@
 @import url("./tailwind.scss");
 a {
 	@apply hover:text-rose-600;
+	&.active {
+		@apply text-rose-600;
+	}
 }
 body {
 	@apply bg-gray-100 text-gray-800/90;
