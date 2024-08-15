@@ -14,8 +14,10 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
-import { Route as FrontSystemImport } from './pages/front/system'
-import { Route as FrontProjectImport } from './pages/front/project'
+import { Route as FrontVideoIndexImport } from './pages/front/video/index'
+import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
+import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
+import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
 
 // Create Virtual Routes
 
@@ -39,13 +41,23 @@ const FrontAboutLazyRoute = FrontAboutLazyImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any).lazy(() => import('./pages/front/about.lazy').then((d) => d.Route))
 
-const FrontSystemRoute = FrontSystemImport.update({
-  path: '/system',
+const FrontVideoIndexRoute = FrontVideoIndexImport.update({
+  path: '/video/',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
-const FrontProjectRoute = FrontProjectImport.update({
-  path: '/project',
+const FrontLessonIndexRoute = FrontLessonIndexImport.update({
+  path: '/Lesson/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontChapterSystemRoute = FrontChapterSystemImport.update({
+  path: '/chapter/system',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontChapterProjectRoute = FrontChapterProjectImport.update({
+  path: '/chapter/project',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -67,25 +79,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRoute
     }
-    '/front/project': {
-      id: '/front/project'
-      path: '/project'
-      fullPath: '/front/project'
-      preLoaderRoute: typeof FrontProjectImport
-      parentRoute: typeof FrontRouteImport
-    }
-    '/front/system': {
-      id: '/front/system'
-      path: '/system'
-      fullPath: '/front/system'
-      preLoaderRoute: typeof FrontSystemImport
-      parentRoute: typeof FrontRouteImport
-    }
     '/front/about': {
       id: '/front/about'
       path: '/about'
       fullPath: '/front/about'
       preLoaderRoute: typeof FrontAboutLazyImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/chapter/project': {
+      id: '/front/chapter/project'
+      path: '/chapter/project'
+      fullPath: '/front/chapter/project'
+      preLoaderRoute: typeof FrontChapterProjectImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/chapter/system': {
+      id: '/front/chapter/system'
+      path: '/chapter/system'
+      fullPath: '/front/chapter/system'
+      preLoaderRoute: typeof FrontChapterSystemImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/Lesson/': {
+      id: '/front/Lesson/'
+      path: '/Lesson'
+      fullPath: '/front/Lesson'
+      preLoaderRoute: typeof FrontLessonIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/video/': {
+      id: '/front/video/'
+      path: '/video'
+      fullPath: '/front/video'
+      preLoaderRoute: typeof FrontVideoIndexImport
       parentRoute: typeof FrontRouteImport
     }
   }
@@ -96,9 +122,11 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FrontRouteRoute: FrontRouteRoute.addChildren({
-    FrontProjectRoute,
-    FrontSystemRoute,
     FrontAboutLazyRoute,
+    FrontChapterProjectRoute,
+    FrontChapterSystemRoute,
+    FrontLessonIndexRoute,
+    FrontVideoIndexRoute,
   }),
 })
 
@@ -120,21 +148,31 @@ export const routeTree = rootRoute.addChildren({
     "/front": {
       "filePath": "front/route.tsx",
       "children": [
-        "/front/project",
-        "/front/system",
-        "/front/about"
+        "/front/about",
+        "/front/chapter/project",
+        "/front/chapter/system",
+        "/front/Lesson/",
+        "/front/video/"
       ]
-    },
-    "/front/project": {
-      "filePath": "front/project.tsx",
-      "parent": "/front"
-    },
-    "/front/system": {
-      "filePath": "front/system.tsx",
-      "parent": "/front"
     },
     "/front/about": {
       "filePath": "front/about.lazy.tsx",
+      "parent": "/front"
+    },
+    "/front/chapter/project": {
+      "filePath": "front/chapter/project.tsx",
+      "parent": "/front"
+    },
+    "/front/chapter/system": {
+      "filePath": "front/chapter/system.tsx",
+      "parent": "/front"
+    },
+    "/front/Lesson/": {
+      "filePath": "front/Lesson/index.tsx",
+      "parent": "/front"
+    },
+    "/front/video/": {
+      "filePath": "front/video/index.tsx",
       "parent": "/front"
     }
   }

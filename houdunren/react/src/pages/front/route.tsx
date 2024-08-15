@@ -6,7 +6,7 @@ export const Route = createFileRoute('/front')({
   component: () => (
     <div className=''>
       <Navbar />
-      <div className='container mb-12'>
+      <div className=' mb-12'>
         <Outlet />
       </div>
       <Footer />
