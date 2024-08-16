@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className=' '>
+    <div className='mt-72'>
       <section className='flex flex-col items-center justify-center border-t '>
         <div className='bg-gradient-to-l from-blue-500  to-purple-600 text-white font-light px-3 py-1 rounded-lg -mt-4 text-sm'>
           后盾人 人人做后盾
