@@ -5,6 +5,6 @@ export default [
 	{ title: '最近更新', to: '/front/video/' },
 	{ title: '话题讨论', to: '/front/topic/' },
 	{ title: '订阅优惠', to: '/front/subscribe/' },
-	{ title: '签到打卡', to: '/' },
+	{ title: '签到打卡', to: '/front/sign/' },
 	{ title: '在线文档', to: '/' },
 ]

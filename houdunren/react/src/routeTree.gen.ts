@@ -17,6 +17,7 @@ import { Route as FrontRouteImport } from './pages/front/route'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/index'
+import { Route as FrontSignIndexImport } from './pages/front/sign/index'
 import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
 import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
 import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
@@ -55,6 +56,11 @@ const FrontTopicIndexRoute = FrontTopicIndexImport.update({
 
 const FrontSubscribeIndexRoute = FrontSubscribeIndexImport.update({
   path: '/subscribe/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontSignIndexRoute = FrontSignIndexImport.update({
+  path: '/sign/',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -119,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontLessonIndexImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/sign/': {
+      id: '/front/sign/'
+      path: '/sign'
+      fullPath: '/front/sign'
+      preLoaderRoute: typeof FrontSignIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/subscribe/': {
       id: '/front/subscribe/'
       path: '/subscribe'
@@ -152,6 +165,7 @@ export const routeTree = rootRoute.addChildren({
     FrontChapterProjectRoute,
     FrontChapterSystemRoute,
     FrontLessonIndexRoute,
+    FrontSignIndexRoute,
     FrontSubscribeIndexRoute,
     FrontTopicIndexRoute,
     FrontVideoIndexRoute,
@@ -180,6 +194,7 @@ export const routeTree = rootRoute.addChildren({
         "/front/chapter/project",
         "/front/chapter/system",
         "/front/Lesson/",
+        "/front/sign/",
         "/front/subscribe/",
         "/front/topic/",
         "/front/video/"
@@ -199,6 +214,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/front/Lesson/": {
       "filePath": "front/Lesson/index.tsx",
+      "parent": "/front"
+    },
+    "/front/sign/": {
+      "filePath": "front/sign/index.tsx",
       "parent": "/front"
     },
     "/front/subscribe/": {
