@@ -60,7 +60,9 @@ export const Navbar = () => {
           </Drawer>
         </div>
         <div className='justify-self-end flex gap-2'>
-          <Button type='primary'>登录</Button>
+          <Link to='/auth/login'>
+            <Button type='primary'>登录</Button>
+          </Link>
           <Button type='default'> 注册</Button>
         </div>
       </section>

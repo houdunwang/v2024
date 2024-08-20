@@ -14,6 +14,9 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as AuthRegisterImport } from './pages/auth/register'
+import { Route as AuthLoginImport } from './pages/auth/login'
+import { Route as AuthForgetImport } from './pages/auth/forget'
 import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/index'
@@ -43,6 +46,21 @@ const FrontAboutLazyRoute = FrontAboutLazyImport.update({
   path: '/about',
   getParentRoute: () => FrontRouteRoute,
 } as any).lazy(() => import('./pages/front/about.lazy').then((d) => d.Route))
+
+const AuthRegisterRoute = AuthRegisterImport.update({
+  path: '/auth/register',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthLoginRoute = AuthLoginImport.update({
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthForgetRoute = AuthForgetImport.update({
+  path: '/auth/forget',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const FrontVideoIndexRoute = FrontVideoIndexImport.update({
   path: '/video/',
@@ -95,6 +113,27 @@ declare module '@tanstack/react-router' {
       path: '/front'
       fullPath: '/front'
       preLoaderRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/forget': {
+      id: '/auth/forget'
+      path: '/auth/forget'
+      fullPath: '/auth/forget'
+      preLoaderRoute: typeof AuthForgetImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof rootRoute
     }
     '/front/about': {
@@ -170,6 +209,9 @@ export const routeTree = rootRoute.addChildren({
     FrontTopicIndexRoute,
     FrontVideoIndexRoute,
   }),
+  AuthForgetRoute,
+  AuthLoginRoute,
+  AuthRegisterRoute,
 })
 
 /* prettier-ignore-end */
@@ -181,7 +223,10 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/front"
+        "/front",
+        "/auth/forget",
+        "/auth/login",
+        "/auth/register"
       ]
     },
     "/": {
@@ -199,6 +244,15 @@ export const routeTree = rootRoute.addChildren({
         "/front/topic/",
         "/front/video/"
       ]
+    },
+    "/auth/forget": {
+      "filePath": "auth/forget.tsx"
+    },
+    "/auth/login": {
+      "filePath": "auth/login.tsx"
+    },
+    "/auth/register": {
+      "filePath": "auth/register.tsx"
     },
     "/front/about": {
       "filePath": "front/about.lazy.tsx",
