@@ -12,7 +12,7 @@ function Index() {
   return (
     <>
       <Navbar />
-      <div className='lg:container px-3 mb-16 grid lg:grid-cols-[1fr_auto] items-start gap-6'>
+      <div className='container mb-16 grid lg:grid-cols-[1fr_auto] items-start gap-6'>
         <Activities />
         <div className='lg:w-[350px] grid gap-6'>
           <Learn className='lg:order-2' />

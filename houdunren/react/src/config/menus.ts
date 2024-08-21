@@ -8,3 +8,4 @@ export default [
 	{ title: '签到打卡', to: '/front/sign/' },
 	{ title: '在线文档', to: '/' },
 ]
+

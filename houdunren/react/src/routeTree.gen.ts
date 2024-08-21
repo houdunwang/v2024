@@ -23,7 +23,9 @@ import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/inde
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
 import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
 import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
+import { Route as FrontChapterShowImport } from './pages/front/chapter/show'
 import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
+import { Route as FrontLessonShowImport } from './pages/front/Lesson/show'
 
 // Create Virtual Routes
 
@@ -92,8 +94,18 @@ const FrontChapterSystemRoute = FrontChapterSystemImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
+const FrontChapterShowRoute = FrontChapterShowImport.update({
+  path: '/chapter/show',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
 const FrontChapterProjectRoute = FrontChapterProjectImport.update({
   path: '/chapter/project',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontLessonShowRoute = FrontLessonShowImport.update({
+  path: '/Lesson/show',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -143,11 +155,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontAboutLazyImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/Lesson/show': {
+      id: '/front/Lesson/show'
+      path: '/Lesson/show'
+      fullPath: '/front/Lesson/show'
+      preLoaderRoute: typeof FrontLessonShowImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/chapter/project': {
       id: '/front/chapter/project'
       path: '/chapter/project'
       fullPath: '/front/chapter/project'
       preLoaderRoute: typeof FrontChapterProjectImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/chapter/show': {
+      id: '/front/chapter/show'
+      path: '/chapter/show'
+      fullPath: '/front/chapter/show'
+      preLoaderRoute: typeof FrontChapterShowImport
       parentRoute: typeof FrontRouteImport
     }
     '/front/chapter/system': {
@@ -201,7 +227,9 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FrontRouteRoute: FrontRouteRoute.addChildren({
     FrontAboutLazyRoute,
+    FrontLessonShowRoute,
     FrontChapterProjectRoute,
+    FrontChapterShowRoute,
     FrontChapterSystemRoute,
     FrontLessonIndexRoute,
     FrontSignIndexRoute,
@@ -236,7 +264,9 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "front/route.tsx",
       "children": [
         "/front/about",
+        "/front/Lesson/show",
         "/front/chapter/project",
+        "/front/chapter/show",
         "/front/chapter/system",
         "/front/Lesson/",
         "/front/sign/",
@@ -258,8 +288,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "front/about.lazy.tsx",
       "parent": "/front"
     },
+    "/front/Lesson/show": {
+      "filePath": "front/Lesson/show.tsx",
+      "parent": "/front"
+    },
     "/front/chapter/project": {
       "filePath": "front/chapter/project.tsx",
+      "parent": "/front"
+    },
+    "/front/chapter/show": {
+      "filePath": "front/chapter/show.tsx",
       "parent": "/front"
     },
     "/front/chapter/system": {

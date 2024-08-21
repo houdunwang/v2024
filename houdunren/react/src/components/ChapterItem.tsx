@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
@@ -12,12 +13,14 @@ export const ChapterItem = React.forwardRef<HTMLDivElement, Props>(
     return (
       <div className='border rounded-lg overflow-hidden cursor-pointer' ref={ref}>
         <div className='h-60 overflow-hidden'>
-          <div className='hover:scale-110 duration-300'>
+          <Link to='/front/chapter/show' className='hover:scale-110 duration-300 block'>
             <LazyLoadImage effect='blur' src={src} alt='' className='' />
-          </div>
+          </Link>
         </div>
         <div className='p-3'>
-          <div className='font-bold mb-2'>{title}</div>
+          <Link to='/front/chapter/show' className='font-bold mb-2'>
+            {title}
+          </Link>
           <div className='text-sm'>{desc}</div>
         </div>
       </div>
