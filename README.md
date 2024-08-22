@@ -1,6 +1,6 @@
 ## 后盾人 / 2024年晚八点直播代码
 
-本项目为晚八点直播代码，你可以在 [后盾人](https://gitee.com/link?target=https%3A%2F%2Fwww.houdunren.com) 网站通过视频学习。
+本项目为晚八点直播代码，你可以在 [后盾人](https://www.houdunren.com) 网站通过视频学习。
 
 > 兄弟姐妹们给个 Star 鼓励我一下吧
 
