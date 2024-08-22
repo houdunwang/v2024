@@ -22,6 +22,7 @@ import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/index'
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
 import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
+import { Route as FrontTopicShowImport } from './pages/front/topic/show'
 import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
 import { Route as FrontChapterShowImport } from './pages/front/chapter/show'
 import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
@@ -86,6 +87,11 @@ const FrontSignIndexRoute = FrontSignIndexImport.update({
 
 const FrontLessonIndexRoute = FrontLessonIndexImport.update({
   path: '/Lesson/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontTopicShowRoute = FrontTopicShowImport.update({
+  path: '/topic/show',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -183,6 +189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontChapterSystemImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/topic/show': {
+      id: '/front/topic/show'
+      path: '/topic/show'
+      fullPath: '/front/topic/show'
+      preLoaderRoute: typeof FrontTopicShowImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/Lesson/': {
       id: '/front/Lesson/'
       path: '/Lesson'
@@ -231,6 +244,7 @@ export const routeTree = rootRoute.addChildren({
     FrontChapterProjectRoute,
     FrontChapterShowRoute,
     FrontChapterSystemRoute,
+    FrontTopicShowRoute,
     FrontLessonIndexRoute,
     FrontSignIndexRoute,
     FrontSubscribeIndexRoute,
@@ -268,6 +282,7 @@ export const routeTree = rootRoute.addChildren({
         "/front/chapter/project",
         "/front/chapter/show",
         "/front/chapter/system",
+        "/front/topic/show",
         "/front/Lesson/",
         "/front/sign/",
         "/front/subscribe/",
@@ -302,6 +317,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/front/chapter/system": {
       "filePath": "front/chapter/system.tsx",
+      "parent": "/front"
+    },
+    "/front/topic/show": {
+      "filePath": "front/topic/show.tsx",
       "parent": "/front"
     },
     "/front/Lesson/": {

@@ -10,7 +10,7 @@ export const UserIcon = React.forwardRef<HTMLDivElement, Props>(
     return (
       <div
         className={classNames(
-          'hover:scale-125 duration-300 cursor-pointer overflow-hidden h-12',
+          'hover:scale-125 duration-300 cursor-pointer overflow-hidden h-12 w-12',
           className,
         )}
         ref={ref}>

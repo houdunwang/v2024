@@ -15,7 +15,7 @@ export const Navbar = () => {
     setOpen(false)
   }
   return (
-    <main className='bg-white shadow-sm border-t-4 border-rose-600 mb-6'>
+    <main className='bg-white shadow-sm border-t-4 border-rose-600 mb-6 sticky top-0 z-10'>
       <section className='lg:container px-3 py-3 grid grid-cols-[1fr_auto]'>
         <div className='hidden lg:flex items-center gap-2'>
           <Link to='/' className='flex items-center text-rose-600 gap-1'>

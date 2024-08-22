@@ -16,14 +16,15 @@ export const AuthLayout = React.forwardRef<HTMLDivElement, Props>(
       <main
         className='bg-[#2c3e50] h-screen w-screen overflow-y-auto flex justify-center items-center'
         ref={ref}>
-        <div className='flex'>
+        <div className='grid lg:grid-cols-2'>
           <section className=''>
-            <div className='w-[400px] rounded-lg bg-gray-100 p-3'>
+            <div className='w-[400px] rounded-lg lg:rounded-none  lg:rounded-tl-lg lg:rounded-bl-lg bg-gray-100 p-3'>
               <h2 className='text-center text-lg font-bold p-4'>{title}</h2>
               {children}
               <div className='flex justify-center gap-3 text-xs font-bold opacity-80 mt-12'>
                 {footerMenu.map((menu, index) => (
                   <Link
+                    key={index}
                     to={menu.to}
                     activeProps={{
                       className: 'text-violet-700 hover:text-violet-800',
@@ -35,7 +36,7 @@ export const AuthLayout = React.forwardRef<HTMLDivElement, Props>(
             </div>
           </section>
           <section
-            className=' w-[400px] -ml-2 hidden md:flex rounded-tr-lg rounded-br-lg '
+            className='w-[400px] hidden md:flex rounded-tr-lg rounded-br-lg bg-cover bg-top'
             style={{
               backgroundImage: `url(${img})`,
             }}></section>

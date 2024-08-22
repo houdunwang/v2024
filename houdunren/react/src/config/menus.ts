@@ -1,3 +1,6 @@
+import { FileRoutesByPath } from "@tanstack/react-router"
+
+type RouteParse<T> = {}
 export default [
 	{ title: '系统课程', to: '/front/chapter/system' },
 	{ title: '实战项目', to: '/front/chapter/project' },
@@ -7,5 +10,6 @@ export default [
 	{ title: '订阅优惠', to: '/front/subscribe/' },
 	{ title: '签到打卡', to: '/front/sign/' },
 	{ title: '在线文档', to: '/' },
-]
+] as RouteParse<FileRoutesByPath>
+
 
