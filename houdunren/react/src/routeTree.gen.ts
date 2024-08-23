@@ -22,6 +22,7 @@ import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/index'
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
 import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
+import { Route as FrontVideoShowImport } from './pages/front/video/show'
 import { Route as FrontTopicShowImport } from './pages/front/topic/show'
 import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
 import { Route as FrontChapterShowImport } from './pages/front/chapter/show'
@@ -87,6 +88,11 @@ const FrontSignIndexRoute = FrontSignIndexImport.update({
 
 const FrontLessonIndexRoute = FrontLessonIndexImport.update({
   path: '/Lesson/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontVideoShowRoute = FrontVideoShowImport.update({
+  path: '/video/show',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -196,6 +202,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontTopicShowImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/video/show': {
+      id: '/front/video/show'
+      path: '/video/show'
+      fullPath: '/front/video/show'
+      preLoaderRoute: typeof FrontVideoShowImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/Lesson/': {
       id: '/front/Lesson/'
       path: '/Lesson'
@@ -245,6 +258,7 @@ export const routeTree = rootRoute.addChildren({
     FrontChapterShowRoute,
     FrontChapterSystemRoute,
     FrontTopicShowRoute,
+    FrontVideoShowRoute,
     FrontLessonIndexRoute,
     FrontSignIndexRoute,
     FrontSubscribeIndexRoute,
@@ -283,6 +297,7 @@ export const routeTree = rootRoute.addChildren({
         "/front/chapter/show",
         "/front/chapter/system",
         "/front/topic/show",
+        "/front/video/show",
         "/front/Lesson/",
         "/front/sign/",
         "/front/subscribe/",
@@ -321,6 +336,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/front/topic/show": {
       "filePath": "front/topic/show.tsx",
+      "parent": "/front"
+    },
+    "/front/video/show": {
+      "filePath": "front/video/show.tsx",
       "parent": "/front"
     },
     "/front/Lesson/": {

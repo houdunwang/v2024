@@ -1,5 +1,5 @@
 import { Play, Time } from '@icon-park/react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { Card, Pagination } from 'antd'
 import { Random } from 'mockjs'
 
@@ -13,8 +13,9 @@ function Page() {
       <Card title='最近更新' className=''>
         <div className='text-base'>
           {[...Array(16)].map((_, i) => (
-            <div
-              className='border-b   py-3  first:pt-0 grid lg:grid-cols-2 items-center'
+            <Link
+              to='/front/video/show'
+              className='border-b   py-3  first:pt-0 grid lg:grid-cols-[1fr_auto] items-center'
               key={i}>
               <div className='grid grid-flow-col justify-start items-center gap-2'>
                 <Play
@@ -35,7 +36,7 @@ function Page() {
                   {Random.ctitle(10, 20)}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </Card>

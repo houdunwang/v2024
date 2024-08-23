@@ -12,9 +12,12 @@
 
 ## 目录说明
 
-| 目录  | 说明             | 使用技术                                                  |
-| ----- | ---------------- | --------------------------------------------------------- |
-| video | 桌面视频压缩软件 | Electron、Css、Vite、Vue、Typescript、Node.js、Element UI |
+| 目录      | 说明             | 使用技术                                                     |
+| --------- | ---------------- | ------------------------------------------------------------ |
+| video     | 桌面视频压缩软件 | Electron、Css、Vite、Vue、Typescript、Node.js、Element UI    |
+| snippets  | 代码片段软件     | React、zustand、react-router、typescript、nodejs、tailwindcss |
+| vitepress | 做一个在线文档库 | vite、vue                                                    |
+| houdunren | 在线学习平台     | laravel、react、antdesign、tanstack router 、typescript、tailwindcss、mysql |
 
 
 
