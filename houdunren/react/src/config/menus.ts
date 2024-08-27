@@ -1,12 +1,12 @@
 import { FileRoutesByPath } from "@tanstack/react-router"
 
-type RoutePath<T> = {
-	[K in keyof T]: T[K] extends { fullPath: infer P } ? P : never
-}[keyof T]
+// type MenuType<T> = {
+// 	[K in keyof T]: T[K] extends { fullPath: infer P } ? { title: string, to: P } : never
+// }[keyof T][]
 
-export type MenuType = { title: string, to: RoutePath<FileRoutesByPath> }[]
+type MenuType<T, F extends keyof T[keyof T]> = { title: string, to: T[keyof T][F] }[]
 
-const menus: MenuType = [
+const menus: MenuType<FileRoutesByPath, 'fullPath'> = [
 	{ title: '系统课程', to: '/front/chapter/system' },
 	{ title: '实战项目', to: '/front/chapter/project' },
 	{ title: '碎片课程', to: '/front/Lesson' },
