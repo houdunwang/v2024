@@ -1,0 +1,64 @@
+{
+    "name": "laravel-lang/lang",
+    "description": "List of 126 languages for Laravel Framework, Laravel Jetstream, Laravel Fortify, Laravel Breeze, Laravel Cashier, Laravel Nova, Laravel Spark and Laravel UI",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "languages",
+        "lpm",
+        "lang"
+    ],
+    "authors": [
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://github.com/Laravel-Lang"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Laravel-Lang/lang/issues",
+        "source": "https://github.com/Laravel-Lang/lang"
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-json": "*",
+        "laravel-lang/publisher": "^16.0"
+    },
+    "require-dev": {
+        "laravel-lang/status-generator": "^2.11",
+        "phpunit/phpunit": "^10.0",
+        "symfony/var-dumper": "^7.0"
+    },
+    "conflict": {
+        "laravel/framework": "<11.0.7"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Lang\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "php-http/discovery": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Lang\\ServiceProvider"
+            ]
+        }
+    }
+}

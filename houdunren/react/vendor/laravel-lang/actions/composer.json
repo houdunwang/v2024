@@ -1,0 +1,64 @@
+{
+    "name": "laravel-lang/actions",
+    "description": "Translation of buttons and other action elements",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "actions",
+        "buttons",
+        "lang",
+        "languages",
+        "laravel",
+        "translations"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://dragon-code.pro"
+        },
+        {
+            "name": "Laravel Lang Team",
+            "homepage": "https://laravel-lang.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "laravel-lang/publisher": "^14.0 || ^15.0 || ^16.0"
+    },
+    "require-dev": {
+        "laravel-lang/status-generator": "^2.3.1",
+        "phpunit/phpunit": "^10.0",
+        "symfony/var-dumper": "^6.3 || ^7.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Actions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "php-http/discovery": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Actions\\ServiceProvider"
+            ]
+        }
+    }
+}

@@ -8,6 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class TopicPolicy
 {
+    public function before(User $user, string $ability): bool|null
+    {
+        if ($user->isAdministrator) {
+            return true;
+        }
+
+        return null;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -29,7 +38,7 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return !$user->is_lock;
     }
 
     /**

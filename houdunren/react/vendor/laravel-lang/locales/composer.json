@@ -1,0 +1,80 @@
+{
+    "name": "laravel-lang/locales",
+    "description": "Basic functionality for working with localizations",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "locale",
+        "locales",
+        "localization",
+        "translation",
+        "translations"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro"
+        },
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://laravel-lang.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Laravel-Lang/locales/issues",
+        "source": "https://github.com/Laravel-Lang/locales"
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "archtechx/enums": "^0.3.2 || ^1.0",
+        "dragon-code/support": "^6.11.3",
+        "illuminate/collections": "^10.0 || ^11.0",
+        "laravel-lang/config": "^1.0.2",
+        "laravel-lang/locale-list": "^1.2",
+        "laravel-lang/native-country-names": "^1.3",
+        "laravel-lang/native-currency-names": "^1.3",
+        "laravel-lang/native-locale-names": "^2.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0 || ^9.0",
+        "pestphp/pest": "^2.24.1",
+        "symfony/var-dumper": "^6.0 || ^7.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Locales\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "pestphp/pest-plugin": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Locales\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": [
+            "php vendor/bin/pest --compact"
+        ]
+    }
+}

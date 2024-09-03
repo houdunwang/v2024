@@ -1,0 +1,75 @@
+{
+    "name": "laravel-lang/config",
+    "description": "The Laravel-Lang config package",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "laravel-lang",
+        "lang",
+        "languages",
+        "laravel",
+        "locale",
+        "locales",
+        "localization",
+        "localizations",
+        "translation",
+        "translations",
+        "config",
+        "settings"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://dragon-code.pro"
+        },
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://laravel-lang.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "archtechx/enums": "^1.0",
+        "illuminate/config": "^10.0 || ^11.0",
+        "illuminate/support": "^10.0 || ^11.0",
+        "laravel-lang/locale-list": "^1.4"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.23 || ^9.1",
+        "pestphp/pest": "^2.34"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Config\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "pestphp/pest-plugin": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Config\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
+    }
+}

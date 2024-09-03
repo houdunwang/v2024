@@ -1,0 +1,102 @@
+{
+    "name": "laravel-lang/publisher",
+    "description": "Publisher lang files for the Laravel and Lumen Frameworks, Jetstream, Fortify, Cashier, Spark and Nova from Laravel-Lang/lang",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "laravel-lang",
+        "breeze",
+        "cashier",
+        "fortify",
+        "framework",
+        "i18n",
+        "jetstream",
+        "lang",
+        "languages",
+        "laravel",
+        "locale",
+        "locales",
+        "localization",
+        "localizations",
+        "lpm",
+        "lumen",
+        "nova",
+        "publisher",
+        "spark",
+        "trans",
+        "translation",
+        "translations",
+        "validations"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro"
+        },
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://laravel-lang.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Laravel-Lang/publisher/issues",
+        "source": "https://github.com/Laravel-Lang/publisher"
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "composer/semver": "^3.4",
+        "dragon-code/pretty-array": "^4.1",
+        "dragon-code/support": "^6.11.3",
+        "illuminate/collections": "^10.0 || ^11.0",
+        "illuminate/console": "^10.0 || ^11.0",
+        "illuminate/support": "^10.0 || ^11.0",
+        "laravel-lang/config": "^1.0",
+        "laravel-lang/locales": "^2.3",
+        "league/commonmark": "^2.4.1",
+        "league/config": "^1.2"
+    },
+    "require-dev": {
+        "laravel-lang/json-fallback": "^2.0",
+        "orchestra/testbench": "^8.14 || ^9.0",
+        "phpunit/phpunit": "^10.4.2",
+        "symfony/var-dumper": "^6.3.6 || ^7.0"
+    },
+    "conflict": {
+        "laravel-lang/attributes": "<2.0",
+        "laravel-lang/http-statuses": "<3.0",
+        "laravel-lang/lang": "<11.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Publisher\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "tests/Fixtures/collision_functions.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Publisher\\ServiceProvider"
+            ]
+        }
+    }
+}

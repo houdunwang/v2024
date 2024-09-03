@@ -1,0 +1,100 @@
+{
+    "name": "dragon-code/support",
+    "description": "Support package is a collection of helpers and tools for any project.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "dragon",
+        "dragon-code",
+        "framework",
+        "helper",
+        "helpers",
+        "laravel",
+        "php",
+        "support",
+        "symfony",
+        "yii",
+        "yii2"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://dragon-code.pro"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/TheDragonCode/support/issues",
+        "source": "https://github.com/TheDragonCode/support"
+    },
+    "funding": [
+        {
+            "type": "boosty",
+            "url": "https://boosty.to/dragon-code"
+        },
+        {
+            "type": "yoomoney",
+            "url": "https://yoomoney.ru/to/410012608840929"
+        },
+        {
+            "type": "donationalerts",
+            "url": "https://www.donationalerts.com/r/dragon_code"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-bcmath": "*",
+        "ext-ctype": "*",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "dragon-code/contracts": "^2.22.0",
+        "psr/http-message": "^1.0.1 || ^2.0",
+        "symfony/polyfill-php81": "^1.25",
+        "voku/portable-ascii": "^1.4.8 || ^2.0.1"
+    },
+    "require-dev": {
+        "illuminate/contracts": "^9.0 || ^10.0 || ^11.0",
+        "phpunit/phpunit": "^9.6 || ^11.0",
+        "symfony/var-dumper": "^6.0 || ^7.0"
+    },
+    "conflict": {
+        "andrey-helldar/support": "*"
+    },
+    "suggest": {
+        "dragon-code/laravel-support": "Various helper files for the Laravel and Lumen frameworks",
+        "symfony/thanks": "Give thanks (in the form of a GitHub) to your fellow PHP package maintainers"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "DragonCode\\Support\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "dragon-code": {
+            "docs-generator": {
+                "preview": {
+                    "brand": "php",
+                    "vendor": "The Dragon Code"
+                }
+            }
+        }
+    }
+}

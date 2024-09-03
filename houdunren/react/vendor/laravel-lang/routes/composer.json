@@ -1,0 +1,82 @@
+{
+    "name": "laravel-lang/routes",
+    "description": "Easy and fast way to localize routes",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "languages",
+        "routes",
+        "translations",
+        "translate",
+        "localization",
+        "l18n"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://dragon-code.pro"
+        },
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://github.com/Laravel-Lang"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Laravel-Lang/routes/issues",
+        "source": "https://github.com/Laravel-Lang/routes"
+    },
+    "require": {
+        "php": "^8.1",
+        "dragon-code/support": "^6.13",
+        "illuminate/config": "^10.0 || ^11.0",
+        "illuminate/http": "^10.0 || ^11.0",
+        "illuminate/routing": "^10.0 || ^11.0",
+        "illuminate/support": "^10.0 || ^11.0",
+        "laravel-lang/config": "^1.6",
+        "laravel-lang/locales": "^2.8"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.23 || ^9.1",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "symfony/var-dumper": "^6.0 || ^7.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\Routes\\": "src/"
+        },
+        "files": [
+            "helpers/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\Routes\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest --parallel"
+    }
+}

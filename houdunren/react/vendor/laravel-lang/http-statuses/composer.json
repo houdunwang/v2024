@@ -1,0 +1,65 @@
+{
+    "name": "laravel-lang/http-statuses",
+    "description": "List of 126 languages for HTTP statuses",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "languages",
+        "lang",
+        "translations",
+        "messages",
+        "http",
+        "status"
+    ],
+    "authors": [
+        {
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro"
+        },
+        {
+            "name": "Laravel-Lang Team",
+            "homepage": "https://github.com/Laravel-Lang"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "laravel-lang/publisher": "^14.1 || ^15.0 || ^16.0"
+    },
+    "require-dev": {
+        "laravel-lang/status-generator": "^1.19 || ^2.0",
+        "phpunit/phpunit": "^10.0",
+        "symfony/var-dumper": "^6.0 || ^7.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LaravelLang\\HttpStatuses\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "php-http/discovery": true,
+            "symfony/thanks": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelLang\\HttpStatuses\\ServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "require": {
+        "laravel-lang/common": "^6.4"
+    }
+}
