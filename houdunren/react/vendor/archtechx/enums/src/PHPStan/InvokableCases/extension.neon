@@ -1,5 +1,0 @@
-services:
-  -
-    class: ArchTech\Enums\PHPStan\InvokableCases\ReflectionExtension
-    tags:
-      - phpstan.broker.methodsClassReflectionExtension
