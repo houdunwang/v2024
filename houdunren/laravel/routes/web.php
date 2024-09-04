@@ -8,7 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('topic', TopicController::class)->except(['create', 'edit']);
-
+//登录注册
 Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
+
+//贴子管理
+Route::resource('topic', TopicController::class)->except(['create', 'edit']);

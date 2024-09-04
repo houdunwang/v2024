@@ -41,12 +41,9 @@ class TopicPolicy
         return !$user->is_lock;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $user, Topic $topic): bool
     {
-        //
+        return $user->id === $topic->user_id;
     }
 
     /**

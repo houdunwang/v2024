@@ -17,7 +17,7 @@ class TopicResource extends JsonResource
     {
         return [
             ...parent::toArray($request),
-            // 'user' => $this->user
+            'user' => $this->user
         ];
     }
 }
