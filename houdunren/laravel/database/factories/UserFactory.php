@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ class UserFactory extends Factory
     /**
      * The current password being used by the factory.
      */
-    protected static ?string $password;
+    protected static ?string $password = 'admin888';
 
     /**
      * Define the model's default state.
@@ -30,6 +31,16 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+
+    public function configure(): static
+    {
+        $names = [1 => 'admin', 2 => 'hd'];
+        return $this->afterCreating(function (User $user) use ($names) {
+            $user['name'] = $names[$user->id] ??= fake()->name();
+            $user->save();
+        });
     }
 
     /**

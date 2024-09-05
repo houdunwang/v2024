@@ -42,7 +42,14 @@ class TopicController extends Controller implements HasMiddleware
     public function update(UpdateTopicRequest $request, Topic $topic)
     {
         Gate::authorize('update', $topic);
+        $topic->fill($request->input())->save();
+        return new TopicResource($topic);
     }
 
-    public function destroy(Topic $topic) {}
+    public function destroy(Topic $topic)
+    {
+        Gate::authorize('delete', $topic);
+        $topic->delete();
+        return response(null, 204);
+    }
 }

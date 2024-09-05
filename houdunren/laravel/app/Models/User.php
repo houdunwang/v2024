@@ -68,4 +68,9 @@ class User extends Authenticatable
             get: fn() => $this->id == 1
         );
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

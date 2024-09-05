@@ -15,11 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        $user = User::first();
-        $user->name = 'admin';
-        $user->password = Hash::make('admin888');
-        $user->save();
-        Topic::factory(30)->create();
+        $this->call([
+            UserSeeder::class,
+            TopicSeeder::class,
+        ]);
     }
 }
