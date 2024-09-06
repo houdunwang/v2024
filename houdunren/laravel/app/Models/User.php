@@ -52,6 +52,10 @@ class User extends Authenticatable
         ];
     }
 
+    public $appends = [
+        'is_administrator'
+    ];
+
     // public function isAdministrator()
     // {
     //     return $this->id == 1;

@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Topic;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            TopicSeeder::class,
+            // TopicSeeder::class,
+            ChapterSeeder::class
         ]);
     }
 }
