@@ -27,7 +27,7 @@ test('TheChapterImageCannotBeEmpty', function () {
 test('OnlySuperAdminCanAddChapter', function () {
     $response = $this->actingAs(User::factory()->create())->postJson('/chapter', [
         'title' => Str::random(20),
-        'description' => fake()->paragraphs(5, true),
+        'description' => fake()->sentence(30, true),
         'preview' => fake()->imageUrl(300, 300),
     ]);
     $response->assertStatus(403);

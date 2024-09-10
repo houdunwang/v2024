@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Chapter;
 use App\Models\Lesson;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ChapterSeeder extends Seeder
+class LessonSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        Chapter::factory()->count(12)
-            ->has(Lesson::factory()->count(2)
-                ->hasVideos(10))->create();
+        Lesson::factory()->count(10)->create();
     }
 }

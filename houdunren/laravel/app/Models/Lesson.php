@@ -5,23 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Chapter extends Model
+class Lesson extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title',
         'description',
-        'preview'
+        'preview',
+        'chapter_id'
     ];
 
-    public function lessons()
+    public function chapter()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->belongsTo(Chapter::class);
     }
 
-    public function orders()
+    public function videos()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Video::class);
     }
 }

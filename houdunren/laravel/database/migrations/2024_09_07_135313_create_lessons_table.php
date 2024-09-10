@@ -8,10 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
@@ -19,8 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable()->comment('课程介绍');
             $table->string('preview')->comment('缩略图');
             $table->string('video', 1000)->nullable()->comment('视频介绍');
-            $table->decimal('price')->nullable()->comment('价格');
-            $table->foreignId('system_id')->nullable()->constrained('systems')->onDelete('SET NULL');
+            $table->decimal('price')->default(0)->comment('价格');
+            $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
             $table->string('download_address')->nullable()->comment('下载地址');
             $table->unsignedInteger('video_num')->default(0)->comment('视频数量');
             $table->unsignedInteger('view_num')->default(0)->comment('观看次数');
@@ -31,10 +29,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('lessons');
     }

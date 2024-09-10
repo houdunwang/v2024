@@ -2,21 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Topic;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class TopicPolicy
+class OrderPolicy
 {
-    public function before(User $user, string $ability): bool|null
-    {
-        if (isAdministrator()) {
-            return true;
-        }
-
-        return null;
-    }
-
     /**
      * Determine whether the user can view any models.
      */
@@ -28,7 +19,7 @@ class TopicPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Topic $topic): bool
+    public function view(User $user, Order $order): bool
     {
         //
     }
@@ -38,26 +29,29 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        return !$user->is_lock;
+        //
     }
 
-    public function update(User $user, Topic $topic): bool
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Order $order): bool
     {
-        return $user->id === $topic->user_id;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Topic $topic): bool
+    public function delete(User $user, Order $order): bool
     {
-        return $user->id === $topic->user_id;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Topic $topic): bool
+    public function restore(User $user, Order $order): bool
     {
         //
     }
@@ -65,7 +59,7 @@ class TopicPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Topic $topic): bool
+    public function forceDelete(User $user, Order $order): bool
     {
         //
     }

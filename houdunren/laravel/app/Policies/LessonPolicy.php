@@ -2,19 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\Topic;
+use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class TopicPolicy
+class LessonPolicy
 {
-    public function before(User $user, string $ability): bool|null
+    public function before(User $user, $ability)
     {
-        if (isAdministrator()) {
-            return true;
-        }
-
-        return null;
+        return $user->is_administrator;
     }
 
     /**
@@ -28,7 +24,7 @@ class TopicPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Topic $topic): bool
+    public function view(User $user, Lesson $lesson): bool
     {
         //
     }
@@ -38,26 +34,29 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        return !$user->is_lock;
+        // return $user->is_administrator;
     }
 
-    public function update(User $user, Topic $topic): bool
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Lesson $lesson): bool
     {
-        return $user->id === $topic->user_id;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Topic $topic): bool
+    public function delete(User $user, Lesson $lesson): bool
     {
-        return $user->id === $topic->user_id;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Topic $topic): bool
+    public function restore(User $user, Lesson $lesson): bool
     {
         //
     }
@@ -65,7 +64,7 @@ class TopicPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Topic $topic): bool
+    public function forceDelete(User $user, Lesson $lesson): bool
     {
         //
     }

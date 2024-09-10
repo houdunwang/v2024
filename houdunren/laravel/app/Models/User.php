@@ -77,4 +77,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function chapters(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => Chapter::whereIn('id', $this->orders->pluck('chapter_id'))->get()
+        );
+    }
 }
