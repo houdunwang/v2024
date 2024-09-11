@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,8 @@ Route::resource('chapter', ChapterController::class)->except(['create', 'edit'])
 Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
 
 //视频
-Route::resource('video', VideoController::class)->except(['create', 'edit', 'update']);
-Route::put('video', [VideoController::class, 'update']);
+Route::resource('video', VideoController::class)->except(['store', 'create', 'edit', 'update']);
+Route::post('video/{lesson}', [VideoController::class, 'store']);
+Route::put('video/{lesson}', [VideoController::class, 'update']);
+//套餐
+Route::resource('package', PackageController::class)->except(['create', 'edit']);

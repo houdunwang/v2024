@@ -12,6 +12,8 @@ class Video extends Model
 
     public $fillable = ['title', 'path'];
 
+    public $hidden = ['path'];
+
     public function lesson()
     {
         return $this->belongsTo(Lesson::class);

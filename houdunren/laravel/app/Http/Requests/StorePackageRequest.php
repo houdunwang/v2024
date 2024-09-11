@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreVideoRequest extends FormRequest
+class StorePackageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,14 @@ class StoreVideoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'videos' => ['required', 'array']
+            'title' => ['required', 'between:5,20'],
+            'style' => ['sometimes', 'string'],
+            'ad' => ['required', 'between:10,50'],
+            'price' => ['required', 'numeric'],
+            'original_price' => ['required', 'numeric'],
+            'months' => ['required', 'numeric'],
+            'icon' => ['required', 'url'],
+            'state' => ['required', 'boolean']
         ];
     }
-
-    public function attributes()
-    {
-        return ['videos' => '视频'];
-    }
-    // public function
-    // public function messages()
-    // {
-    //     return [
-    //         'lesson_id.required' => ['请选择课程']
-    //     ];
-    // }
 }

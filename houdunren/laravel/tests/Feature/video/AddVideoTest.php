@@ -5,12 +5,12 @@ use App\Models\User;
 
 //添加视频
 test('addVideoData', function () {
+    $lesson  = Lesson::factory()->forChapter()->create();
     $videos = [
         ['title' =>  fake()->sentence(), 'path' => fake()->url()],
         ['title' => fake()->sentence(), 'path' => fake()->url()],
     ];
-    $response = $this->actingAs(User::find(1))->postJson('/video', [
-        'lesson_id' => Lesson::factory()->forChapter()->create()->id,
+    $response = $this->actingAs(User::find(1))->postJson('/video/' . $lesson->id, [
         'videos' => $videos,
     ]);
     $response->assertStatus(200)

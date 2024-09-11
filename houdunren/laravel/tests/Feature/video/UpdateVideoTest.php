@@ -7,12 +7,13 @@ use App\Models\Video;
 //更新视频
 test('UpdateVideo', function () {
     $video = Video::factory()->for(Lesson::factory()->forChapter())->create();
+    // dd($video->makeVisible('path')->toArray());
     $videos = [
-        $video->toArray(),
+        $video->makeVisible('path')->toArray(),
         ['title' => fake()->sentence(), 'path' => fake()->url()],
         ['title' => fake()->sentence(), 'path' => fake()->url()],
     ];
-    $response = $this->actingAs(User::find(1))->putJson('/video', [
+    $response = $this->actingAs(User::find(1))->putJson('/video/' . $video->lesson_id, [
         'lesson_id' => $video->lesson->id,
         'videos' => $videos,
     ]);
