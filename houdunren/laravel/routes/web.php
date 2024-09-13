@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,5 @@ Route::post('video/{lesson}', [VideoController::class, 'store']);
 Route::put('video/{lesson}', [VideoController::class, 'update']);
 //套餐
 Route::resource('package', PackageController::class)->except(['create', 'edit']);
+//签到
+Route::resource('sign', SignController::class)->except(['create', 'edit', 'show']);

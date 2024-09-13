@@ -21,7 +21,10 @@ class PackageController extends Controller implements HasMiddleware
 
     public function index()
     {
-        return PackageResource::collection(Package::all());
+        $packages = Package::when(request('state'), function ($query, $state) {
+            $query->where('state', $state);
+        })->get();
+        return PackageResource::collection($packages);
     }
 
     public function store(StorePackageRequest $request, Package $package)

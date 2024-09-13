@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     {
         User::factory(10)
             ->hasTopics()
+            ->hasSigns()
             ->has(Order::factory()->count(5)->for(Chapter::factory()))
             ->create();
     }
