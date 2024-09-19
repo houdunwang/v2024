@@ -94,4 +94,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sign::class);
     }
+
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
+    }
 }

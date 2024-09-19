@@ -6,6 +6,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,5 @@ Route::put('video/{lesson}', [VideoController::class, 'update']);
 Route::resource('package', PackageController::class)->except(['create', 'edit']);
 //签到
 Route::resource('sign', SignController::class)->except(['create', 'edit', 'show']);
+//上传
+Route::post('upload/image', [UploadController::class, 'image']);
