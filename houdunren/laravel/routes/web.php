@@ -7,6 +7,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ValidateCodeController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,5 @@ Route::resource('package', PackageController::class)->except(['create', 'edit'])
 Route::resource('sign', SignController::class)->except(['create', 'edit', 'show']);
 //上传
 Route::post('upload/image', [UploadController::class, 'image']);
+//验证码
+Route::post('code/send', [ValidateCodeController::class, 'send']);

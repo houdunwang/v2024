@@ -35,6 +35,5 @@ test('TheSpecifiedWidthAndHeightCannotBeExceeded', function () {
     $response = $this->actingAs(user())->postJson('/upload/image', [
         'image' => UploadedFile::fake()->image('test.jpg', 3000, 1000)->size(1024)
     ]);
-    $response->dump();
-    // $response->assertStatus(422);
+    $response->assertStatus(422);
 });
