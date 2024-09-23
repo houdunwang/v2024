@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Chapter;
+use App\Models\Lesson;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,7 +16,11 @@ class UserSeeder extends Seeder
         User::factory(10)
             ->hasTopics()
             ->hasSigns()
-            ->has(Order::factory()->count(5)->for(Chapter::factory()))
+            ->has(Order::factory()->count(5)->for(Lesson::factory()))
             ->create();
+
+        $user = User::find(1);
+        $user->email = '2300071698@qq.com';
+        $user->save();
     }
 }

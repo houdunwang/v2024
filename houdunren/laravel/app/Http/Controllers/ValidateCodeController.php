@@ -2,31 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\GetUserByName;
-use App\Actions\GetUserFieldByName;
-use App\Actions\SendCode;
-use App\Actions\SendValidateCode;
+use App\Actions\SendCodeAction;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Rules\UserNameValidate;
-use Illuminate\Validation\ValidationException;
 
+/**
+ * 发送验证码
+ */
 class ValidateCodeController extends Controller
 {
     public function send(Request $request)
     {
         $request->validate([
-            'name' => ['required', new UserNameValidate]
+            'name' => ['required', new UserNameValidate(['email', 'mobile'])]
         ]);
 
-        $field = GetUserFieldByName::run($request->name);
-        if (!in_array($field, ['email', 'mobile'])) {
-            throw ValidationException::withMessages([
-                'name' => '帐号不存在'
-            ]);
-        }
-        SendCode::run(GetUserByName::run(request('name')));
+        SendCodeAction::run(request('name'));
 
-        return $this->success();
+        return $this->respondOk('发送成功');
+    }
+
+    public function noExist(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'email']
+        ]);
+
+        SendCodeAction::run(request('name'));
+
+        return $this->respondOk('发送成功');
     }
 }

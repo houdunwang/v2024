@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lesson_id')->constrained('lessons')->onDelete('cascade')->comment('课程');
+            $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnDelete()->comment('课程');
+            $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete()->comment('章节');
             $table->string('title')->comment('课程标题');
             $table->string('path', 500)->comment('视频地址');
             $table->unsignedSmallInteger('order')->default(0)->comment('排序');

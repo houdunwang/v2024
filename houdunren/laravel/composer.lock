@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82f96b925704fb8e1f5f86299ca2b8a5",
+    "content-hash": "1e1a21b5ec4c4f45c18cfdc97e7713e5",
     "packages": [
         {
             "name": "archtechx/enums",
@@ -1028,6 +1028,59 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "f9webltd/laravel-api-response-helpers",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/f9webltd/laravel-api-response-helpers.git",
+                "reference": "2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/f9webltd/laravel-api-response-helpers/zipball/2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd",
+                "reference": "2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.12|^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^9.4|^10.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "F9Web\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Allport",
+                    "email": "rob@f9web.co.uk",
+                    "homepage": "https://www.f9web.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A super simple package allowing for consistent API responses throughout your Laravel application ",
+            "homepage": "https://github.com/f9webltd/laravel-api-response-helpers",
+            "keywords": [
+                "laravel",
+                "laravel api response",
+                "laravel api response helpers"
+            ],
+            "support": {
+                "issues": "https://github.com/f9webltd/laravel-api-response-helpers/issues",
+                "source": "https://github.com/f9webltd/laravel-api-response-helpers/tree/2.0.1"
+            },
+            "time": "2024-03-10T13:11:45+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -3474,6 +3527,154 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
+        },
+        {
+            "name": "lorisleiva/laravel-actions",
+            "version": "v2.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lorisleiva/laravel-actions.git",
+                "reference": "5a168bfdd3b75dd6ff259019d4aeef784bbd5403"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lorisleiva/laravel-actions/zipball/5a168bfdd3b75dd6ff259019d4aeef784bbd5403",
+                "reference": "5a168bfdd3b75dd6ff259019d4aeef784bbd5403",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "lorisleiva/lody": "^0.5",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0|^9.0",
+                "pestphp/pest": "^1.23|^2.34",
+                "phpunit/phpunit": "^9.6|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lorisleiva\\Actions\\ActionServiceProvider"
+                    ],
+                    "aliases": {
+                        "Action": "Lorisleiva\\Actions\\Facades\\Actions"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lorisleiva\\Actions\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loris Leiva",
+                    "email": "loris.leiva@gmail.com",
+                    "homepage": "https://lorisleiva.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel components that take care of one specific task",
+            "homepage": "https://github.com/lorisleiva/laravel-actions",
+            "keywords": [
+                "action",
+                "command",
+                "component",
+                "controller",
+                "job",
+                "laravel",
+                "listener",
+                "object"
+            ],
+            "support": {
+                "issues": "https://github.com/lorisleiva/laravel-actions/issues",
+                "source": "https://github.com/lorisleiva/laravel-actions/tree/v2.8.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/lorisleiva",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-09-10T09:57:29+00:00"
+        },
+        {
+            "name": "lorisleiva/lody",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lorisleiva/lody.git",
+                "reference": "c2f51b070e99f3a240d66cf68ef1f232036917fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lorisleiva/lody/zipball/c2f51b070e99f3a240d66cf68ef1f232036917fe",
+                "reference": "c2f51b070e99f3a240d66cf68ef1f232036917fe",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^1.20|^2.34",
+                "phpunit/phpunit": "^9.5.10|^10.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lorisleiva\\Lody\\LodyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Lody": "Lorisleiva\\Lody\\Lody"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lorisleiva\\Lody\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loris Leiva",
+                    "email": "loris.leiva@gmail.com",
+                    "homepage": "https://lorisleiva.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Load files and classes as lazy collections in Laravel.",
+            "homepage": "https://github.com/lorisleiva/lody",
+            "keywords": [
+                "classes",
+                "collection",
+                "files",
+                "laravel",
+                "load"
+            ],
+            "support": {
+                "issues": "https://github.com/lorisleiva/lody/issues",
+                "source": "https://github.com/lorisleiva/lody/tree/v0.5.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/lorisleiva",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-13T12:08:59+00:00"
         },
         {
             "name": "monolog/monolog",

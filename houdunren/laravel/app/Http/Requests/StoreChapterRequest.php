@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreChapterRequest extends FormRequest
+class StoreLessonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->is_administrator;
     }
 
     /**
@@ -23,9 +23,15 @@ class StoreChapterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'between:10,50'],
-            'description' => ['required', 'between:30,1000'],
-            'preview' => ['required', 'url']
+            'title' => ['required', 'between:10,30'],
+            'description' => ['required', 'between:10,1000'],
+            'preview' => ['required', 'url'],
+            'chapter_id' => ['required', 'exists:chapters,id']
         ];
+    }
+
+    public function attributes()
+    {
+        return ['chapter_id' => '章节编号'];
     }
 }

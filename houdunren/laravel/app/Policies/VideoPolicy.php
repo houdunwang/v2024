@@ -22,7 +22,7 @@ class VideoPolicy
      */
     public function view(User $user, Video $video): bool
     {
-        return isAdministrator() || $user->chapters->contains($video->chapter);
+        return isAdministrator() || $user->lessons->contains($video->chapter->lesson);
     }
 
     /**

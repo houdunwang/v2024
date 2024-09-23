@@ -12,7 +12,7 @@ class StoreLessonRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->is_administrator;
+        return true;
     }
 
     /**
@@ -23,15 +23,9 @@ class StoreLessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'between:10,30'],
-            'description' => ['required', 'between:10,1000'],
-            'preview' => ['required', 'url'],
-            'chapter_id' => ['required', 'exists:chapters,id']
+            'title' => ['required', 'between:10,50'],
+            'description' => ['required', 'between:30,1000'],
+            'preview' => ['required', 'url']
         ];
-    }
-
-    public function attributes()
-    {
-        return ['chapter_id' => '章节编号'];
     }
 }

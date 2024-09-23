@@ -5,11 +5,15 @@ namespace App\Rules;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class UserNameValidate implements ValidationRule
+class CheckUserPasswordRule implements ValidationRule
 {
-    public function __construct(public $fields = ['name', 'email', 'mobile']) {}
-
+    public function __construct(public User | null $user = null)
+    {
+        $this->user = $user ?? Auth::user();
+    }
     /**
      * Run the validation rule.
      *
@@ -17,9 +21,8 @@ class UserNameValidate implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $user = User::whereAny($this->fields, $value)->first();
-        if (!$user) {
-            $fail('帐号不存在');
+        if (!Hash::check($value, $this->user->password)) {
+            $fail('密码错误');
         }
     }
 }

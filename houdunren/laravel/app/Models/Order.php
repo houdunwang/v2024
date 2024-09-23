@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function chapter()
+    public function lesson()
     {
-        return $this->belongsTo(Chapter::class);
+        return $this->belongsTo(Lesson::class);
     }
 
     public function user()

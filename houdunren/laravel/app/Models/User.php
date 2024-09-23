@@ -83,10 +83,10 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function chapters(): Attribute
+    public function lessons(): Attribute
     {
         return Attribute::make(
-            get: fn() => Chapter::whereIn('id', $this->orders->pluck('chapter_id'))->get()
+            get: fn() => Lesson::whereIn('id', $this->orders->pluck('lesson_id'))->get()
         );
     }
 

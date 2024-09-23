@@ -35,6 +35,7 @@ class SendValidateCode extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+            ->subject(config('app.name') . '验证码')
             ->line('你的验证码是：' . $this->code . ' , 将在20分钟后失效')
             ->action('访问网站', url('/'))
             ->line('谢谢你对' . config('app.name') . '的喜欢');
