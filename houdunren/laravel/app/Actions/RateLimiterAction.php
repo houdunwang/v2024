@@ -11,7 +11,7 @@ class RateLimiterAction
 {
     use AsAction;
 
-    public function handle(string $key, int $seconds = 20, int $times = 1)
+    public function handle(string $key,  int $times = 1, int $seconds = 20)
     {
         $cacheKey = 'rate_limiter:' . $key;
         $executed = RateLimiter::attempt($cacheKey, $times, fn() => true, $seconds);

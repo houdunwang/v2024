@@ -8,10 +8,11 @@ use Illuminate\Auth\Access\Response;
 
 class LessonPolicy
 {
-    public function before(User $user)
+    public function before(User $user, $ability)
     {
         return $user->is_administrator;
     }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -33,7 +34,7 @@ class LessonPolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_administrator;
+        // return $user->is_administrator;
     }
 
     /**
@@ -41,7 +42,7 @@ class LessonPolicy
      */
     public function update(User $user, Lesson $lesson): bool
     {
-        return $user->is_administrator;
+        //
     }
 
     /**

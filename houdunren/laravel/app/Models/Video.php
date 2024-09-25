@@ -10,17 +10,19 @@ class Video extends Model
 {
     use HasFactory;
 
-    public $fillable = ['title', 'path', 'lesson_id'];
+    public $fillable = ['title', 'path'];
 
     public $hidden = ['path'];
-
-    public function chapter()
-    {
-        return $this->belongsTo(Chapter::class);
-    }
 
     public function lesson()
     {
         return $this->belongsTo(Lesson::class);
+    }
+
+    public function chapter(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->lesson->chapter
+        );
     }
 }

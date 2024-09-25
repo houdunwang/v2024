@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "f9webltd/laravel-api-response-helpers": "^2.0",
         "laravel-lang/common": "^6.4",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",

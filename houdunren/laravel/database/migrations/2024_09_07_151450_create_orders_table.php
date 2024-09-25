@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained('users')->onDelete('cascade');
             // $table->foreignId("package_id")->nullable()->constrained("packages")->onDelete('set null')->comment('套餐ID');
-            $table->foreignId("lesson_id")->nullable()->constrained("lessons")->onDelete('set null')->comment('章节ID');
+            $table->foreignId("chapter_id")->nullable()->constrained("chapters")->onDelete('set null')->comment('章节ID');
             $table->string('sn')->comment('定单号');
             $table->string('subject')->comment('订单描述');
             $table->decimal('price')->comment('价格');

@@ -2,17 +2,16 @@
 
 namespace App\Policies;
 
-use App\Models\chapter;
+use App\Models\Chapter;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class ChapterPolicy
 {
-    public function before(User $user, $ability)
+    public function before(User $user)
     {
         return $user->is_administrator;
     }
-
     /**
      * Determine whether the user can view any models.
      */
@@ -34,7 +33,7 @@ class ChapterPolicy
      */
     public function create(User $user): bool
     {
-        // return $user->is_administrator;
+        return $user->is_administrator;
     }
 
     /**
@@ -42,7 +41,7 @@ class ChapterPolicy
      */
     public function update(User $user, Chapter $chapter): bool
     {
-        //
+        return $user->is_administrator;
     }
 
     /**

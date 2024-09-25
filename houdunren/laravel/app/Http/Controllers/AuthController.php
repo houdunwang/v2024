@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\UserLoginAction;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,7 +37,9 @@ class AuthController extends Controller
             ]
         );
         Auth::login($user, true);
-        return UserLoginAction::run($user);
+        $token = $request->user()->createToken('app');
+        return ['token' => $token->plainTextToken, 'user' => $user];
+        // return ['code' => 0, 'msg' => '登录成功'];
     }
 
     public function register(RegisterRequest $request, User $user)

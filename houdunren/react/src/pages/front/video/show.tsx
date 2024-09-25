@@ -17,10 +17,10 @@ function Page() {
         </div>
       </section>
       <section className='container '>
-        <div className=' bg-white p-6 rounded-lg flex flex-col lg:flex-row justify-between'>
+        <div className='bg-white p-6 rounded-lg flex flex-col lg:flex-row justify-between'>
           <div className=''>
             <div className='text-lg font-bold'>{Random.csentence(10, 30)}</div>
-            <div className='text-sm mt-1 text-gray-500'>{Random.csentence(6, 20)}M/</div>
+            <div className='text-sm mt-1 text-gray-500'>{Random.csentence(6, 20)} </div>
           </div>
           <div className='flex gap-1'>
             <Button

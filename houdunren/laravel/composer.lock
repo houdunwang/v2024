@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e1a21b5ec4c4f45c18cfdc97e7713e5",
+    "content-hash": "50bf9bf92d5a7be43546f7b3e562204c",
     "packages": [
         {
             "name": "archtechx/enums",
@@ -1028,59 +1028,6 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
-        },
-        {
-            "name": "f9webltd/laravel-api-response-helpers",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/f9webltd/laravel-api-response-helpers.git",
-                "reference": "2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/f9webltd/laravel-api-response-helpers/zipball/2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd",
-                "reference": "2e30e76b9e0c83a533baeebb52f9d2f6c033f3cd",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^8.12|^9.0|^10.0|^11.0",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
-                "phpunit/phpunit": "^9.4|^10.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "F9Web\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Allport",
-                    "email": "rob@f9web.co.uk",
-                    "homepage": "https://www.f9web.co.uk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A super simple package allowing for consistent API responses throughout your Laravel application ",
-            "homepage": "https://github.com/f9webltd/laravel-api-response-helpers",
-            "keywords": [
-                "laravel",
-                "laravel api response",
-                "laravel api response helpers"
-            ],
-            "support": {
-                "issues": "https://github.com/f9webltd/laravel-api-response-helpers/issues",
-                "source": "https://github.com/f9webltd/laravel-api-response-helpers/tree/2.0.1"
-            },
-            "time": "2024-03-10T13:11:45+00:00"
         },
         {
             "name": "fruitcake/php-cors",

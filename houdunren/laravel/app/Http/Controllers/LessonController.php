@@ -18,36 +18,48 @@ class LessonController extends Controller implements HasMiddleware
             new Middleware('auth:sanctum', except: ['index', 'show'])
         ];
     }
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return LessonResource::collection(Lesson::paginate(request('row', 12)));
+        return LessonResource::collection(Lesson::with('chapter')->get());
     }
 
     public function store(StoreLessonRequest $request, Lesson $lesson)
     {
-        Gate::authorize('create', Lesson::class);
-        $lesson->fill($request->input())->save();
+        Gate::authorize('create', $lesson);
 
+        $lesson->fill($request->input())->save();
         return new LessonResource($lesson);
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show(Lesson $lesson)
     {
         return new LessonResource($lesson);
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(UpdateLessonRequest $request, Lesson $lesson)
     {
-        Gate::authorize('update', Lesson::class);
+        Gate::authorize('update', $lesson);
+
         $lesson->fill($request->input())->save();
         return new LessonResource($lesson);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Lesson $lesson)
     {
-        Gate::authorize('delete', Lesson::class);
+        Gate::authorize('delete', $lesson);
         $lesson->delete();
-        return response()->noContent();
+        return response(null, 204);
     }
 }

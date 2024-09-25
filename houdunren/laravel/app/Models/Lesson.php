@@ -12,21 +12,17 @@ class Lesson extends Model
     protected $fillable = [
         'title',
         'description',
-        'preview'
+        'preview',
+        'chapter_id'
     ];
 
-    public function chapters()
+    public function chapter()
     {
-        return $this->hasMany(Chapter::class);
+        return $this->belongsTo(Chapter::class);
     }
 
     public function videos()
     {
         return $this->hasMany(Video::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
     }
 }

@@ -15,11 +15,11 @@ class SendCodeAction
     public function handle(string $to)
     {
         $this->key = config('hd.code_prefix') . $to;
-        $action = GetFieldByName::run($to);
-        $this->$action($to);
+        $type = AccountFieldAction::run($to);
+        $this->$type($to);
     }
 
-    protected function getCode()
+    protected function cacheCode()
     {
         $code = fake()->numberBetween(1000, 9999);
         Cache::put($this->key, $code, 1200);
@@ -28,10 +28,10 @@ class SendCodeAction
 
     private function email(string $to)
     {
-        RateLimiterAction::run($this->key, config('hd.code_timeout'));
+        RateLimiterAction::run($this->key, 1, config('hd.code_timeout', 20));
         $user = User::firstOrNew(['email' => $to]);
-        $user->notify(new SendValidateCode($this->getCode()));
+        $user->notify(new SendValidateCode($this->cacheCode()));
     }
 
-    private function mobile(string $to) {}
+    private function mobile(string $mobile) {}
 }

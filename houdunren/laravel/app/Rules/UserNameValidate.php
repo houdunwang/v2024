@@ -8,8 +8,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class UserNameValidate implements ValidationRule
 {
-    public function __construct(public $fields = ['name', 'email', 'mobile']) {}
-
+    public function __construct(protected $fields = ['email', 'mobile', 'name']) {}
     /**
      * Run the validation rule.
      *

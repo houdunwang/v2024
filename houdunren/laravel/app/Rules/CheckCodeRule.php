@@ -4,32 +4,11 @@ namespace App\Rules;
 
 use Cache;
 use Closure;
-use Illuminate\Contracts\Validation\DataAwareRule;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class CheckCodeRule implements DataAwareRule, ValidationRule
+class CheckCodeRule implements ValidationRule
 {
-    public function __construct(public string $field = 'name') {}
-    /**
-     * 所有数据都在验证中
-     *
-     * @var array<string, mixed>
-     */
-    protected $data = [];
-
-    // ...
-
-    /**
-     * 设置验证数据
-     *
-     * @param  array<string, mixed>  $data
-     */
-    public function setData(array $data): static
-    {
-        $this->data = $data;
-
-        return $this;
-    }
+    public function __construct(protected $accountField) {}
 
     /**
      * Run the validation rule.
@@ -38,8 +17,7 @@ class CheckCodeRule implements DataAwareRule, ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        //send_eamiale:'efef
-        if ($value != Cache::get(config('hd.code_prefix') . $this->data[$this->field])) {
+        if (Cache::get(config('hd.code_prefix') . request($this->accountField)) != $value) {
             $fail('验证码错误');
         }
     }

@@ -4,13 +4,13 @@ namespace App\Rules;
 
 use App\Models\User;
 use Closure;
+use Hash;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class CheckUserPasswordRule implements ValidationRule
+class CheckPasswordRule implements ValidationRule
 {
-    public function __construct(public User | null $user = null)
+    public function __construct(protected User|null $user = null)
     {
         $this->user = $user ?? Auth::user();
     }
@@ -22,7 +22,7 @@ class CheckUserPasswordRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (!Hash::check($value, $this->user->password)) {
-            $fail('密码错误');
+            $fail('密码输入错误');
         }
     }
 }

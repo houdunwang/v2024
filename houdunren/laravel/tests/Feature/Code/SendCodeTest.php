@@ -6,7 +6,7 @@ use App\Notifications\SendValidateCode;
 
 //帐号不存在时不能发送邮件
 test('YouCantSendEmailsIfYourAccountDoesntExist', function () {
-    $response = $this->postJson('code/send', [
+    $response = $this->postJson('code/user', [
         'name' => fake()->email() . 'sldksdklsdk'
     ]);
 
@@ -17,7 +17,7 @@ test('YouCantSendEmailsIfYourAccountDoesntExist', function () {
 test('SendAnEmailVerificationCode', function () {
     Notification::fake();
     $user = User::factory()->create();
-    $this->postJson('code/send', [
+    $response = $this->postJson('code/user', [
         'name' => $user->email
     ]);
     Notification::assertSentTo(

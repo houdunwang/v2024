@@ -9,18 +9,13 @@ use App\Models\Video;
 function getVideo()
 {
     $order = Order::factory()->forUser()->for(
-        Lesson::factory()->has(Chapter::factory()->has(Video::factory()->state(function ($attribute, $chapter) {
-            return ['lesson_id' => $chapter->lesson_id];
-        })))
+        Chapter::factory()->has(Lesson::factory()->hasVideos())
     )->create();
-    return $order->lesson->chapters->first()->videos->first();
+    return $order->chapter->lessons->first()->videos->first();
 }
 //未登录用户不允许查看视频
 test('UsersWhoAreNotLoggedInAreNotAllowedToViewTheVideo', function () {
-    $chapter = Chapter::factory()->forLesson()->create();
-    $video = Video::factory()->for($chapter)->create([
-        'lesson_id' => $chapter->lesson_id
-    ]);
+    $video = Video::factory()->for(Lesson::factory()->forChapter())->create();
     $response = $this->getJson('/video/' . $video->id);
     $response->assertStatus(401);
 });
@@ -36,7 +31,7 @@ test('UsersWhoHaveNotPurchasedTheItemAreNotAllowedToViewTheVideo', function () {
 //购买项目的用户可以查看视频
 test('UsersWhoHavePurchasedTheItemCanViewTheVideo', function () {
     $video = getVideo();
-    $response = $this->actingAs($video->chapter->lesson->orders->first()->user)
+    $response = $this->actingAs($video->lesson->chapter->orders->first()->user)
         ->getJson('/video/' . $video->id);
     $response->assertStatus(200)->assertJsonPath('data.id', $video->id);
 });

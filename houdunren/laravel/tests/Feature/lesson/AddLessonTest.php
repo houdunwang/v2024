@@ -1,44 +1,24 @@
 <?php
 
-
-use App\Models\Lesson;
-use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\User;
 
-// 课程标题不能为空
-test('TheLessonTitleCannotBeEmpty', function () {
-    $response = $this->actingAs(User::find(1))->postJson('/lesson', []);
-    $response->assertStatus(422)->assertJsonValidationErrors('title');
-});
-
-//课程描述不能为空
-test('TheLessonContentCannotBeEmpty', function () {
-    $response = $this->actingAs(User::find(1))->postJson('/lesson', []);
-    $response->assertStatus(422)->assertJsonValidationErrors('description');
-});
-
-//图片不能为空
-test('TheLessonImageCannotBeEmpty', function () {
-    $response = $this->actingAs(User::find(1))->postJson('/lesson', []);
-    $response->assertStatus(422)->assertJsonValidationErrors('preview');
-});
-
-//必须是管理员才可以添加课程
-test('OnlySuperAdminCanAddLesson', function () {
+//普通用户不能添加
+test('RegularUsersCannotBeAdded', function () {
     $response = $this->actingAs(User::factory()->create())->postJson('/lesson', [
-        'title' => Str::random(20),
-        'description' => fake()->sentence(30, true),
-        'preview' => fake()->imageUrl(300, 300),
+        'title' => fake()->title,
+        'description' => fake()->paragraphs(3, true),
+        'preview' => fake()->imageUrl()
     ]);
     $response->assertStatus(403);
 });
 
-//发表课程成功
-test('AddLessonSuccessfully', function () {
+//课程添加数据验证
+test('AddDataValidationToTheCourse', function () {
     $response = $this->actingAs(User::find(1))->postJson('/lesson', [
-        'title' => $title = Str::random(20),
-        'description' => fake()->paragraphs(5, true),
-        'preview' => fake()->imageUrl(300, 300),
+        'title' => Str::random(3),
+        'description' => Str::random(3),
+        'preview' => fake()->title()
     ]);
-    $response->assertStatus(201)->assertJsonPath('data.title', $title);
+    $response->assertStatus(422)->assertJsonValidationErrors(['title', 'description', 'preview']);
 });

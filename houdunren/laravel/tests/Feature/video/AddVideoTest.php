@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\Chapter;
 use App\Models\Lesson;
 use App\Models\User;
 
 //添加视频
 test('addVideoData', function () {
-    $lesson  = Chapter::factory()->forLesson()->create();
+    $lesson  = Lesson::factory()->forChapter()->create();
     $videos = [
         ['title' =>  fake()->sentence(), 'path' => fake()->url()],
         ['title' => fake()->sentence(), 'path' => fake()->url()],
