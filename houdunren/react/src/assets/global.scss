@@ -1,11 +1,18 @@
 @import url("./tailwind.scss");
+
+@layer base {
+	:root {
+		--muted-foreground: 240 3.8% 16.1%;
+	}
+}
+
 a {
-	@apply hover:text-rose-600;
+	@apply hover:text-primary;
 	&.active {
-		@apply text-rose-600;
+		@apply text-primary;
 	}
 }
 
 body {
-	@apply bg-gray-100 text-gray-700/90;
+	@apply bg-gray-100 text-gray-600 font-sans;
 }

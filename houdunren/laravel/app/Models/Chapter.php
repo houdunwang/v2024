@@ -20,6 +20,11 @@ class Chapter extends Model
         return $this->hasMany(Lesson::class);
     }
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

@@ -99,4 +99,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Upload::class);
     }
+
+    public function playlog()
+    {
+        return $this->belongsToMany(Video::class, 'play_logs');
+    }
 }

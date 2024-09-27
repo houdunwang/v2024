@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EmailBindController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PlayLogController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UploadController;
@@ -46,3 +48,7 @@ Route::post('code/user', [ValidateCodeController::class, 'user']);
 Route::post('code/send', [ValidateCodeController::class, 'send']);
 //绑定邮箱
 Route::post('email/bind', [EmailBindController::class, 'bind']);
+//学习历史
+Route::get('playlog', [PlayLogController::class, 'index']);
+//动态
+Route::get('activity', ActivityController::class);

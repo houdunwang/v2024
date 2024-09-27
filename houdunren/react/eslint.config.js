@@ -15,6 +15,7 @@ export default tseslint.config({
   plugins: {
     'react-hooks': reactHooks,
     'react-refresh': reactRefresh,
+    '@tanstack/query': pluginQuery,
   },
   rules: {
     ...reactHooks.configs.recommended.rules,
@@ -22,5 +23,6 @@ export default tseslint.config({
       'warn',
       { allowConstantExport: true },
     ],
+     "@tanstack/query/exhaustive-deps": "error"
   },
 })

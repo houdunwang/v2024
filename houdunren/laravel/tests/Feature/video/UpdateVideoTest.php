@@ -6,8 +6,10 @@ use App\Models\Video;
 
 //更新视频
 test('UpdateVideo', function () {
-    $video = Video::factory()->for(Lesson::factory()->forChapter())->create();
-    // dd($video->makeVisible('path')->toArray());
+    $lesson = Lesson::factory()->forChapter()->create();
+    $video = Video::factory()->for($lesson)->create([
+        'chapter_id' => $lesson->chapter_id
+    ]);
     $videos = [
         $video->makeVisible('path')->toArray(),
         ['title' => fake()->sentence(), 'path' => fake()->url()],

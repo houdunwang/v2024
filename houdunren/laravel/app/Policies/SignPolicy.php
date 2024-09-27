@@ -11,7 +11,7 @@ class SignPolicy
 {
     public function before($user, $ability)
     {
-        if (isAdministrator()) return true;
+        // if (isAdministrator()) return true;
     }
 
     /**
@@ -35,7 +35,7 @@ class SignPolicy
      */
     public function create(User $user): bool
     {
-        return Auth::check();
+        return Auth::check() && !$user->signs()->whereDay('created_at', now()->day)->exists();
     }
 
     /**

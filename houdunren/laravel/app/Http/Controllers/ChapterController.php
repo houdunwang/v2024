@@ -6,6 +6,7 @@ use App\Http\Requests\StoreChapterRequest;
 use App\Http\Requests\UpdateChapterRequest;
 use App\Http\Resources\ChapterResource;
 use App\Models\Chapter;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
@@ -21,7 +22,12 @@ class ChapterController extends Controller implements HasMiddleware
 
     public function index()
     {
-        return ChapterResource::collection(Chapter::paginate(request('row', 12)));
+        // sleep(3);
+        abort(404);
+        $chapters = Chapter::when(request('type'), function (Builder $builder, string $type) {
+            $builder->where('type', $type);
+        })->paginate(request('row', 12));
+        return ChapterResource::collection($chapters);
     }
 
     public function store(StoreChapterRequest $request, Chapter $chapter)

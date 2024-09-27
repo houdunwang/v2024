@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\RecordPlayLogAction;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Http\Resources\VideoResource;
@@ -9,6 +10,7 @@ use App\Models\Lesson;
 use App\Models\Video;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class VideoController extends Controller implements HasMiddleware
@@ -32,7 +34,7 @@ class VideoController extends Controller implements HasMiddleware
             //过滤掉没有标题和视频 url 那个数据
             ->filter(fn($video) => !empty($video['title']) && !empty($video['path']))
             ->map(function ($data) use ($lesson) {
-                return $lesson->videos()->create($data);
+                return $lesson->videos()->create($data + ['chapter_id' => $lesson->chapter_id]);
             });
         return VideoResource::collection($videos);
     }
@@ -40,6 +42,7 @@ class VideoController extends Controller implements HasMiddleware
     public function show(Video $video)
     {
         Gate::authorize('view', $video);
+        RecordPlayLogAction::run(Auth::user(), $video);
         return new VideoResource($video->makeVisible('path'));
     }
 
@@ -50,8 +53,8 @@ class VideoController extends Controller implements HasMiddleware
             ->filter(fn($video) => !empty($video['title']) && !empty($video['path']))
             ->map(function ($data) use ($lesson) {
                 return $lesson->videos()->updateOrCreate([
-                    'id' => $data->id ?? null
-                ], $data);
+                    'id' => $data->id ?? null,
+                ], $data + ['chapter_id' => $lesson->chapter_id]);
             });
         return VideoResource::collection($videos);
     }
