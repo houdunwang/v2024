@@ -7,6 +7,6 @@ export const useGetChapterList = (type: IChapterType) => {
 		queryKey: ['chapterList', type],
 		queryFn: async () => {
 			return getChapterListApi(type)
-		}
+		},
 	})
 }

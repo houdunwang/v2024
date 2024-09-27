@@ -23,7 +23,7 @@ class ChapterController extends Controller implements HasMiddleware
     public function index()
     {
         // sleep(3);
-        abort(404);
+        // abort(404);
         $chapters = Chapter::when(request('type'), function (Builder $builder, string $type) {
             $builder->where('type', $type);
         })->paginate(request('row', 12));
