@@ -21,13 +21,12 @@ import { Route as FrontVideoIndexImport } from './pages/front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/front/topic/index'
 import { Route as FrontSubscribeIndexImport } from './pages/front/subscribe/index'
 import { Route as FrontSignIndexImport } from './pages/front/sign/index'
+import { Route as FrontChapterIndexImport } from './pages/front/chapter/index'
 import { Route as FrontLessonIndexImport } from './pages/front/Lesson/index'
 import { Route as FrontVideoShowImport } from './pages/front/video/show'
 import { Route as FrontTopicShowImport } from './pages/front/topic/show'
-import { Route as FrontChapterSystemImport } from './pages/front/chapter/system'
-import { Route as FrontChapterShowImport } from './pages/front/chapter/show'
-import { Route as FrontChapterProjectImport } from './pages/front/chapter/project'
-import { Route as FrontLessonShowImport } from './pages/front/Lesson/show'
+import { Route as FrontChapterIdImport } from './pages/front/chapter/$id'
+import { Route as FrontLessonIdImport } from './pages/front/Lesson/$id'
 
 // Create Virtual Routes
 
@@ -92,6 +91,11 @@ const FrontSignIndexRoute = FrontSignIndexImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
+const FrontChapterIndexRoute = FrontChapterIndexImport.update({
+  path: '/chapter/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
 const FrontLessonIndexRoute = FrontLessonIndexImport.update({
   path: '/Lesson/',
   getParentRoute: () => FrontRouteRoute,
@@ -107,23 +111,13 @@ const FrontTopicShowRoute = FrontTopicShowImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
-const FrontChapterSystemRoute = FrontChapterSystemImport.update({
-  path: '/chapter/system',
+const FrontChapterIdRoute = FrontChapterIdImport.update({
+  path: '/chapter/$id',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
-const FrontChapterShowRoute = FrontChapterShowImport.update({
-  path: '/chapter/show',
-  getParentRoute: () => FrontRouteRoute,
-} as any)
-
-const FrontChapterProjectRoute = FrontChapterProjectImport.update({
-  path: '/chapter/project',
-  getParentRoute: () => FrontRouteRoute,
-} as any)
-
-const FrontLessonShowRoute = FrontLessonShowImport.update({
-  path: '/Lesson/show',
+const FrontLessonIdRoute = FrontLessonIdImport.update({
+  path: '/Lesson/$id',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -180,32 +174,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontAboutLazyImport
       parentRoute: typeof FrontRouteImport
     }
-    '/front/Lesson/show': {
-      id: '/front/Lesson/show'
-      path: '/Lesson/show'
-      fullPath: '/front/Lesson/show'
-      preLoaderRoute: typeof FrontLessonShowImport
+    '/front/Lesson/$id': {
+      id: '/front/Lesson/$id'
+      path: '/Lesson/$id'
+      fullPath: '/front/Lesson/$id'
+      preLoaderRoute: typeof FrontLessonIdImport
       parentRoute: typeof FrontRouteImport
     }
-    '/front/chapter/project': {
-      id: '/front/chapter/project'
-      path: '/chapter/project'
-      fullPath: '/front/chapter/project'
-      preLoaderRoute: typeof FrontChapterProjectImport
-      parentRoute: typeof FrontRouteImport
-    }
-    '/front/chapter/show': {
-      id: '/front/chapter/show'
-      path: '/chapter/show'
-      fullPath: '/front/chapter/show'
-      preLoaderRoute: typeof FrontChapterShowImport
-      parentRoute: typeof FrontRouteImport
-    }
-    '/front/chapter/system': {
-      id: '/front/chapter/system'
-      path: '/chapter/system'
-      fullPath: '/front/chapter/system'
-      preLoaderRoute: typeof FrontChapterSystemImport
+    '/front/chapter/$id': {
+      id: '/front/chapter/$id'
+      path: '/chapter/$id'
+      fullPath: '/front/chapter/$id'
+      preLoaderRoute: typeof FrontChapterIdImport
       parentRoute: typeof FrontRouteImport
     }
     '/front/topic/show': {
@@ -227,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/Lesson'
       fullPath: '/front/Lesson'
       preLoaderRoute: typeof FrontLessonIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/front/chapter/': {
+      id: '/front/chapter/'
+      path: '/chapter'
+      fullPath: '/front/chapter'
+      preLoaderRoute: typeof FrontChapterIndexImport
       parentRoute: typeof FrontRouteImport
     }
     '/front/sign/': {
@@ -266,13 +253,12 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   FrontRouteRoute: FrontRouteRoute.addChildren({
     FrontAboutLazyRoute,
-    FrontLessonShowRoute,
-    FrontChapterProjectRoute,
-    FrontChapterShowRoute,
-    FrontChapterSystemRoute,
+    FrontLessonIdRoute,
+    FrontChapterIdRoute,
     FrontTopicShowRoute,
     FrontVideoShowRoute,
     FrontLessonIndexRoute,
+    FrontChapterIndexRoute,
     FrontSignIndexRoute,
     FrontSubscribeIndexRoute,
     FrontTopicIndexRoute,
@@ -307,13 +293,12 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "front/route.tsx",
       "children": [
         "/front/about",
-        "/front/Lesson/show",
-        "/front/chapter/project",
-        "/front/chapter/show",
-        "/front/chapter/system",
+        "/front/Lesson/$id",
+        "/front/chapter/$id",
         "/front/topic/show",
         "/front/video/show",
         "/front/Lesson/",
+        "/front/chapter/",
         "/front/sign/",
         "/front/subscribe/",
         "/front/topic/",
@@ -336,20 +321,12 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "front/about.lazy.tsx",
       "parent": "/front"
     },
-    "/front/Lesson/show": {
-      "filePath": "front/Lesson/show.tsx",
+    "/front/Lesson/$id": {
+      "filePath": "front/Lesson/$id.tsx",
       "parent": "/front"
     },
-    "/front/chapter/project": {
-      "filePath": "front/chapter/project.tsx",
-      "parent": "/front"
-    },
-    "/front/chapter/show": {
-      "filePath": "front/chapter/show.tsx",
-      "parent": "/front"
-    },
-    "/front/chapter/system": {
-      "filePath": "front/chapter/system.tsx",
+    "/front/chapter/$id": {
+      "filePath": "front/chapter/$id.tsx",
       "parent": "/front"
     },
     "/front/topic/show": {
@@ -362,6 +339,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/front/Lesson/": {
       "filePath": "front/Lesson/index.tsx",
+      "parent": "/front"
+    },
+    "/front/chapter/": {
+      "filePath": "front/chapter/index.tsx",
       "parent": "/front"
     },
     "/front/sign/": {

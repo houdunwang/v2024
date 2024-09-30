@@ -20,7 +20,7 @@ class LessonFactory extends Factory
         return [
             'title' => fake()->title(),
             'description' => fake()->paragraph(),
-            'preview' => fake()->imageUrl(),
+            'preview' => '/images/lesson/' . fake()->numberBetween(1, 12) . '.jpeg',
         ];
     }
 }

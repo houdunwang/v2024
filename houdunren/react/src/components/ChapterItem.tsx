@@ -11,15 +11,17 @@ export const ChapterItem = React.forwardRef<HTMLDivElement, Props>(({ chapter },
   return (
     <div className='border rounded-lg overflow-hidden cursor-pointer' ref={ref}>
       <div className='h-60 overflow-hidden'>
-        <Link to='/front/chapter/show' className='hover:scale-110 duration-300 block'>
+        <Link
+          to={`/front/chapter/${chapter.id}`}
+          className='hover:scale-110 duration-300 block'>
           <LazyLoadImage effect='blur' src={chapter.preview} alt='' className='' />
         </Link>
       </div>
       <div className='p-3'>
-        <Link to='/front/chapter/show' className='font-bold mb-2'>
+        <Link to={`/front/chapter/${chapter.id}`} className='font-bold mb-2'>
           {chapter.title}
         </Link>
-        <div className='text-sm'>{chapter.description}</div>
+        <div className='text-sm line-clamp-2'>{chapter.description}</div>
       </div>
     </div>
   )

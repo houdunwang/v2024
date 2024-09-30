@@ -8,3 +8,7 @@ export const getChapterListApi = async (type?: IChapterType) => {
 	const response = await axiosInstance.get<IPaginate<IChapter>>(`/chapter?${params}`)
 	return response.data;
 }
+
+export const getChapter = async (id: number) => {
+	return (await axiosInstance.get<IChapter>(`/chapter/${id}`)).data
+}

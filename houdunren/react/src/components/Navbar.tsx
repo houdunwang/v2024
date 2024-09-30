@@ -1,4 +1,3 @@
-import { CircleUser, Menu, Package2, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,12 +7,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Link } from '@tanstack/react-router'
 import menus from '@/config/menus'
-import { UserIcon } from './UserIcon'
 import { Code } from '@icon-park/react'
+import { Link } from '@tanstack/react-router'
+import { Menu } from 'lucide-react'
+import { UserIcon } from './UserIcon'
 
 export const description =
   'A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.'
@@ -32,7 +31,9 @@ export function Navbar() {
           </Link>
           {menus.map((menu, i) => (
             <Link
+              key={i}
               to={menu.to}
+              search={menu.search}
               className='text-muted-foreground text-base transition-colors hover:text-foreground'>
               {menu.title}
             </Link>
@@ -54,6 +55,7 @@ export function Navbar() {
               </Link>
               {menus.map((menu, i) => (
                 <Link
+                  key={i}
                   to={menu.to}
                   className='text-muted-foreground hover:text-foreground'>
                   {menu.title}

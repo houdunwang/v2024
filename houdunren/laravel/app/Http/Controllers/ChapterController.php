@@ -22,7 +22,7 @@ class ChapterController extends Controller implements HasMiddleware
 
     public function index()
     {
-        // sleep(3);
+        // sleep(1);
         // abort(404);
         $chapters = Chapter::when(request('type'), function (Builder $builder, string $type) {
             $builder->where('type', $type);
@@ -40,7 +40,7 @@ class ChapterController extends Controller implements HasMiddleware
 
     public function show(Chapter $chapter)
     {
-        return new ChapterResource($chapter);
+        return new ChapterResource($chapter->load('lessons'));
     }
 
     public function update(UpdateChapterRequest $request, Chapter $chapter)

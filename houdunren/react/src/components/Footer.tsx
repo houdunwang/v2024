@@ -12,8 +12,8 @@ export const Footer = () => {
           <span className=''>本站编码</span>
           <span className='text-amber-500'>向军大叔</span>
         </div>
-        <div className='bg-[#16a085] px-3 py-1  rounded-lg text-white text-sm mt-6'>
-          晚八点发货人同意，来直播间聊聊天吧
+        <div className='bg-gray-500 px-3 py-2  rounded-lg text-white text-sm mt-6'>
+          晚八点来直播,来间聊聊天吧
         </div>
       </section>
       <div className='bg-gray-900 mt-16 text-center text-white py-16  text-slate-200/80 leading-7 text-sm'>

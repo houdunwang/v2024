@@ -1,3 +1,5 @@
+import { ILesson } from "./lesson";
+
 export interface IChapter {
 	id: number;
 	title: string;
@@ -11,6 +13,8 @@ export interface IChapter {
 	type: string;
 	created_at: string;
 	updated_at: string;
+	lessons: ILesson[]
 }
 
 export type IChapterType = 'system' | 'project';
+

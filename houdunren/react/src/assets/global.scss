@@ -15,4 +15,24 @@ a {
 
 body {
 	@apply bg-gray-100 text-gray-600 font-sans;
+	//分页样式
+	.ant-pagination .ant-pagination-item-active {
+		@apply border-none;
+		a {
+			@apply bg-primary text-white border-none rounded-lg;
+			&:hover {
+				@apply text-white;
+			}
+		}
+	}
+	.ant-pagination .ant-pagination-item {
+		@apply bg-gray-100;
+		a {
+			@apply hover:bg-primary hover:text-white border-none rounded-lg;
+		}
+	}
+	.ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+	.ant-pagination .ant-pagination-next .ant-pagination-item-link {
+		@apply bg-gray-100;
+	}
 }
