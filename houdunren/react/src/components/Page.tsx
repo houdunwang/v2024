@@ -1,6 +1,6 @@
-import { useKeyChangePage } from '@/hooks/useKeyChangePage'
 import { Pagination } from 'antd'
-import React from 'react'
+import _ from 'lodash'
+import React, { useCallback, useEffect } from 'react'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   current_page: number
@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 export const Page = React.forwardRef<HTMLDivElement, Props>(
   ({ current_page, total, last_page, row, change, ...props }, ref) => {
-    useKeyChangePage({ current: current_page, last_page: last_page, change })
+    keyChangePage({ current: current_page, last_page: last_page, change })
     return (
       <div className='' ref={ref}>
         <Pagination
@@ -25,3 +25,32 @@ export const Page = React.forwardRef<HTMLDivElement, Props>(
     )
   },
 )
+
+interface ParamsType {
+  current: number
+  last_page: number
+  change: (page: number) => void
+}
+
+function keyChangePage(params: ParamsType) {
+  const handle = useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.code) {
+        case 'ArrowLeft':
+          if (params.current > 1) params.change(params.current - 1)
+          break
+        case 'ArrowRight':
+          if (params.current < params.last_page) params.change(params.current + 1)
+          break
+      }
+    },
+    [params],
+  )
+  const debounceHandle = _.debounce(handle, 300)
+  useEffect(() => {
+    document.addEventListener('keyup', debounceHandle)
+    return () => {
+      document.removeEventListener('keyup', debounceHandle)
+    }
+  }, [debounceHandle])
+}

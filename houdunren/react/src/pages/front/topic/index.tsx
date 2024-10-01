@@ -1,11 +1,28 @@
+import { Page } from '@/components/Page'
 import { Tip } from '@/components/Tip'
 import { TopicItem } from '@/components/TopicItem'
+import config from '@/config/config'
+import { useGetTopicList } from '@/services/topic'
 import { EmotionHappy } from '@icon-park/react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Card, Pagination } from 'antd'
 
 export const Route = createFileRoute('/front/topic/')({
-  component: () => (
+  component: TopicIndex,
+  validateSearch: (search) => {
+    return {
+      page: search.page ? Number(search.page) : 1,
+    }
+  },
+})
+
+function TopicIndex() {
+  const { page } = Route.useSearch()
+  const navigate = useNavigate()
+  const {
+    data: { data: topics, meta },
+  } = useGetTopicList({ page, row: config.topic_page_row })
+  return (
     <div className='mx-3 lg:container grid lg:grid-cols-[1fr_350px] gap-6 items-start'>
       <div className=''>
         <Card
@@ -22,17 +39,20 @@ export const Route = createFileRoute('/front/topic/')({
             </div>
           }>
           <div className='grid grid-flow-row gap-3'>
-            {[...Array(10)].map((_, i) => (
-              <TopicItem key={i} i={i} />
+            {topics.map((topic) => (
+              <TopicItem key={topic.id} topic={topic} />
             ))}
           </div>
         </Card>
         <div className='bg-white rounded-lg p-3 mt-3'>
-          <Pagination defaultCurrent={1} total={50} />
+          <Page
+            {...meta}
+            row={config.topic_page_row}
+            change={(page) => navigate({ to: '/front/topic', search: { page } })}
+          />
         </div>
       </div>
-
       <Tip />
     </div>
-  ),
-})
+  )
+}

@@ -8,6 +8,9 @@
 
 a {
 	@apply hover:text-primary;
+	&:focus {
+		outline: none;
+	}
 	&.active {
 		@apply text-primary;
 	}
@@ -17,18 +20,20 @@ body {
 	@apply bg-gray-100 text-gray-600 font-sans;
 	//分页样式
 	.ant-pagination .ant-pagination-item-active {
-		@apply border-none;
 		a {
-			@apply bg-primary text-white border-none rounded-lg;
+			@apply bg-primary text-white rounded-lg;
 			&:hover {
 				@apply text-white;
 			}
 		}
 	}
-	.ant-pagination .ant-pagination-item {
-		@apply bg-gray-100;
+	.ant-pagination-item {
+		@apply bg-gray-100 border-transparent hover:text-white hover:border-transparent #{!important};
 		a {
-			@apply hover:bg-primary hover:text-white border-none rounded-lg;
+			@apply bg-gray-100 rounded-sm w-10 h-8;
+			&:hover {
+				@apply border-transparent;
+			}
 		}
 	}
 	.ant-pagination .ant-pagination-prev .ant-pagination-item-link,

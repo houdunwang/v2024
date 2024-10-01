@@ -4,7 +4,7 @@ import { GoodTwo, Time } from '@icon-park/react'
 import { createFileRoute } from '@tanstack/react-router'
 import { Random } from 'mockjs'
 
-export const Route = createFileRoute('/front/topic/show')({
+export const Route = createFileRoute('/front/topic/$id')({
   component: Page,
 })
 

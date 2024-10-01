@@ -22,7 +22,8 @@ class TopicController extends Controller implements HasMiddleware
 
     public function index()
     {
-        return TopicResource::collection(Topic::with('user')->paginate(request('row', 10)));
+        $topics = Topic::with('user')->paginate(request('row', 10));
+        return TopicResource::collection($topics);
     }
 
     public function store(StoreTopicRequest $request, Topic $topic)
