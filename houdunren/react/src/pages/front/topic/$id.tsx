@@ -1,7 +1,9 @@
 import { Comment } from '@/components/comment'
 import { UserIcon } from '@/components/UserIcon'
+import { useGetTopic } from '@/services/topic'
 import { GoodTwo, Time } from '@icon-park/react'
 import { createFileRoute } from '@tanstack/react-router'
+import dayjs from 'dayjs'
 import { Random } from 'mockjs'
 
 export const Route = createFileRoute('/front/topic/$id')({
@@ -9,27 +11,35 @@ export const Route = createFileRoute('/front/topic/$id')({
 })
 
 function Page() {
+  const { id } = Route.useParams()
+  const { data: topic } = useGetTopic(+id)
   return (
     <div className='container'>
       <main className='bg-white  rounded-lg'>
         <section className='p-6 '>
           <div className='pb-6 mb-6 border-b'>
-            <h1 className='text-xl font-bold mb-4'>{Random.csentence(10, 30)}</h1>
+            <h1 className='text-xl font-bold mb-4'>{topic.title}</h1>
             <div className='flex gap-2 '>
               <UserIcon
                 src={`/images/user/${Random.integer(1, 10)}.jpeg`}
                 className='w-10 h-10'
               />
               <div className='flex flex-col justify-between text-gray-500'>
-                <p className='text-sm font-bold'>{Random.csentence(5, 10)}</p>
-                <div className='flex text-xs '>
-                  <Time theme='outline' size='16' strokeWidth={3} /> 发表于
-                  {Random.integer(10, 30)}天前
+                <p className='text-sm font-bold'>{topic.user.nickname}</p>
+                <div className='flex text-xs gap-3 '>
+                  <div className='flex items-center gap-1'>
+                    <Time theme='outline' size='12' strokeWidth={5} /> 发表于
+                    {dayjs(topic.created_at).fromNow()}
+                  </div>
+                  <div className='flex items-center gap-1'>
+                    <Time theme='outline' size='12' strokeWidth={5} /> 更新于
+                    {dayjs(topic.updated_at).fromNow()}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className='leading-8'>{Random.cparagraph(10, 30)}</div>
+          <div className='leading-8'>{topic.content}</div>
         </section>
         <section className='flex flex-col items-center justify-center gap-2 py-6 mt-12 pt-12'>
           <div className='rounded-lg px-3 py-2 bg-[#10ac84] flex justify-center items-center gap-2 text-white text-sm cursor-pointer hover:bg-[#1dd1a1]'>

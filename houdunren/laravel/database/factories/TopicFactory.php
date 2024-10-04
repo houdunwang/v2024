@@ -20,7 +20,7 @@ class TopicFactory extends Factory
         return [
             // 'user_id' => User::inRandomOrder()->first(),
             'title' => fake()->sentence(20),
-            'content' => fake()->sentence(20),
+            'content' => fake()->paragraphs(10, true),
         ];
     }
 }

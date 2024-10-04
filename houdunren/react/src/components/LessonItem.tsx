@@ -26,7 +26,7 @@ export const LessonItem = React.forwardRef<HTMLDivElement, Props>(({ lesson }, r
         <Link to={`/front/Lesson/${lesson.id}`} className='font-bold mb-2'>
           {lesson.title}
         </Link>
-        <div className='text-sm'>{Random.csentence(10, 20)}</div>
+        <div className='text-sm'>{lesson.description}</div>
       </div>
     </div>
   )

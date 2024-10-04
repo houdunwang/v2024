@@ -1,3 +1,5 @@
+import { IVideo } from "./video";
+
 export interface ILesson {
 	id: number;
 	title: string;
@@ -13,4 +15,5 @@ export interface ILesson {
 	created_at: string;
 	updated_at: string;
 	chapter: Record<string, string>;
+	videos: IVideo[]
 }

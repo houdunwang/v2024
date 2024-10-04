@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as Result500Import } from './pages/result/500'
 import { Route as AuthRegisterImport } from './pages/auth/register'
 import { Route as AuthLoginImport } from './pages/auth/login'
 import { Route as AuthForgetImport } from './pages/auth/forget'
@@ -31,6 +32,7 @@ import { Route as FrontLessonIdImport } from './pages/front/Lesson/$id'
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
+const Result404LazyImport = createFileRoute('/result/404')()
 const FrontAboutLazyImport = createFileRoute('/front/about')()
 const Error404LazyImport = createFileRoute('/error/404')()
 
@@ -46,6 +48,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./pages/index.lazy').then((d) => d.Route))
 
+const Result404LazyRoute = Result404LazyImport.update({
+  path: '/result/404',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./pages/result/404.lazy').then((d) => d.Route))
+
 const FrontAboutLazyRoute = FrontAboutLazyImport.update({
   path: '/about',
   getParentRoute: () => FrontRouteRoute,
@@ -55,6 +62,11 @@ const Error404LazyRoute = Error404LazyImport.update({
   path: '/error/404',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./pages/error/404.lazy').then((d) => d.Route))
+
+const Result500Route = Result500Import.update({
+  path: '/result/500',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRegisterRoute = AuthRegisterImport.update({
   path: '/auth/register',
@@ -160,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof rootRoute
     }
+    '/result/500': {
+      id: '/result/500'
+      path: '/result/500'
+      fullPath: '/result/500'
+      preLoaderRoute: typeof Result500Import
+      parentRoute: typeof rootRoute
+    }
     '/error/404': {
       id: '/error/404'
       path: '/error/404'
@@ -173,6 +192,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/front/about'
       preLoaderRoute: typeof FrontAboutLazyImport
       parentRoute: typeof FrontRouteImport
+    }
+    '/result/404': {
+      id: '/result/404'
+      path: '/result/404'
+      fullPath: '/result/404'
+      preLoaderRoute: typeof Result404LazyImport
+      parentRoute: typeof rootRoute
     }
     '/front/Lesson/$id': {
       id: '/front/Lesson/$id'
@@ -267,7 +293,9 @@ export const routeTree = rootRoute.addChildren({
   AuthForgetRoute,
   AuthLoginRoute,
   AuthRegisterRoute,
+  Result500Route,
   Error404LazyRoute,
+  Result404LazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -283,7 +311,9 @@ export const routeTree = rootRoute.addChildren({
         "/auth/forget",
         "/auth/login",
         "/auth/register",
-        "/error/404"
+        "/result/500",
+        "/error/404",
+        "/result/404"
       ]
     },
     "/": {
@@ -314,12 +344,18 @@ export const routeTree = rootRoute.addChildren({
     "/auth/register": {
       "filePath": "auth/register.tsx"
     },
+    "/result/500": {
+      "filePath": "result/500.tsx"
+    },
     "/error/404": {
       "filePath": "error/404.lazy.tsx"
     },
     "/front/about": {
       "filePath": "front/about.lazy.tsx",
       "parent": "/front"
+    },
+    "/result/404": {
+      "filePath": "result/404.lazy.tsx"
     },
     "/front/Lesson/$id": {
       "filePath": "front/Lesson/$id.tsx",

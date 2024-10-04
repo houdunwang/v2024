@@ -1,0 +1,17 @@
+//分页样式
+.ant-pagination {
+	.ant-pagination-item,
+	.ant-pagination-next,
+	.ant-pagination-prev {
+		@apply w-10 h-10 font-bold bg-gray-200;
+		a {
+			@apply w-10 h-10 p-0 flex items-center justify-center;
+		}
+	}
+	.ant-pagination-item-active {
+		@apply bg-primary border-transparent hover:text-white #{!important};
+		a {
+			@apply text-white hover:text-white #{!important};
+		}
+	}
+}

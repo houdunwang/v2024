@@ -29,7 +29,7 @@ function Page() {
         </div>
       </section>
       <section className='container mt-6 grid lg:grid-cols-[1fr_350px] gap-6 items-start'>
-        <LessonVideoList />
+        <LessonVideoList videos={lesson.videos} />
         <div className='hidden lg:flex -mt-32 '>
           <LessonItem lesson={lesson} />
         </div>

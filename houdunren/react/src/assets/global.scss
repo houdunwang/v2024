@@ -1,4 +1,5 @@
 @import url("./tailwind.scss");
+@import url("./pagination.scss");
 
 @layer base {
 	:root {
@@ -8,9 +9,6 @@
 
 a {
 	@apply hover:text-primary;
-	&:focus {
-		outline: none;
-	}
 	&.active {
 		@apply text-primary;
 	}
@@ -18,26 +16,4 @@ a {
 
 body {
 	@apply bg-gray-100 text-gray-600 font-sans;
-	//分页样式
-	.ant-pagination .ant-pagination-item-active {
-		a {
-			@apply bg-primary text-white rounded-lg;
-			&:hover {
-				@apply text-white;
-			}
-		}
-	}
-	.ant-pagination-item {
-		@apply bg-gray-100 border-transparent hover:text-white hover:border-transparent #{!important};
-		a {
-			@apply bg-gray-100 rounded-sm w-10 h-8;
-			&:hover {
-				@apply border-transparent;
-			}
-		}
-	}
-	.ant-pagination .ant-pagination-prev .ant-pagination-item-link,
-	.ant-pagination .ant-pagination-next .ant-pagination-item-link {
-		@apply bg-gray-100;
-	}
 }

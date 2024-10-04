@@ -23,6 +23,8 @@ class LessonController extends Controller implements HasMiddleware
      */
     public function index()
     {
+        abort(401);
+        // sleep(1);
         return LessonResource::collection(Lesson::with('chapter')->paginate(request('row', 12)));
     }
 
@@ -39,7 +41,7 @@ class LessonController extends Controller implements HasMiddleware
      */
     public function show(Lesson $lesson)
     {
-        return new LessonResource($lesson);
+        return new LessonResource($lesson->load('videos:id,lesson_id,title,created_at,updated_at'));
     }
 
     /**

@@ -104,4 +104,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Video::class, 'play_logs');
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

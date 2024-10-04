@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EmailBindController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PackageController;
@@ -52,3 +53,5 @@ Route::post('email/bind', [EmailBindController::class, 'bind']);
 Route::get('playlog', [PlayLogController::class, 'index']);
 //动态
 Route::get('activity', ActivityController::class);
+//评论
+Route::resource('comment', CommentController::class)->except(['create', 'edit']);

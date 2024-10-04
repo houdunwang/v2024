@@ -18,6 +18,8 @@ export const Page = React.forwardRef<HTMLDivElement, Props>(
           total={total}
           current={current_page}
           pageSize={row}
+          showQuickJumper={false}
+          showSizeChanger={false}
           {...props}
           onChange={change}
         />
@@ -31,7 +33,6 @@ interface ParamsType {
   last_page: number
   change: (page: number) => void
 }
-
 function keyChangePage(params: ParamsType) {
   const handle = useCallback(
     (event: KeyboardEvent) => {
@@ -52,5 +53,5 @@ function keyChangePage(params: ParamsType) {
     return () => {
       document.removeEventListener('keyup', debounceHandle)
     }
-  }, [debounceHandle])
+  }, [handle])
 }

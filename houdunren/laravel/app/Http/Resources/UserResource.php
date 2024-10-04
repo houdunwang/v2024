@@ -5,8 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-// select * from users u inner join topics t on u.id = t.user_id
-class TopicResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +16,7 @@ class TopicResource extends JsonResource
     {
         return [
             ...parent::toArray($request),
-            'user' => new UserResource($this->user),
+            'nickname' => $this->nickname ?: '盾友'
         ];
     }
 }

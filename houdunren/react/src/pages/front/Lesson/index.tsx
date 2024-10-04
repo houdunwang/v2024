@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import config from '@/config/config'
+import config from '@/config/app'
 import { userGetLessonList } from '@/services/lesson'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import 'react-lazy-load-image-component/src/effects/blur.css'
