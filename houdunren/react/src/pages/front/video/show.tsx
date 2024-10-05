@@ -1,4 +1,3 @@
-import { Comment } from '@/components/comment'
 import { LessonVideoList } from '@/components/LessonVideoList'
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from 'antd'
@@ -45,8 +44,8 @@ function Page() {
         </div>
       </section>
       <section className='mt-6 container grid lg:grid-cols-[350px_1fr]'>
-        <LessonVideoList />
-        <Comment />
+        {/* <LessonVideoList /> */}
+        {/* <Comment /> */}
       </section>
     </main>
   )

@@ -1,4 +1,4 @@
-import { Comment } from '@/components/comment'
+import { CommentList } from '@/components/comment/CommentList'
 import { UserIcon } from '@/components/UserIcon'
 import { useGetTopic } from '@/services/topic'
 import { GoodTwo, Time } from '@icon-park/react'
@@ -56,7 +56,7 @@ function Page() {
           </div>
         </section>
       </main>
-      <Comment className='px-0 mt-6' />
+      <CommentList className='px-0 mt-6' model_name='Topic' model_id={topic.id} />
     </div>
   )
 }

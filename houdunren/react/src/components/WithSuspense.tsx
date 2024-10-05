@@ -28,7 +28,7 @@ const ErrorBoundaryFallback = ({ error }: { error: any }) => {
       // navigate({ to: '/result/500' })
       break
     default:
-      navigate({ to: '/result/500' })
+    // navigate({ to: '/result/500' })
   }
   return null
 }
