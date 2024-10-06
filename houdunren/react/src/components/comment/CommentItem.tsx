@@ -1,18 +1,20 @@
+import { useCommentContext } from '@/contexts/ComentContext'
 import { IComment } from '@/types/comment'
 import { Delete, Next, Time } from '@icon-park/react'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { Random } from 'mockjs'
-import React, { useState } from 'react'
+import React from 'react'
+import { Button } from '../ui/button'
 import { Textarea } from '../ui/textarea'
 import { UserIcon } from '../UserIcon'
-import { Button } from '../ui/button'
+import { CommentReplyBox } from './CommentReplyBox'
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   comment: IComment
 }
 export const CommentItem = React.forwardRef<HTMLDivElement, Props>(
   ({ comment, className }, ref) => {
-    const [replyId, setReplyId] = useState(0)
+    const { replyId, setReplyId } = useCommentContext()
     return (
       <main className={className} ref={ref}>
         <section className={classNames('border rounded-lg overflow-hidden')}>
@@ -32,7 +34,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, Props>(
                   <div
                     className='flex items-center gap-1 hover:text-chart-2 cursor-pointer select-none'
                     onClick={() => {
-                      setReplyId(comment.id)
+                      setReplyId(replyId == comment.id ? 0 : comment.id)
                     }}>
                     <Next theme='outline' size='12' strokeWidth={5} />
                     回复 #{comment.id}
@@ -47,13 +49,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, Props>(
           </div>
           <div className='bg-slate-100 p-3 '>{comment.content}</div>
         </section>
-        {/* <ReplyBox /> */}
-        <div className={classNames('mt-2', replyId === comment.id ? 'flex' : 'hidden')}>
-          <Textarea />
-          <Button variant='outline' size={'sm'} className='mt-2'>
-            提交
-          </Button>
-        </div>
+        <CommentReplyBox comment={comment} />
       </main>
     )
   },

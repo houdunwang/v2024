@@ -13,6 +13,10 @@ export const Route = createFileRoute('/front/topic/$id')({
 function Page() {
   const { id } = Route.useParams()
   const { data: topic } = useGetTopic(+id)
+  const {
+    auth: { user },
+  } = Route.useRouteContext()
+  console.log(user('email'))
   return (
     <div className='container'>
       <main className='bg-white  rounded-lg'>

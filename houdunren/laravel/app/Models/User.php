@@ -36,7 +36,6 @@ class User extends Authenticatable
         'mobile',
         'openid',
         'unionid',
-        'email'
     ];
 
     /**

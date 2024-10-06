@@ -3,6 +3,7 @@ export interface IUser {
 	name: string;
 	nickname: null;
 	sex: number;
+	email: string
 	comment_num: number;
 	fans_num: number;
 	follower_num: number;

@@ -11,6 +11,7 @@ use App\Http\Controllers\PlayLogController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidateCodeController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -24,16 +25,14 @@ Route::get('/', function () {
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
-
+//用户
+Route::get('user/current', [UserController::class, 'current']);
 //贴子管理
 Route::resource('topic', TopicController::class)->except(['create', 'edit']);
-
 //章节
 Route::resource('chapter', ChapterController::class)->except(['create', 'edit']);
-
 //课程
 Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
-
 //视频
 Route::resource('video', VideoController::class)->except(['store', 'create', 'edit', 'update']);
 Route::post('video/{lesson}', [VideoController::class, 'store']);

@@ -3,11 +3,11 @@ import { useAppQuery } from './hooks/useAppQuery'
 import { useAppRouter } from './hooks/useAppRouter'
 
 function App() {
-  const { RouterProvider, router } = useAppRouter()
+  const { AppRouterProvider } = useAppRouter()
   const { QueryProvider } = useAppQuery()
   return (
     <QueryProvider>
-      <RouterProvider router={router} />
+      <AppRouterProvider />
       <Toaster />
     </QueryProvider>
   )
