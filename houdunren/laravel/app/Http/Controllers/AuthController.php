@@ -26,7 +26,7 @@ class AuthController extends Controller
             [
                 'name' => ['required', function ($attributes, $value, $fail) use ($user) {
                     if (!$user) {
-                        $fail('用户不存在，请检查帐号');
+                        $fail('用户不存在，请检查帐号,辛苦了,宝贝');
                     }
                 }],
                 'password' => ['required', function ($attributes, $value, $fail) use ($request, $user) {

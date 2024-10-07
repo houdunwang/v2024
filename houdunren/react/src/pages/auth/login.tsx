@@ -1,24 +1,43 @@
-import { AuthLayout } from '@/layouts/AuthLayout'
-import { Wechat } from '@icon-park/react'
-import { createFileRoute } from '@tanstack/react-router'
-import { formOptions, useForm } from '@tanstack/react-form'
+import { FieldFactory } from '@/components/form/FieldFactory'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useMutation } from '@tanstack/react-query'
+import app from '@/config/app'
+import { AuthLayout } from '@/layouts/AuthLayout'
 import { useUserLogin } from '@/services/auth'
+import { useValidationError } from '@/store/useValidationError'
+import { Wechat } from '@icon-park/react'
+import { useForm } from '@tanstack/react-form'
+import { createFileRoute } from '@tanstack/react-router'
+import { zodValidator } from '@tanstack/zod-form-adapter'
+import { message } from 'antd'
+import { z } from 'zod'
 export const Route = createFileRoute('/auth/login')({
   component: Page,
 })
 
+const validateSchema = z.object({
+  name: z.string().min(1, { message: '用户名不能为空' }),
+  password: z.string().min(1, { message: '密码不能为空' }),
+})
 function Page() {
   const loginMutation = useUserLogin()
+  const navitate = Route.useNavigate()
   const form = useForm({
+    validatorAdapter: zodValidator(),
+    validators: {
+      onChange: validateSchema,
+    },
     defaultValues: {
       name: 'admin',
       password: 'admin888',
     },
-    onSubmit: async (data) => {
-      loginMutation.mutate(data.value)
+    onSubmit: async ({ value }) => {
+      loginMutation.mutate(value, {
+        onSuccess: (data: { token: string }) => {
+          message.success({ key: 'message', content: '登录成功' })
+          localStorage.setItem(app.token_name, data.token)
+          navitate({ to: '/' })
+        },
+      })
     },
   })
   return (
@@ -29,31 +48,17 @@ function Page() {
         form.handleSubmit()
       }}>
       <AuthLayout title='登录' img='/images/auth/login.jpg'>
+        {/* {JSON.stringify(errors)} */}
         <div className='flex flex-col gap-3'>
-          <form.Field
-            name='name'
-            children={(field) => (
-              <Input
-                placeholder='请输入用户名或邮箱'
-                value={field.state.value}
-                onChange={(event) => field.handleChange(event.target.value)}
-              />
-            )}
-          />
-          <form.Field
-            name='password'
-            children={(field) => (
-              <Input
-                value={field.state.value}
-                placeholder='请输入登录密码'
-                onChange={(event) => field.handleChange(event.target.value)}
-              />
-            )}
-          />
-          {/* <Input placeholder='请输入验证码' /> */}
+          <FieldFactory form={form} name='name' placeholder='请输入帐号或邮箱' />
+          <FieldFactory form={form} name='password' placeholder='请输入密码' />
+          <FieldFactory form={form} name='code' placeholder='请输入验证码' />
         </div>
         <div className='mt-3 '>
-          <Button type='submit' size='lg' className='bg-violet-700 hover:!bg-violet-500'>
+          <Button
+            type='submit'
+            size='lg'
+            className='bg-violet-700 hover:!bg-violet-500 w-full'>
             登录
           </Button>
         </div>

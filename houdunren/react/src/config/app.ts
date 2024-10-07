@@ -1,4 +1,6 @@
 export default {
+	//token
+	token_name: 'token',
 	lesson_page_row: 8,
 	//视频分页条数
 	video_page_row: 10,

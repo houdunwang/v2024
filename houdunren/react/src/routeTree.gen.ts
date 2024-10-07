@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as AuthRouteImport } from './pages/auth/route'
 import { Route as Result500Import } from './pages/result/500'
 import { Route as AuthRegisterImport } from './pages/auth/register'
 import { Route as AuthLoginImport } from './pages/auth/login'
@@ -34,12 +35,16 @@ import { Route as FrontLessonIdImport } from './pages/front/Lesson/$id'
 const IndexLazyImport = createFileRoute('/')()
 const Result404LazyImport = createFileRoute('/result/404')()
 const FrontAboutLazyImport = createFileRoute('/front/about')()
-const Error404LazyImport = createFileRoute('/error/404')()
 
 // Create/Update Routes
 
 const FrontRouteRoute = FrontRouteImport.update({
   path: '/front',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthRouteRoute = AuthRouteImport.update({
+  path: '/auth',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -58,29 +63,24 @@ const FrontAboutLazyRoute = FrontAboutLazyImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any).lazy(() => import('./pages/front/about.lazy').then((d) => d.Route))
 
-const Error404LazyRoute = Error404LazyImport.update({
-  path: '/error/404',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./pages/error/404.lazy').then((d) => d.Route))
-
 const Result500Route = Result500Import.update({
   path: '/result/500',
   getParentRoute: () => rootRoute,
 } as any)
 
 const AuthRegisterRoute = AuthRegisterImport.update({
-  path: '/auth/register',
-  getParentRoute: () => rootRoute,
+  path: '/register',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 const AuthLoginRoute = AuthLoginImport.update({
-  path: '/auth/login',
-  getParentRoute: () => rootRoute,
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 const AuthForgetRoute = AuthForgetImport.update({
-  path: '/auth/forget',
-  getParentRoute: () => rootRoute,
+  path: '/forget',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 const FrontVideoIndexRoute = FrontVideoIndexImport.update({
@@ -144,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/front': {
       id: '/front'
       path: '/front'
@@ -153,37 +160,30 @@ declare module '@tanstack/react-router' {
     }
     '/auth/forget': {
       id: '/auth/forget'
-      path: '/auth/forget'
+      path: '/forget'
       fullPath: '/auth/forget'
       preLoaderRoute: typeof AuthForgetImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof AuthRouteImport
     }
     '/auth/login': {
       id: '/auth/login'
-      path: '/auth/login'
+      path: '/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof AuthRouteImport
     }
     '/auth/register': {
       id: '/auth/register'
-      path: '/auth/register'
+      path: '/register'
       fullPath: '/auth/register'
       preLoaderRoute: typeof AuthRegisterImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof AuthRouteImport
     }
     '/result/500': {
       id: '/result/500'
       path: '/result/500'
       fullPath: '/result/500'
       preLoaderRoute: typeof Result500Import
-      parentRoute: typeof rootRoute
-    }
-    '/error/404': {
-      id: '/error/404'
-      path: '/error/404'
-      fullPath: '/error/404'
-      preLoaderRoute: typeof Error404LazyImport
       parentRoute: typeof rootRoute
     }
     '/front/about': {
@@ -277,6 +277,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  AuthRouteRoute: AuthRouteRoute.addChildren({
+    AuthForgetRoute,
+    AuthLoginRoute,
+    AuthRegisterRoute,
+  }),
   FrontRouteRoute: FrontRouteRoute.addChildren({
     FrontAboutLazyRoute,
     FrontLessonIdRoute,
@@ -290,11 +295,7 @@ export const routeTree = rootRoute.addChildren({
     FrontTopicIndexRoute,
     FrontVideoIndexRoute,
   }),
-  AuthForgetRoute,
-  AuthLoginRoute,
-  AuthRegisterRoute,
   Result500Route,
-  Error404LazyRoute,
   Result404LazyRoute,
 })
 
@@ -307,17 +308,22 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/auth",
         "/front",
-        "/auth/forget",
-        "/auth/login",
-        "/auth/register",
         "/result/500",
-        "/error/404",
         "/result/404"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/auth": {
+      "filePath": "auth/route.tsx",
+      "children": [
+        "/auth/forget",
+        "/auth/login",
+        "/auth/register"
+      ]
     },
     "/front": {
       "filePath": "front/route.tsx",
@@ -336,19 +342,19 @@ export const routeTree = rootRoute.addChildren({
       ]
     },
     "/auth/forget": {
-      "filePath": "auth/forget.tsx"
+      "filePath": "auth/forget.tsx",
+      "parent": "/auth"
     },
     "/auth/login": {
-      "filePath": "auth/login.tsx"
+      "filePath": "auth/login.tsx",
+      "parent": "/auth"
     },
     "/auth/register": {
-      "filePath": "auth/register.tsx"
+      "filePath": "auth/register.tsx",
+      "parent": "/auth"
     },
     "/result/500": {
       "filePath": "result/500.tsx"
-    },
-    "/error/404": {
-      "filePath": "error/404.lazy.tsx"
     },
     "/front/about": {
       "filePath": "front/about.lazy.tsx",

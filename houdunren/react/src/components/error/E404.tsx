@@ -1,14 +1,11 @@
-import { createLazyFileRoute, useNavigate } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 import { Button, Result } from 'antd'
 
-export const Route = createLazyFileRoute('/error/404')({
-  component: Page,
-})
-
-function Page() {
+export const E404 = () => {
   const navigate = useNavigate()
+
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <main className='w-screen h-screen flex justify-center items-center'>
       <Result
         status='404'
         title='404'
@@ -19,6 +16,6 @@ function Page() {
           </Button>
         }
       />
-    </div>
+    </main>
   )
 }

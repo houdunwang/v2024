@@ -3,6 +3,9 @@ import React, { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import toast from 'react-hot-toast'
 import { Loading } from './Loading'
+import { E404 } from './error/E404'
+import { E403 } from './error/E403'
+import { E500 } from './error/E500'
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
 }
@@ -15,27 +18,23 @@ const ErrorBoundaryFallback = ({ error }: { error: any }) => {
       navigate({ to: '/auth/login' })
       break
     case 404:
-      navigate({ to: '/result/404' })
-      break
+      return <E404 />
     case 403:
-      toast.error('你没有访问权限', { duration: 3000, id: '403' })
-      navigate({ to: '/' })
-      break
+      return <E403 />
     case 429:
       toast.error('请求过于频繁', { duration: 3000, id: '429' })
       break
-    case 422:
-      // navigate({ to: '/result/500' })
-      break
-    default:
-    // navigate({ to: '/result/500' })
   }
-  return null
+  return <E500 />
 }
-export const WithSuspense = React.forwardRef<HTMLDivElement, Props>(({ children }) => {
-  return (
-    <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
-    </ErrorBoundary>
-  )
-})
+export const WithSuspense = React.forwardRef<HTMLDivElement, Props>(
+  ({ children }, ref) => {
+    return (
+      <div ref={ref}>
+        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </ErrorBoundary>
+      </div>
+    )
+  },
+)

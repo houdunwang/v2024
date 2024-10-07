@@ -23,7 +23,7 @@ class LessonController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        abort(401);
+        abort(500);
         // sleep(1);
         return LessonResource::collection(Lesson::with('chapter')->paginate(request('row', 12)));
     }

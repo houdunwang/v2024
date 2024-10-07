@@ -10,7 +10,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import menus from '@/config/menus'
 import { Code } from '@icon-park/react'
-import { Link } from '@tanstack/react-router'
+import { Link, useRouteContext } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
 import { UserIcon } from './UserIcon'
 
@@ -18,10 +18,12 @@ export const description =
   'A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.'
 
 export function Navbar() {
+  const context = useRouteContext({ strict: false })
   return (
     <div className='flex w-full flex-col mb-6 border-b bg-background '>
       <header className='container sticky top-0 flex h-16 items-center gap-4 px-4 '>
         <nav className='hidden flex-col gap-6 text-lg font-medium lg:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-5'>
+          {JSON.stringify(context)} @@
           <Link
             to={'/'}
             className='flex items-center gap-2 text-lg font-semibold md:text-base'>

@@ -18,6 +18,7 @@
     "@tanstack/react-form": "^0.33.0",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-router": "^1.47.5",
+    "@tanstack/zod-form-adapter": "^0.33.0",
     "@types/axios": "^0.14.0",
     "@types/lodash": "^4.17.9",
     "@types/mockjs": "^1.0.10",
@@ -41,7 +42,9 @@
     "react-spinners": "^0.14.1",
     "relativeTime": "link:dayjs/plugin/relativeTime",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8",
+    "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
