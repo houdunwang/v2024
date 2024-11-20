@@ -23,7 +23,6 @@ class LessonController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        abort(500);
         // sleep(1);
         return LessonResource::collection(Lesson::with('chapter')->paginate(request('row', 12)));
     }
@@ -31,7 +30,6 @@ class LessonController extends Controller implements HasMiddleware
     public function store(StoreLessonRequest $request, Lesson $lesson)
     {
         Gate::authorize('create', $lesson);
-
         $lesson->fill($request->input())->save();
         return new LessonResource($lesson);
     }

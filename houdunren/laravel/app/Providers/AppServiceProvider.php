@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(TelescopeServiceProvider::class);
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
+        $this->app->register(\Mews\Captcha\CaptchaServiceProvider::class);
     }
 
     /**

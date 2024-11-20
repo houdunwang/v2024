@@ -26,15 +26,17 @@ class AuthController extends Controller
             [
                 'name' => ['required', function ($attributes, $value, $fail) use ($user) {
                     if (!$user) {
-                        $fail('用户不存在，请检查帐号,辛苦了,宝贝');
+                        $fail('用户不存在，请检查帐号');
                     }
                 }],
                 'password' => ['required', function ($attributes, $value, $fail) use ($request, $user) {
                     if (!$user || !Hash::check($request->input('password'), $user->password)) {
                         $fail('密码输入错误');
                     }
-                }]
-            ]
+                }],
+                'captcha' => 'required|captcha_api:' . request('captcha_key') . ',math'
+            ],
+            ['captcha.captcha_api' => '验证码输入错误']
         );
         Auth::login($user, true);
         $token = $request->user()->createToken('app');

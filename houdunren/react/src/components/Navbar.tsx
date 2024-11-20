@@ -23,10 +23,7 @@ export function Navbar() {
     <div className='flex w-full flex-col mb-6 border-b bg-background '>
       <header className='container sticky top-0 flex h-16 items-center gap-4 px-4 '>
         <nav className='hidden flex-col gap-6 text-lg font-medium lg:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-5'>
-          {JSON.stringify(context)} @@
-          <Link
-            to={'/'}
-            className='flex items-center gap-2 text-lg font-semibold md:text-base'>
+          <Link to={'/'} className='flex items-center gap-2 text-lg font-semibold md:text-base'>
             <Code theme='outline' size='25' strokeWidth={4} />
             <span className='sr-only'>Acme Inc</span>
             <span className='uppercase'>houdunren</span>
@@ -56,10 +53,7 @@ export function Navbar() {
                 <span className='uppercase'>houdunren</span>
               </Link>
               {menus.map((menu, i) => (
-                <Link
-                  key={i}
-                  to={menu.to}
-                  className='text-muted-foreground hover:text-foreground'>
+                <Link key={i} to={menu.to} className='text-muted-foreground hover:text-foreground'>
                   {menu.title}
                 </Link>
               ))}

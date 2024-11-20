@@ -14,6 +14,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "lorisleiva/laravel-actions": "^2.8",
+        "mews/captcha": "^3.4",
         "spatie/laravel-activitylog": "^4.8"
     },
     "require-dev": {

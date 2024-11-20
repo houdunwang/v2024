@@ -271,5 +271,7 @@ return [
         'username'                 => '用户名',
         'value'                    => '价值',
         'year'                     => '年',
+        //
+        'captcha' => '验证码'
     ],
 ];

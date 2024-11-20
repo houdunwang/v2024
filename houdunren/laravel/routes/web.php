@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EmailBindController;
@@ -54,3 +55,5 @@ Route::get('playlog', [PlayLogController::class, 'index']);
 Route::get('activity', ActivityController::class);
 //评论
 Route::resource('comment', CommentController::class)->except(['create', 'edit']);
+//验证码
+Route::get('captcha', CaptchaController::class);
