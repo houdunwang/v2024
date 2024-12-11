@@ -21,6 +21,7 @@ class LessonController extends Controller  implements HasMiddleware
 
     public function index()
     {
+        sleep(2);
         return LessonResource::collection(Lesson::paginate(10));
     }
 

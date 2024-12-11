@@ -1,6 +1,12 @@
+import { useAppQuery } from '@/hooks/useAppQuery'
+import { useAppRouter } from '@/hooks/useAppRouter'
 
 export const App = () => {
-  return (
-    <div>App</div>
-  )
+	const { QueryProvider } = useAppQuery()
+	const { AppRouterProvider } = useAppRouter()
+	return (
+		<QueryProvider>
+			<AppRouterProvider />
+		</QueryProvider>
+	)
 }

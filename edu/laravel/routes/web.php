@@ -9,11 +9,13 @@ use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => 'ok');
-Route::post('login', [AuthController::class, 'login']);
-Route::post('register', [AuthController::class, 'register']);
-Route::post('logout', [AuthController::class, 'logout']);
-Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
-Route::resource('chapter', ChapterController::class)->except(['create', 'edit']);
-Route::resource('video', VideoController::class)->except(['create', 'edit', 'store', 'update']);
-Route::resource('topic', TopicController::class)->except(['create', 'edit']);
-Route::resource('sign', SignController::class)->except(['create', 'edit', 'update', 'show']);
+Route::prefix('hd')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::resource('lesson', LessonController::class)->except(['create', 'edit']);
+    Route::resource('chapter', ChapterController::class)->except(['create', 'edit']);
+    Route::resource('video', VideoController::class)->except(['create', 'edit', 'store', 'update']);
+    Route::resource('topic', TopicController::class)->except(['create', 'edit']);
+    Route::resource('sign', SignController::class)->except(['create', 'edit', 'update', 'show']);
+});

@@ -1,2 +1,12 @@
 @import url("./tailwind.scss");
 @import url("shadcn.scss");
+
+body {
+	@apply bg-muted;
+}
+a {
+	&.active,
+	&:hover {
+		@apply text-primary;
+	}
+}

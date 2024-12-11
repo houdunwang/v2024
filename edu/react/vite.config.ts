@@ -12,4 +12,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    open: true,
+    proxy: {
+      '/hd': {
+        target: 'http://laravel.test',
+        changeOrigin: true,
+      }
+    },
+  },
 })

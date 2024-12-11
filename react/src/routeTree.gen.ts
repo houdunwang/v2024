@@ -11,16 +11,22 @@
 // Import Routes
 
 import { Route as rootRoute } from './pages/__root'
-import { Route as FrontRouteImport } from './pages/front/route'
+import { Route as HoudunrenImport } from './pages/houdunren'
+import { Route as AboutImport } from './pages/about'
 import { Route as IndexImport } from './pages/index'
 import { Route as FrontTopicImport } from './pages/front/topic'
-import { Route as FrontSystemImport } from './pages/front/system'
 
 // Create/Update Routes
 
-const FrontRouteRoute = FrontRouteImport.update({
-  id: '/front',
-  path: '/front',
+const HoudunrenRoute = HoudunrenImport.update({
+  id: '/houdunren',
+  path: '/houdunren',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AboutRoute = AboutImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -31,15 +37,9 @@ const IndexRoute = IndexImport.update({
 } as any)
 
 const FrontTopicRoute = FrontTopicImport.update({
-  id: '/topic',
-  path: '/topic',
-  getParentRoute: () => FrontRouteRoute,
-} as any)
-
-const FrontSystemRoute = FrontSystemImport.update({
-  id: '/system',
-  path: '/system',
-  getParentRoute: () => FrontRouteRoute,
+  id: '/front/topic',
+  path: '/front/topic',
+  getParentRoute: () => rootRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -53,85 +53,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/front': {
-      id: '/front'
-      path: '/front'
-      fullPath: '/front'
-      preLoaderRoute: typeof FrontRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/front/system': {
-      id: '/front/system'
-      path: '/system'
-      fullPath: '/front/system'
-      preLoaderRoute: typeof FrontSystemImport
-      parentRoute: typeof FrontRouteImport
+    '/houdunren': {
+      id: '/houdunren'
+      path: '/houdunren'
+      fullPath: '/houdunren'
+      preLoaderRoute: typeof HoudunrenImport
+      parentRoute: typeof rootRoute
     }
     '/front/topic': {
       id: '/front/topic'
-      path: '/topic'
+      path: '/front/topic'
       fullPath: '/front/topic'
       preLoaderRoute: typeof FrontTopicImport
-      parentRoute: typeof FrontRouteImport
+      parentRoute: typeof rootRoute
     }
   }
 }
 
 // Create and export the route tree
 
-interface FrontRouteRouteChildren {
-  FrontSystemRoute: typeof FrontSystemRoute
-  FrontTopicRoute: typeof FrontTopicRoute
-}
-
-const FrontRouteRouteChildren: FrontRouteRouteChildren = {
-  FrontSystemRoute: FrontSystemRoute,
-  FrontTopicRoute: FrontTopicRoute,
-}
-
-const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
-  FrontRouteRouteChildren,
-)
-
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/front': typeof FrontRouteRouteWithChildren
-  '/front/system': typeof FrontSystemRoute
+  '/about': typeof AboutRoute
+  '/houdunren': typeof HoudunrenRoute
   '/front/topic': typeof FrontTopicRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/front': typeof FrontRouteRouteWithChildren
-  '/front/system': typeof FrontSystemRoute
+  '/about': typeof AboutRoute
+  '/houdunren': typeof HoudunrenRoute
   '/front/topic': typeof FrontTopicRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/front': typeof FrontRouteRouteWithChildren
-  '/front/system': typeof FrontSystemRoute
+  '/about': typeof AboutRoute
+  '/houdunren': typeof HoudunrenRoute
   '/front/topic': typeof FrontTopicRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/front' | '/front/system' | '/front/topic'
+  fullPaths: '/' | '/about' | '/houdunren' | '/front/topic'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/front' | '/front/system' | '/front/topic'
-  id: '__root__' | '/' | '/front' | '/front/system' | '/front/topic'
+  to: '/' | '/about' | '/houdunren' | '/front/topic'
+  id: '__root__' | '/' | '/about' | '/houdunren' | '/front/topic'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FrontRouteRoute: typeof FrontRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  HoudunrenRoute: typeof HoudunrenRoute
+  FrontTopicRoute: typeof FrontTopicRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FrontRouteRoute: FrontRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  HoudunrenRoute: HoudunrenRoute,
+  FrontTopicRoute: FrontTopicRoute,
 }
 
 export const routeTree = rootRoute
@@ -145,26 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/front"
+        "/about",
+        "/houdunren",
+        "/front/topic"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/front": {
-      "filePath": "front/route.tsx",
-      "children": [
-        "/front/system",
-        "/front/topic"
-      ]
+    "/about": {
+      "filePath": "about.tsx"
     },
-    "/front/system": {
-      "filePath": "front/system.tsx",
-      "parent": "/front"
+    "/houdunren": {
+      "filePath": "houdunren.tsx"
     },
     "/front/topic": {
-      "filePath": "front/topic.tsx",
-      "parent": "/front"
+      "filePath": "front/topic.tsx"
     }
   }
 }

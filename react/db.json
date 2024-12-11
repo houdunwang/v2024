@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "fb12",
+      "title": "者度半由步。",
+      "views": 296
+    },
+    {
+      "id": "1c56",
+      "title": "出头第立取。",
+      "views": 209
+    },
+    {
+      "id": "76d4",
+      "title": "又音下。",
+      "views": 145
+    },
+    {
+      "id": "bb37",
+      "title": "今何识。",
+      "views": 67
+    },
+    {
+      "id": "ce66",
+      "title": "设教声酸万感。",
+      "views": 216
+    },
+    {
+      "id": "a91f",
+      "title": "出维米和。",
+      "views": 186
+    },
+    {
+      "id": "3c2d",
+      "title": "斗美器取其派更。",
+      "views": 194
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
