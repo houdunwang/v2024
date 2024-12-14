@@ -13,6 +13,15 @@ class LessonSeeder extends Seeder
      */
     public function run(): void
     {
-        Lesson::factory(10)->create();
+        Lesson::factory(10)->hasChapters(9)->create();
+        // Lesson::factory(10)->hasChapters(9)->create([
+        //     "type" => "system",
+        //     'preview' => url('/assets/system/' . fake()->numberBetween(1, 12) . '.jpeg')
+        // ]);
+        Lesson::factory(10)->hasChapters(9)->make()->each(function ($lesson) {
+            $lesson->preview = url('/assets/system/' . fake()->numberBetween(1, 12) . '.jpeg');
+            $lesson->type = 'system';
+            $lesson->save();
+        });
     }
 }

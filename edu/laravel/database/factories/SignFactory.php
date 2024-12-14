@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class SignFactory extends Factory
     {
         return [
             'mood' => 'kx',
+            'user_id' => User::inRandomOrder()->value('id'),
             'content' => fake()->sentence()
         ];
     }

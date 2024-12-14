@@ -1,54 +1,46 @@
 {
-  "posts": [
+  "article": [
     {
-      "id": "1",
-      "title": "a title",
-      "views": 100
+      "id": "bdf0",
+      "title": "影老物队水。",
+      "content": "老公照算提思走高。求王近来不办志总很写。好么联至格确包技。时而制。意容使地响必活查又。议但流应位山精根。南因但合圆。",
+      "preview": "/images/3.jpeg"
     },
     {
-      "id": "fb12",
-      "title": "者度半由步。",
-      "views": 296
+      "id": "e2da",
+      "title": "省县是步和技。",
+      "content": "济按议人知很积史往民。叫层构速到打。连内日飞所知深局。自识思展联细火反证。格要角产样量该。想采报包果代物决。运取天般今规二今开放。候京矿主。最十很要大表当里事。",
+      "preview": "/images/4.jpeg"
     },
     {
-      "id": "1c56",
-      "title": "出头第立取。",
-      "views": 209
+      "id": "14d3",
+      "title": "到你从作较。",
+      "content": "且最金。论先照能志满。万月开院出。",
+      "preview": "/images/8.jpeg"
     },
     {
-      "id": "76d4",
-      "title": "又音下。",
-      "views": 145
+      "id": "667b",
+      "title": "斯形白度技。",
+      "content": "去圆再。织下取。原回次化线温。消厂面过断比般值。织格院见西温基设。而委中上。划备拉年件。个步类。",
+      "preview": "/images/9.jpeg"
     },
     {
-      "id": "bb37",
-      "title": "今何识。",
-      "views": 67
+      "id": "7ba4",
+      "title": "数以许。",
+      "content": "先样天光立适受。件全其天。对观日解长备育可。话二务型体。自重明方飞何众边委。",
+      "preview": "/images/6.jpeg"
     },
     {
-      "id": "ce66",
-      "title": "设教声酸万感。",
-      "views": 216
+      "id": "a93f",
+      "title": "事在和应百石切写领引。",
+      "content": "元严把书增他新系矿。及带引强制道会。格机得除件口民内斗。织放活接器。又话广她文意龙看每。水路严周人争写道先表。",
+      "preview": "/images/8.jpeg"
     },
     {
-      "id": "a91f",
-      "title": "出维米和。",
-      "views": 186
-    },
-    {
-      "id": "3c2d",
-      "title": "斗美器取其派更。",
-      "views": 194
+      "id": "9831",
+      "title": "统土公周理手部统山被。",
+      "content": "算节集件族运反出最。深团经例。观太教。选因容有给育林办天。",
+      "preview": "/images/2.jpeg"
     }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

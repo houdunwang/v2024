@@ -10,7 +10,7 @@ class LessonFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'preview' => $this->faker->imageUrl(),
+            'preview' => url('/assets/project/' . $this->faker->numberBetween(1, 12) . '.jpeg'),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->numberBetween(100, 500),
             'download_address' => $this->faker->url()

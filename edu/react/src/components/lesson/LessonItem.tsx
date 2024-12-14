@@ -1,7 +1,25 @@
-import React from 'react'
+import { ILesson } from '@/types/lesson';
+import { Link } from '@tanstack/react-router';
+import { FC } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export default function LessonItem() {
+interface Props {
+	lesson: ILesson
+}
+export const LessonItem: FC<Props> = ({ lesson }) => {
 	return (
-		<div>LessonItem</div>
+		<main className="border rounded-lg overflow-hidden">
+			<Link to='/lesson/$id' params={{ id: lesson.id }} className="">
+				<LazyLoadImage
+					src={lesson.preview}
+				/>
+			</Link>
+			<Link to='/lesson/$id' params={{ id: lesson.id }} className='p-3 font-bold text-lg border-houdunren'>{lesson.title}</Link>
+			<div className='px-3 pb-3 text-muted-foreground text-sm '>
+				<div className="line-clamp-2">
+					{lesson.description}
+				</div>
+			</div>
+		</main>
 	)
 }

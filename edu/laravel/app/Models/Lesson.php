@@ -11,4 +11,9 @@ class Lesson extends Model
     use HasFactory;
     protected $fillable = ['title', 'preview', 'description',];
     protected $hidden = ['download_address'];
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
+    }
 }

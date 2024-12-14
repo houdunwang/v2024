@@ -1,5 +1,7 @@
+import { IChapter } from "./chapter";
+
 export interface ILesson {
-	id: number;
+	id: string;
 	title: string;
 	preview: string;
 	description: string;
@@ -14,4 +16,5 @@ export interface ILesson {
 	deleted_at: null;
 	created_at: string;
 	updated_at: string;
+	chapters: IChapter[]
 }

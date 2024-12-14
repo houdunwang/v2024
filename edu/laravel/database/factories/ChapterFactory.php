@@ -19,8 +19,9 @@ class ChapterFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'preview' => $this->faker->imageUrl(),
-            'lesson_id' => Lesson::inRandomOrder()->value('id')
+            'preview' => url('/assets/lesson/' . $this->faker->numberBetween(1, 12) . '.jpeg'),
+            'lesson_id' => Lesson::inRandomOrder()->value('id'),
+            "description" => $this->faker->sentence(10),
         ];
     }
 }

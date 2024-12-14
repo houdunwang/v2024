@@ -1,2 +1,9 @@
 @import url("./tailwind.scss");
 @import url("./shadcn.scss");
+
+body {
+	@apply bg-muted;
+}
+.houdunren {
+	background-color: aquamarine;
+}

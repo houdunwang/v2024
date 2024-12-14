@@ -21,8 +21,8 @@ class LessonController extends Controller  implements HasMiddleware
 
     public function index()
     {
-        sleep(2);
-        return LessonResource::collection(Lesson::paginate(10));
+        $lessons = Lesson::whereType(request('type'))->paginate(10);
+        return LessonResource::collection($lessons);
     }
 
     public function store(StoreLessonRequest $request, Lesson $lesson)
@@ -35,7 +35,7 @@ class LessonController extends Controller  implements HasMiddleware
 
     public function show(Lesson $lesson)
     {
-        return new LessonResource($lesson);
+        return new LessonResource($lesson->load(['chapters']));
     }
 
     public function update(UpdateLessonRequest $request, Lesson $lesson)
