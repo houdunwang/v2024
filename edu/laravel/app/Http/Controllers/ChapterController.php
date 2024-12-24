@@ -31,9 +31,9 @@ class ChapterController extends Controller implements HasMiddleware
         return $lesson;
     }
 
-    public function show(Chapter $lesson)
+    public function show(Chapter $chapter)
     {
-        return new ChapterResource($lesson);
+        return new ChapterResource($chapter->load(['lesson', 'videos']));
     }
 
     public function update(UpdateChapterRequest $request, Chapter $lesson)

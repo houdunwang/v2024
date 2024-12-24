@@ -1,5 +1,7 @@
+import { IVideo } from "./video";
+
 export interface IChapter {
-	id: number;
+	id: string;
 	lesson_id: number;
 	title: string;
 	preview: string;
@@ -12,4 +14,5 @@ export interface IChapter {
 	download_address: null;
 	video: null;
 	price: null;
+	videos: IVideo[]
 }

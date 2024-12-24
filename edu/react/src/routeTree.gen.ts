@@ -14,9 +14,11 @@ import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/_front/route'
 import { Route as IndexImport } from './pages/index'
 import { Route as FrontTopicImport } from './pages/_front/topic'
+import { Route as FrontChapterIndexImport } from './pages/_front/chapter/index'
 import { Route as FrontLessonSystemImport } from './pages/_front/lesson/system'
 import { Route as FrontLessonProjectImport } from './pages/_front/lesson/project'
 import { Route as FrontLessonIdImport } from './pages/_front/lesson/$id'
+import { Route as FrontChapterIdImport } from './pages/_front/chapter/$id'
 
 // Create/Update Routes
 
@@ -37,6 +39,12 @@ const FrontTopicRoute = FrontTopicImport.update({
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
+const FrontChapterIndexRoute = FrontChapterIndexImport.update({
+  id: '/chapter/',
+  path: '/chapter/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
 const FrontLessonSystemRoute = FrontLessonSystemImport.update({
   id: '/lesson/system',
   path: '/lesson/system',
@@ -52,6 +60,12 @@ const FrontLessonProjectRoute = FrontLessonProjectImport.update({
 const FrontLessonIdRoute = FrontLessonIdImport.update({
   id: '/lesson/$id',
   path: '/lesson/$id',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontChapterIdRoute = FrontChapterIdImport.update({
+  id: '/chapter/$id',
+  path: '/chapter/$id',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -80,6 +94,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontTopicImport
       parentRoute: typeof FrontRouteImport
     }
+    '/_front/chapter/$id': {
+      id: '/_front/chapter/$id'
+      path: '/chapter/$id'
+      fullPath: '/chapter/$id'
+      preLoaderRoute: typeof FrontChapterIdImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/_front/lesson/$id': {
       id: '/_front/lesson/$id'
       path: '/lesson/$id'
@@ -101,6 +122,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontLessonSystemImport
       parentRoute: typeof FrontRouteImport
     }
+    '/_front/chapter/': {
+      id: '/_front/chapter/'
+      path: '/chapter'
+      fullPath: '/chapter'
+      preLoaderRoute: typeof FrontChapterIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
   }
 }
 
@@ -108,16 +136,20 @@ declare module '@tanstack/react-router' {
 
 interface FrontRouteRouteChildren {
   FrontTopicRoute: typeof FrontTopicRoute
+  FrontChapterIdRoute: typeof FrontChapterIdRoute
   FrontLessonIdRoute: typeof FrontLessonIdRoute
   FrontLessonProjectRoute: typeof FrontLessonProjectRoute
   FrontLessonSystemRoute: typeof FrontLessonSystemRoute
+  FrontChapterIndexRoute: typeof FrontChapterIndexRoute
 }
 
 const FrontRouteRouteChildren: FrontRouteRouteChildren = {
   FrontTopicRoute: FrontTopicRoute,
+  FrontChapterIdRoute: FrontChapterIdRoute,
   FrontLessonIdRoute: FrontLessonIdRoute,
   FrontLessonProjectRoute: FrontLessonProjectRoute,
   FrontLessonSystemRoute: FrontLessonSystemRoute,
+  FrontChapterIndexRoute: FrontChapterIndexRoute,
 }
 
 const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
@@ -128,18 +160,22 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof FrontRouteRouteWithChildren
   '/topic': typeof FrontTopicRoute
+  '/chapter/$id': typeof FrontChapterIdRoute
   '/lesson/$id': typeof FrontLessonIdRoute
   '/lesson/project': typeof FrontLessonProjectRoute
   '/lesson/system': typeof FrontLessonSystemRoute
+  '/chapter': typeof FrontChapterIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof FrontRouteRouteWithChildren
   '/topic': typeof FrontTopicRoute
+  '/chapter/$id': typeof FrontChapterIdRoute
   '/lesson/$id': typeof FrontLessonIdRoute
   '/lesson/project': typeof FrontLessonProjectRoute
   '/lesson/system': typeof FrontLessonSystemRoute
+  '/chapter': typeof FrontChapterIndexRoute
 }
 
 export interface FileRoutesById {
@@ -147,9 +183,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_front': typeof FrontRouteRouteWithChildren
   '/_front/topic': typeof FrontTopicRoute
+  '/_front/chapter/$id': typeof FrontChapterIdRoute
   '/_front/lesson/$id': typeof FrontLessonIdRoute
   '/_front/lesson/project': typeof FrontLessonProjectRoute
   '/_front/lesson/system': typeof FrontLessonSystemRoute
+  '/_front/chapter/': typeof FrontChapterIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -158,19 +196,31 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/topic'
+    | '/chapter/$id'
     | '/lesson/$id'
     | '/lesson/project'
     | '/lesson/system'
+    | '/chapter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/topic' | '/lesson/$id' | '/lesson/project' | '/lesson/system'
+  to:
+    | '/'
+    | ''
+    | '/topic'
+    | '/chapter/$id'
+    | '/lesson/$id'
+    | '/lesson/project'
+    | '/lesson/system'
+    | '/chapter'
   id:
     | '__root__'
     | '/'
     | '/_front'
     | '/_front/topic'
+    | '/_front/chapter/$id'
     | '/_front/lesson/$id'
     | '/_front/lesson/project'
     | '/_front/lesson/system'
+    | '/_front/chapter/'
   fileRoutesById: FileRoutesById
 }
 
@@ -205,13 +255,19 @@ export const routeTree = rootRoute
       "filePath": "_front/route.tsx",
       "children": [
         "/_front/topic",
+        "/_front/chapter/$id",
         "/_front/lesson/$id",
         "/_front/lesson/project",
-        "/_front/lesson/system"
+        "/_front/lesson/system",
+        "/_front/chapter/"
       ]
     },
     "/_front/topic": {
       "filePath": "_front/topic.tsx",
+      "parent": "/_front"
+    },
+    "/_front/chapter/$id": {
+      "filePath": "_front/chapter/$id.tsx",
       "parent": "/_front"
     },
     "/_front/lesson/$id": {
@@ -224,6 +280,10 @@ export const routeTree = rootRoute
     },
     "/_front/lesson/system": {
       "filePath": "_front/lesson/system.tsx",
+      "parent": "/_front"
+    },
+    "/_front/chapter/": {
+      "filePath": "_front/chapter/index.tsx",
       "parent": "/_front"
     }
   }

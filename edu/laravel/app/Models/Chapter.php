@@ -14,4 +14,9 @@ class Chapter extends Model
     {
         return $this->belongsTo(Lesson::class);
     }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }
