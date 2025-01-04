@@ -13,7 +13,12 @@
 import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/front/route'
 import { Route as IndexImport } from './pages/index'
+import { Route as FrontIndexImport } from './pages/front/index'
+import { Route as FeatureIndexImport } from './pages/feature/index'
 import { Route as FrontLiveImport } from './pages/front/live'
+import { Route as FrontCreateImport } from './pages/front/create'
+import { Route as FeatureUseStateImport } from './pages/feature/useState'
+import { Route as FrontEditIdImport } from './pages/front/edit.$id'
 import { Route as FrontArticleIdImport } from './pages/front/article.$id'
 
 // Create/Update Routes
@@ -30,9 +35,39 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const FrontIndexRoute = FrontIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FeatureIndexRoute = FeatureIndexImport.update({
+  id: '/feature/',
+  path: '/feature/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const FrontLiveRoute = FrontLiveImport.update({
   id: '/live',
   path: '/live',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontCreateRoute = FrontCreateImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FeatureUseStateRoute = FeatureUseStateImport.update({
+  id: '/feature/useState',
+  path: '/feature/useState',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FrontEditIdRoute = FrontEditIdImport.update({
+  id: '/edit/$id',
+  path: '/edit/$id',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -60,11 +95,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRoute
     }
+    '/feature/useState': {
+      id: '/feature/useState'
+      path: '/feature/useState'
+      fullPath: '/feature/useState'
+      preLoaderRoute: typeof FeatureUseStateImport
+      parentRoute: typeof rootRoute
+    }
+    '/front/create': {
+      id: '/front/create'
+      path: '/create'
+      fullPath: '/front/create'
+      preLoaderRoute: typeof FrontCreateImport
+      parentRoute: typeof FrontRouteImport
+    }
     '/front/live': {
       id: '/front/live'
       path: '/live'
       fullPath: '/front/live'
       preLoaderRoute: typeof FrontLiveImport
+      parentRoute: typeof FrontRouteImport
+    }
+    '/feature/': {
+      id: '/feature/'
+      path: '/feature'
+      fullPath: '/feature'
+      preLoaderRoute: typeof FeatureIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/front/': {
+      id: '/front/'
+      path: '/'
+      fullPath: '/front/'
+      preLoaderRoute: typeof FrontIndexImport
       parentRoute: typeof FrontRouteImport
     }
     '/front/article/$id': {
@@ -74,19 +137,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontArticleIdImport
       parentRoute: typeof FrontRouteImport
     }
+    '/front/edit/$id': {
+      id: '/front/edit/$id'
+      path: '/edit/$id'
+      fullPath: '/front/edit/$id'
+      preLoaderRoute: typeof FrontEditIdImport
+      parentRoute: typeof FrontRouteImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface FrontRouteRouteChildren {
+  FrontCreateRoute: typeof FrontCreateRoute
   FrontLiveRoute: typeof FrontLiveRoute
+  FrontIndexRoute: typeof FrontIndexRoute
   FrontArticleIdRoute: typeof FrontArticleIdRoute
+  FrontEditIdRoute: typeof FrontEditIdRoute
 }
 
 const FrontRouteRouteChildren: FrontRouteRouteChildren = {
+  FrontCreateRoute: FrontCreateRoute,
   FrontLiveRoute: FrontLiveRoute,
+  FrontIndexRoute: FrontIndexRoute,
   FrontArticleIdRoute: FrontArticleIdRoute,
+  FrontEditIdRoute: FrontEditIdRoute,
 }
 
 const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
@@ -96,42 +172,87 @@ const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/feature/useState': typeof FeatureUseStateRoute
+  '/front/create': typeof FrontCreateRoute
   '/front/live': typeof FrontLiveRoute
+  '/feature': typeof FeatureIndexRoute
+  '/front/': typeof FrontIndexRoute
   '/front/article/$id': typeof FrontArticleIdRoute
+  '/front/edit/$id': typeof FrontEditIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/front': typeof FrontRouteRouteWithChildren
+  '/feature/useState': typeof FeatureUseStateRoute
+  '/front/create': typeof FrontCreateRoute
   '/front/live': typeof FrontLiveRoute
+  '/feature': typeof FeatureIndexRoute
+  '/front': typeof FrontIndexRoute
   '/front/article/$id': typeof FrontArticleIdRoute
+  '/front/edit/$id': typeof FrontEditIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/front': typeof FrontRouteRouteWithChildren
+  '/feature/useState': typeof FeatureUseStateRoute
+  '/front/create': typeof FrontCreateRoute
   '/front/live': typeof FrontLiveRoute
+  '/feature/': typeof FeatureIndexRoute
+  '/front/': typeof FrontIndexRoute
   '/front/article/$id': typeof FrontArticleIdRoute
+  '/front/edit/$id': typeof FrontEditIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/front' | '/front/live' | '/front/article/$id'
+  fullPaths:
+    | '/'
+    | '/front'
+    | '/feature/useState'
+    | '/front/create'
+    | '/front/live'
+    | '/feature'
+    | '/front/'
+    | '/front/article/$id'
+    | '/front/edit/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/front' | '/front/live' | '/front/article/$id'
-  id: '__root__' | '/' | '/front' | '/front/live' | '/front/article/$id'
+  to:
+    | '/'
+    | '/feature/useState'
+    | '/front/create'
+    | '/front/live'
+    | '/feature'
+    | '/front'
+    | '/front/article/$id'
+    | '/front/edit/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/front'
+    | '/feature/useState'
+    | '/front/create'
+    | '/front/live'
+    | '/feature/'
+    | '/front/'
+    | '/front/article/$id'
+    | '/front/edit/$id'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FrontRouteRoute: typeof FrontRouteRouteWithChildren
+  FeatureUseStateRoute: typeof FeatureUseStateRoute
+  FeatureIndexRoute: typeof FeatureIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FrontRouteRoute: FrontRouteRouteWithChildren,
+  FeatureUseStateRoute: FeatureUseStateRoute,
+  FeatureIndexRoute: FeatureIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -145,7 +266,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/front"
+        "/front",
+        "/feature/useState",
+        "/feature/"
       ]
     },
     "/": {
@@ -154,16 +277,37 @@ export const routeTree = rootRoute
     "/front": {
       "filePath": "front/route.tsx",
       "children": [
+        "/front/create",
         "/front/live",
-        "/front/article/$id"
+        "/front/",
+        "/front/article/$id",
+        "/front/edit/$id"
       ]
+    },
+    "/feature/useState": {
+      "filePath": "feature/useState.tsx"
+    },
+    "/front/create": {
+      "filePath": "front/create.tsx",
+      "parent": "/front"
     },
     "/front/live": {
       "filePath": "front/live.tsx",
       "parent": "/front"
     },
+    "/feature/": {
+      "filePath": "feature/index.tsx"
+    },
+    "/front/": {
+      "filePath": "front/index.tsx",
+      "parent": "/front"
+    },
     "/front/article/$id": {
       "filePath": "front/article.$id.tsx",
+      "parent": "/front"
+    },
+    "/front/edit/$id": {
+      "filePath": "front/edit.$id.tsx",
       "parent": "/front"
     }
   }

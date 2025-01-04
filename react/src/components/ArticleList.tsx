@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useGetArticleList } from '@/services/article'
 import { Error } from './errors/Error'
 import { Loading } from './Loading'
+import { Button } from './ui/button'
+import { Link } from '@tanstack/react-router'
 
 export const ArticleList = () => {
 	const { isPending, isError, error, data } = useGetArticleList()
@@ -14,7 +16,10 @@ export const ArticleList = () => {
 			<Card>
 				<CardHeader>
 					<CardTitle>我的博客</CardTitle>
-					<CardDescription>希望我的博客内容给你带来启发  houdunren.com</CardDescription>
+					<CardDescription className='flex justify-between'>
+						希望我的博客内容给你带来启发  houdunren.com
+						<Link to='/front/create'><Button variant="outline">发表文章</Button></Link>
+					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					{data.map((article) => {

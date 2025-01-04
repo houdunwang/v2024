@@ -1,6 +1,12 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from '@/routeTree.gen'
-const router = createRouter({ routeTree })
+import { E404 } from '@/components/errors/E404'
+const router = createRouter({
+	routeTree,
+	defaultNotFoundComponent: () => {
+		return <E404 />
+	}
+})
 declare module '@tanstack/react-router' {
 	interface Register {
 		router: typeof router

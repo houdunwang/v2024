@@ -23,6 +23,7 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'eslint-disable-next-line @typescript-eslint/no-unused-vars':off
     },
   },
 )

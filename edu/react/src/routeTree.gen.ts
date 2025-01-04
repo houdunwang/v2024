@@ -14,6 +14,7 @@ import { Route as rootRoute } from './pages/__root'
 import { Route as FrontRouteImport } from './pages/_front/route'
 import { Route as IndexImport } from './pages/index'
 import { Route as FrontTopicImport } from './pages/_front/topic'
+import { Route as FrontVideoIndexImport } from './pages/_front/video/index'
 import { Route as FrontChapterIndexImport } from './pages/_front/chapter/index'
 import { Route as FrontLessonSystemImport } from './pages/_front/lesson/system'
 import { Route as FrontLessonProjectImport } from './pages/_front/lesson/project'
@@ -36,6 +37,12 @@ const IndexRoute = IndexImport.update({
 const FrontTopicRoute = FrontTopicImport.update({
   id: '/topic',
   path: '/topic',
+  getParentRoute: () => FrontRouteRoute,
+} as any)
+
+const FrontVideoIndexRoute = FrontVideoIndexImport.update({
+  id: '/video/',
+  path: '/video/',
   getParentRoute: () => FrontRouteRoute,
 } as any)
 
@@ -129,6 +136,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontChapterIndexImport
       parentRoute: typeof FrontRouteImport
     }
+    '/_front/video/': {
+      id: '/_front/video/'
+      path: '/video'
+      fullPath: '/video'
+      preLoaderRoute: typeof FrontVideoIndexImport
+      parentRoute: typeof FrontRouteImport
+    }
   }
 }
 
@@ -141,6 +155,7 @@ interface FrontRouteRouteChildren {
   FrontLessonProjectRoute: typeof FrontLessonProjectRoute
   FrontLessonSystemRoute: typeof FrontLessonSystemRoute
   FrontChapterIndexRoute: typeof FrontChapterIndexRoute
+  FrontVideoIndexRoute: typeof FrontVideoIndexRoute
 }
 
 const FrontRouteRouteChildren: FrontRouteRouteChildren = {
@@ -150,6 +165,7 @@ const FrontRouteRouteChildren: FrontRouteRouteChildren = {
   FrontLessonProjectRoute: FrontLessonProjectRoute,
   FrontLessonSystemRoute: FrontLessonSystemRoute,
   FrontChapterIndexRoute: FrontChapterIndexRoute,
+  FrontVideoIndexRoute: FrontVideoIndexRoute,
 }
 
 const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
@@ -165,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/lesson/project': typeof FrontLessonProjectRoute
   '/lesson/system': typeof FrontLessonSystemRoute
   '/chapter': typeof FrontChapterIndexRoute
+  '/video': typeof FrontVideoIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -176,6 +193,7 @@ export interface FileRoutesByTo {
   '/lesson/project': typeof FrontLessonProjectRoute
   '/lesson/system': typeof FrontLessonSystemRoute
   '/chapter': typeof FrontChapterIndexRoute
+  '/video': typeof FrontVideoIndexRoute
 }
 
 export interface FileRoutesById {
@@ -188,6 +206,7 @@ export interface FileRoutesById {
   '/_front/lesson/project': typeof FrontLessonProjectRoute
   '/_front/lesson/system': typeof FrontLessonSystemRoute
   '/_front/chapter/': typeof FrontChapterIndexRoute
+  '/_front/video/': typeof FrontVideoIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -201,6 +220,7 @@ export interface FileRouteTypes {
     | '/lesson/project'
     | '/lesson/system'
     | '/chapter'
+    | '/video'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -211,6 +231,7 @@ export interface FileRouteTypes {
     | '/lesson/project'
     | '/lesson/system'
     | '/chapter'
+    | '/video'
   id:
     | '__root__'
     | '/'
@@ -221,6 +242,7 @@ export interface FileRouteTypes {
     | '/_front/lesson/project'
     | '/_front/lesson/system'
     | '/_front/chapter/'
+    | '/_front/video/'
   fileRoutesById: FileRoutesById
 }
 
@@ -259,7 +281,8 @@ export const routeTree = rootRoute
         "/_front/lesson/$id",
         "/_front/lesson/project",
         "/_front/lesson/system",
-        "/_front/chapter/"
+        "/_front/chapter/",
+        "/_front/video/"
       ]
     },
     "/_front/topic": {
@@ -284,6 +307,10 @@ export const routeTree = rootRoute
     },
     "/_front/chapter/": {
       "filePath": "_front/chapter/index.tsx",
+      "parent": "/_front"
+    },
+    "/_front/video/": {
+      "filePath": "_front/video/index.tsx",
       "parent": "/_front"
     }
   }

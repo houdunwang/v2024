@@ -18,7 +18,9 @@ class VideoController extends Controller implements HasMiddleware
 
     public function index()
     {
-        return VideoResource::collection(Video::paginate(10));
+        $videos = Video::paginate(10);
+        $videos->withPath('/video');
+        return VideoResource::collection($videos->onEachSide(0));
     }
 
     public function show(Video $video)
