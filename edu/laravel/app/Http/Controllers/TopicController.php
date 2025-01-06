@@ -21,7 +21,8 @@ class TopicController extends Controller implements HasMiddleware
 
     public function index()
     {
-        return TopicResource::collection(Topic::paginate(10));
+        $topics = Topic::paginate(10)->withPath('/topic')->onEachSide(0);
+        return TopicResource::collection($topics);
     }
 
     public function store(StoreTopicRequest $request, Topic $topic)
@@ -33,7 +34,7 @@ class TopicController extends Controller implements HasMiddleware
 
     public function show(Topic $topic)
     {
-        return new TopicResource($topic);
+        return new TopicResource();
     }
 
     public function update(UpdateTopicRequest $request, Topic $topic)

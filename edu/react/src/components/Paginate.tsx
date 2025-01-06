@@ -8,7 +8,8 @@ export const Paginate = ({ meta }: { meta: IPaginate<[]>['meta'] }) => {
 			<PaginationContent>
 				{meta.links.map((link, index) => (
 					<PaginationItem key={index}>
-						<PaginationLink href={link.url ? link.url : '#'} isActive={link.active} size={'default'}
+						<PaginationLink href={link.url ? link.url : '#'} isActive={link.active}
+							size={'default'}
 							className={classNames({
 								'bg-gray-50 border': !link.active,
 								'bg-primary text-white': link.active
