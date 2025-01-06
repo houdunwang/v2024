@@ -13,4 +13,15 @@ export const useGetTopicList = (page: number) => {
 			return (await http.get(`/topic?page=${page}`)).data
 		}
 	})
-} 
+}
+
+//话题详情
+export const useGetTopicDetail = (id: number) => {
+	const { http } = useAxios()
+	return useQuery<ITopic, AxiosError>({
+		queryKey: ["topicDetail", id],
+		queryFn: async () => {
+			return (await http.get(`/topic/${id}`)).data
+		},
+	})
+}

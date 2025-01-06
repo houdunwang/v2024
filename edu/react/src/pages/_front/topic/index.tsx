@@ -2,9 +2,10 @@ import { Error } from '@/components/error/Error'
 import { Loading } from '@/components/Loading'
 import { Paginate } from '@/components/Paginate'
 import { TopicItem } from '@/components/topic/TopicItem'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { useGetTopicList } from '@/services/topic'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_front/topic/')({
 	component: RouteComponent,
@@ -23,7 +24,12 @@ function RouteComponent() {
 	return <main className="container">
 		<Card>
 			<CardHeader>
-				<CardTitle>话题讨论</CardTitle>
+				<CardTitle className='flex justify-between items-center'>
+					话题讨论
+					<Link to="/topic/create">
+						<Button variant="outline">发表话题</Button>
+					</Link>
+				</CardTitle>
 				<CardDescription>请发表友好、健康的话题</CardDescription>
 			</CardHeader>
 			<CardContent>

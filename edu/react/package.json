@@ -12,12 +12,16 @@
   "dependencies": {
     "@icon-park/react": "^1.4.2",
     "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@tanstack/react-form": "^0.41.0",
     "@tanstack/react-query": "^5.62.7",
     "@tanstack/react-router": "^1.86.0",
+    "@tanstack/zod-form-adapter": "^0.41.0",
     "@types/react-lazy-load-image-component": "^1.6.4",
     "antd": "^5.22.4",
     "axios": "^1.7.9",
+    "cherry-markdown": "^0.8.57",
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
@@ -27,7 +31,8 @@
     "react-dom": "^18.3.1",
     "react-lazy-load-image-component": "^1.6.2",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

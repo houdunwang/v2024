@@ -34,7 +34,7 @@ class TopicController extends Controller implements HasMiddleware
 
     public function show(Topic $topic)
     {
-        return new TopicResource();
+        return new TopicResource($topic);
     }
 
     public function update(UpdateTopicRequest $request, Topic $topic)
