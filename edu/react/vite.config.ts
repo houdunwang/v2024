@@ -18,7 +18,11 @@ export default defineConfig({
       '/hd': {
         target: 'http://laravel.test',
         changeOrigin: true,
-      }
+      },
+      '/sanctum': {
+        target: 'http://laravel.test',
+        changeOrigin: true,
+      },
     },
   },
 })

@@ -1,13 +1,16 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { createFileRoute } from '@tanstack/react-router'
-import { useForm } from '@tanstack/react-form'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import zod from 'zod'
 import { ValidateError } from '@/components/ValidateError'
 import { MarkdownEditor } from '@/components/editor/MarkdownEditor'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { useForm } from '@tanstack/react-form'
+import { createFileRoute } from '@tanstack/react-router'
+import zod from 'zod'
 export const Route = createFileRoute('/_front/topic/create')({
 	component: RouteComponent,
+	beforeLoad: ({ context }) => {
+		context.auth.check()
+	}
 })
 const zodSchema = zod.object({
 	title: zod.string().min(5, '标题不能少于5个字符'),
@@ -41,7 +44,7 @@ function RouteComponent() {
 					<form.Field name='title' children={field => (
 						<div>
 							<Input value={field.state.value} onChange={e => field.handleChange(e.target.value)} />
-							<ValidateError errors={field.state.meta.errors} />
+							<ValidateError name='title' errors={field.state.meta.errors} />
 						</div>
 					)} />
 					<form.Field name='content' children={field => (
@@ -49,7 +52,7 @@ function RouteComponent() {
 							<MarkdownEditor onChange={value => {
 								field.handleChange(value)
 							}} />
-							<ValidateError errors={field.state.meta.errors} />
+							<ValidateError name='content' errors={field.state.meta.errors} />
 						</div>
 					)} />
 				</CardContent>

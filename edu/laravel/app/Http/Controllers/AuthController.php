@@ -25,7 +25,8 @@ class AuthController extends Controller
         }
 
         Auth::login($user);
-        return ['token' => $user->createToken('auth_token')->plainTextToken];
+        // 桌面app
+        return ['token' => $user->createToken('auth_token')->plainTextToken, "user" => $user];
     }
 
     public function register(Request $request, User $user)

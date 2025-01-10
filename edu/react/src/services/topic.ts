@@ -22,6 +22,8 @@ export const useGetTopicDetail = (id: number) => {
 		queryKey: ["topicDetail", id],
 		queryFn: async () => {
 			return (await http.get(`/topic/${id}`)).data
-		},
+		}
 	})
 }
+
+//

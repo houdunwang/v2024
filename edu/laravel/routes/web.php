@@ -6,6 +6,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ Route::prefix('hd')->group(function () {
     Route::resource('topic', TopicController::class)->except(['create', 'edit']);
     Route::resource('sign', SignController::class)->except(['create', 'edit', 'update', 'show']);
     Route::post('upload/image', [UploadController::class, 'image']);
+    Route::get('user/current', [UserController::class, 'current']);
 });

@@ -1,6 +1,12 @@
 import { routeTree } from '@/routeTree.gen'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-const router = createRouter({ routeTree })
+import { useAuth } from './useAuth'
+const router = createRouter({
+	routeTree,
+	context: {
+		auth: undefined!
+	}
+})
 declare module '@tanstack/react-router' {
 	interface Register {
 		router: typeof router
@@ -8,6 +14,7 @@ declare module '@tanstack/react-router' {
 }
 
 export const useAppRouter = () => {
-	const AppRouterProvider = () => <RouterProvider router={router} />
+	const auth = useAuth()
+	const AppRouterProvider = () => <RouterProvider router={router} context={{ auth }} />
 	return { AppRouterProvider }
 }

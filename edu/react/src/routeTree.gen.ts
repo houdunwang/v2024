@@ -11,8 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './pages/__root'
+import { Route as AuthRouteImport } from './pages/auth/route'
 import { Route as FrontRouteImport } from './pages/_front/route'
 import { Route as IndexImport } from './pages/index'
+import { Route as AuthLoginImport } from './pages/auth/login'
 import { Route as FrontVideoIndexImport } from './pages/_front/video/index'
 import { Route as FrontTopicIndexImport } from './pages/_front/topic/index'
 import { Route as FrontChapterIndexImport } from './pages/_front/chapter/index'
@@ -25,6 +27,12 @@ import { Route as FrontChapterIdImport } from './pages/_front/chapter/$id'
 
 // Create/Update Routes
 
+const AuthRouteRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const FrontRouteRoute = FrontRouteImport.update({
   id: '/_front',
   getParentRoute: () => rootRoute,
@@ -34,6 +42,12 @@ const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthLoginRoute = AuthLoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 const FrontVideoIndexRoute = FrontVideoIndexImport.update({
@@ -107,6 +121,20 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof FrontRouteImport
       parentRoute: typeof rootRoute
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof AuthRouteImport
     }
     '/_front/chapter/$id': {
       id: '/_front/chapter/$id'
@@ -204,9 +232,23 @@ const FrontRouteRouteWithChildren = FrontRouteRoute._addFileChildren(
   FrontRouteRouteChildren,
 )
 
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof FrontRouteRouteWithChildren
+  '/auth': typeof AuthRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/chapter/$id': typeof FrontChapterIdRoute
   '/lesson/$id': typeof FrontLessonIdRoute
   '/lesson/project': typeof FrontLessonProjectRoute
@@ -221,6 +263,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof FrontRouteRouteWithChildren
+  '/auth': typeof AuthRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/chapter/$id': typeof FrontChapterIdRoute
   '/lesson/$id': typeof FrontLessonIdRoute
   '/lesson/project': typeof FrontLessonProjectRoute
@@ -236,6 +280,8 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/_front': typeof FrontRouteRouteWithChildren
+  '/auth': typeof AuthRouteRouteWithChildren
+  '/auth/login': typeof AuthLoginRoute
   '/_front/chapter/$id': typeof FrontChapterIdRoute
   '/_front/lesson/$id': typeof FrontLessonIdRoute
   '/_front/lesson/project': typeof FrontLessonProjectRoute
@@ -252,6 +298,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | ''
+    | '/auth'
+    | '/auth/login'
     | '/chapter/$id'
     | '/lesson/$id'
     | '/lesson/project'
@@ -265,6 +313,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | ''
+    | '/auth'
+    | '/auth/login'
     | '/chapter/$id'
     | '/lesson/$id'
     | '/lesson/project'
@@ -278,6 +328,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_front'
+    | '/auth'
+    | '/auth/login'
     | '/_front/chapter/$id'
     | '/_front/lesson/$id'
     | '/_front/lesson/project'
@@ -293,11 +345,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FrontRouteRoute: typeof FrontRouteRouteWithChildren
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FrontRouteRoute: FrontRouteRouteWithChildren,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -311,7 +365,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/_front"
+        "/_front",
+        "/auth"
       ]
     },
     "/": {
@@ -330,6 +385,16 @@ export const routeTree = rootRoute
         "/_front/topic/",
         "/_front/video/"
       ]
+    },
+    "/auth": {
+      "filePath": "auth/route.tsx",
+      "children": [
+        "/auth/login"
+      ]
+    },
+    "/auth/login": {
+      "filePath": "auth/login.tsx",
+      "parent": "/auth"
     },
     "/_front/chapter/$id": {
       "filePath": "_front/chapter/$id.tsx",
